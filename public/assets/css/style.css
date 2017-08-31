@@ -1,0 +1,9 @@
+header {
+  font-family: 'Lobster', cursive;
+  font-size: 480%;
+  text-shadow: 2px 2px 2px #aaa;
+};
+
+#userLogin {
+  width: 80;
+}

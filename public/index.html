@@ -5,21 +5,172 @@
   <meta charset="UTF-8">
   <title>swapr</title>
   <!-- Fonts -->
-  
-  <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
   <!-- Metrialize Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- Link to Moment.js -->
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
-
-
-    <!-- Compiled and minified JavaScript -->
+  <!-- Modal for Login -->
+  <div id="modalLogin" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="container main">
+        <h4>Member Login</h4>
+        <form id="login">
+          <!-- users login input -->
+          <div class="col s12">
+            <div class="input-field clearfix" id="userLogin">
+              <input placeholder="username" id="username" type="text" class="validate">
+              <label for="username"></label>
+              </input>
+              <input placeholder="password" id="password" type="password" class="validate">
+              <label for="password"></label>
+              </input>
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>
+  <!-- Modal for Signup -->
+  <div id="modalSignup" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="container main"> 
+      <h4>Member Signup</h4>
+        <form id="signup">
+          <!-- users signup input -->
+          <div class="row">
+            <div class="input-field" id="usersignUp">
+              <div class="col s6">
+                <input placeholder="firstName" id="firstName" type="text" class="validate">
+                <label for="firstName"></label>
+                </input>
+              </div>
+              <div class="col s6">
+                <input placeholder="lastName" id="lastName" type="text" class="validate">
+                <label for="lastName"></label>
+                </input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field usersignUp">
+              <div class="col s6">
+                <input placeholder="email" id="email" type="email" class="validate">
+                <label for="email"></label>
+                </input>
+              </div>
+              <div class="col s6">
+                <input placeholder="phone" id="phone" type="text" class="validate">
+                <label for="phone"></label>
+                </input>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field usersignUp">
+              <div class="col s6">
+                <input placeholder="city" id="city" type="text" class="validate">
+                <label for="city"></label>
+                </input>
+              </div>
+              <div class="col s6">
+                <input placeholder="state" id="state" type="text" class="validate">
+                <label for="state"></label>
+                </input>
+              </div>
+            </div>
+          </div>
+          <div class="col s12">
+            <input placeholder="username" id="username" type="text" class="validate">
+            <label for="username"></label>
+            </input>
+            <input placeholder="password" id="password" type="password" class="validate">
+            <label for="password"></label>
+            </input>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">SIGNUP</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+    </div>
+  </div>
+  <!-- page header -->
+  <div class="section red">
+    <div class="row container">
+      <div class="col m8">
+        <header class="left-align">swapr</header>
+      </div>
+      <div class="col m4 right-align">
+        <!-- Modal Trigger -->
+        <a class="modal-trigger" href="#modalLogin">Login</a> |
+        <a class="modal-trigger" href="#modalSignup">Signup</a>
+      </div>
+    </div>
+  </div>
+  <!--parallax image 1-->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img id="parallax1" src="./assets/images/placeholder.png">
+    </div>
+  </div>
+  <!-- main container -->
+  <div class="container main">
+    <!--user search-->
+    <div class="row">
+      <form id="search">
+        <!-- users search input -->
+        <div class="col m6 s12">
+          <div class="input-field clearfix" id="userSearch">
+            <input placeholder="Search for something" id="searchText" type="text" class="validate">
+            <label for="searchText"></label>
+            </input>
+          </div>
+        </div>
+        <!--location -->
+        <div class="col m4 s8">
+          <div class="input-field clearfix" id="userSearch">
+            <input placeholder="Location" id="searchText" type="text" class="validate">
+            <label for="searchText"></label>
+            </input>
+          </div>
+        </div>
+        <div class="input-field col m1 s2">
+          <select>
+            <option value="" disabled selected>Miles</option>
+            <option value="1">5 mi</option>
+            <option value="2">15 mi</option>
+            <option value="3">20 mi</option>
+            <option value="2">30 mi</option>
+            <option value="3">50 mi</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col m8 s12">
+            <!-- submit btn -->
+            <button type="submit" class="waves-effect waves-light btn z-depth-4" id="submit-search" onclick="">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- main-->
+  <!--parallax image 2-->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img id="parallax2" src="./assets/images/placeholder.png">
+    </div>
+  </div>
+  <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
   <!-- layout Javascript-->
   <script type="text/javascript" src="assets/javascript/layout.js"></script>
