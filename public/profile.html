@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>swapr</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <!-- Meterialize icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Meterialize Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- page header -->
+  <div class="section red headMarg" id="head">
+    <div class="row container">
+      <div class="col m8">
+        <header class="left-align">Swapr</header>
+      </div>
+      <div class="col m4 right-align">
+        <!-- Modal Trigger -->
+         <a class="modal-trigger" href="#modalLogin">Login</a> |
+        <a class="modal-trigger" href="#modalSignup">Signup</a>
+      </div>
+    </div>
+  </div> 
+
+  <div class="row col s12 m4 l3">
+  <ul id="nav-mobile" class="side-nav fixed">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img src="images/office.jpg">
+        </div>
+        <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+        <a href="#!name"><span class="white-text name">John Doe</span></a>
+        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+      </div>
+    </li>
+    <li><a href="#!">Listings</a></li>
+    <li><a href="#!">Bids</a></li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+</div>
+
+  <!-- main container -->
+  <div class="container main">
+    <div class="row" id="userWelcome">
+      <div class="col s8">
+        <h2>Welcome, User Name!</h2>
+      </div>
+      <div class="col s4">
+        <a class="waves-effect waves-light btn" id="addListing"><i class="material-icons right">add</i>ADD A LISTING</a>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col s12 m4 l3">
+        <div class="collection">
+        <a href="#!" class="collection-item">Alvin<br><br></a>
+        <a href="#!" class="collection-item">Listings</a>
+        <a href="#!" class="collection-item">Your Bids</a>
+        <a href="#!" class="collection-item">Pending</a>
+      </div>
+
+      </div>
+      <div class="col s12 m8 l9"> 
+       <h4> Listings</h4> 
+        <div class="card hoverable" id="imageCard">
+          <div class="card-image">
+            <img id="userPhoto" src="./assets/images/placeholder.png">
+            <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <i class="material-icons">error</i></a>
+          </div>
+          <div class="card-action" id="nameOfCard">
+            <h6 id ="nameOfItem">Name of Item</h6>
+          </div>
+        </div>
+      </div>
+    </div> <!-- main -->
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+  <!-- layout Javascript-->
+  <script type="text/javascript" src="assets/javascript/layout.js"></script>
+</body>
+
+</html>

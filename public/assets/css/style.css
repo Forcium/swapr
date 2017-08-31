@@ -2,8 +2,42 @@ header {
   font-family: 'Lobster', cursive;
   font-size: 480%;
   text-shadow: 2px 2px 2px #aaa;
+  color: white;
 };
 
 #userLogin {
   width: 80;
+}
+
+#head {
+  box-shadow: 2px 2px 2px #aaa;
+  position: relative;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+/*profile css ------------------*/
+.headMarg{
+margin-bottom: 40px;
+clear: both;
+position: relative;
+}
+
+#userPhoto{
+  width: 240px;
+  height: 240px;
+}
+
+#imageCard{
+  width:240px;
+}
+
+#userWelcome{
+  box-shadow: 2px 2px 2px #aaa;
+}
+
+#addListing{
+  margin-top: 38px;
 }
