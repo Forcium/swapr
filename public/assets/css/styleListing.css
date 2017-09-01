@@ -1,0 +1,10 @@
+#itemTitle {
+  font-size: 35px;
+  text-align: center;
+}
+
+#itemDescription {
+  color: #666;
+  text-align: center;
+  box-shadow: 4px 4px 5px #888888 ;
+}
