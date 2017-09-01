@@ -12,6 +12,7 @@ header {
 #head {
   box-shadow: 2px 2px 2px #aaa;
   position: relative;
+  background-color: #b3d01d;
 }
 
 .clearfix {
@@ -23,6 +24,15 @@ header {
 margin-bottom: 40px;
 clear: both;
 position: relative;
+background-color: #b3d01d;
+}
+
+.headSmall {
+  height: 160px;
+}
+
+.small{
+  padding-top: 0px;
 }
 
 #userPhoto{
@@ -35,9 +45,33 @@ position: relative;
 }
 
 #userWelcome{
-  box-shadow: 2px 2px 2px #aaa;
+  box-shadow: 2px 2px 2px 2px #aaa;
 }
 
 #addListing{
   margin-top: 38px;
 }
+
+#bidImage{
+  height: 50px;
+  padding: 0;
+}
+
+.bidCol{
+  margin-bottom:10px;
+  margin-top: 15px;
+}
+
+
+
+
+
+header, .main, footer {
+      padding-left: 180px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, .main, footer {
+        padding-left: 0;
+      }
+    }

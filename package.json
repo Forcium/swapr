@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/Forcium/swapr/issues"
   },
-  "homepage": "https://github.com/Forcium/swapr#readme"
+  "homepage": "https://github.com/Forcium/swapr#readme",
+  "dependencies": {
+    "body": "^5.1.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mysql2": "^1.4.2",
+    "parser": "^0.1.4",
+    "sequelize": "^4.8.0"
+  }
 }
