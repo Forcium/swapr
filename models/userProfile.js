@@ -2,12 +2,12 @@ module.exports = function(sequelize, DataTypes) {
   var Profile = sequelize.define("Profile", {
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
 
     },
     pw: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
 
     },
     firstName: {
@@ -61,12 +61,16 @@ module.exports = function(sequelize, DataTypes) {
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     avatar: {
       type: DataTypes.STRING,
       defaultValue: "../public/assets/images/placeholder.png"
     },
+    token: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   });
   return Profile;
 };

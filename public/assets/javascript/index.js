@@ -68,8 +68,11 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
 
   function upsertUser(UserData) {
-    $.post("/api/users", UserData).done(
-      window.location = "/profile");
+    $.post("/api/users", UserData).done(function(res)
+    {
+      window.localStorage.setItem("token", res.token);
+      window.location = "/profile/";
+    });
   }
   $(document).on("click", "#submit-search", function(event){
     event.preventDefault();

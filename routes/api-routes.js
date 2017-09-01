@@ -7,6 +7,8 @@
 
 // Requiring our Todo model
 var db = require("../models");
+var multer = require("multer");
+var randtoken = require('rand-token');
 
 // Routes
 // =============================================================
@@ -28,7 +30,10 @@ module.exports = function(app) {
         });
     });
 
-    app.post("/api/users", function(req, res) {
+    app.post("/api/users/", function(req, res) {
+
+      var token = randtoken.generate(16);
+
       db.Profile.create({
           firstName: req.body.firstName,
           lastName: req.body.lastName,
@@ -38,12 +43,44 @@ module.exports = function(app) {
           state: req.body.state,
           zip: req.body.zip,
           username: req.body.username,
-          pw: req.body.pw
+          pw: req.body.pw,
+          token: token
         })
-        .then(function(dbPost) {
-          res.json(dbPost);
+        .then(function(dbUser) {
+          res.json(dbUser);
         });
     });
+
+
+    app.put("/api/users/:id", function(req, res) {
+     var uploadsDir = "../public/assets/images";
+      var dirLength;
+      fs.readdir(uploadsDir, function(err, files){
+        dirLength = files.length;
+      });
+
+     var Storage = multer.diskStorage({
+           destination: function(req, file, callback) {
+               callback(null, "../public/assets/images");
+           },
+           filename: function(req, file, callback) {
+             dirLength ++;
+               callback(null, dirLength + ".png");
+           }
+       });
+
+     var upload = multer({
+            storage: Storage
+        }).array("imgUploader", 3); //Field name and max count
+
+   db.Post.update({
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
   //   console.log(req.body);
