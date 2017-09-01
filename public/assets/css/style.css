@@ -20,6 +20,16 @@ header {
   overflow: auto;
 }
 
+#menu{
+  position: relative;
+  top: -55px;
+  left: 36px;
+}
+
+.menu{
+  font-size: 44px;
+  color: white;
+}
 /*profile css ------------------*/
 .headMarg{
 margin-bottom: 40px;
