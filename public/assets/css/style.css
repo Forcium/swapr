@@ -1,8 +1,9 @@
 header {
   font-family: 'Lobster', cursive;
-  font-size: 480%;
+  font-size: 140%;
   text-shadow: 2px 2px 2px #aaa;
   color: white;
+  padding-right:50px;
 };
 
 #userLogin {
@@ -27,12 +28,12 @@ position: relative;
 background-color: #b3d01d;
 }
 
-.headSmall {
-  height: 160px;
+#navi{
+  background-color: #b3d01d;
 }
 
-.small{
-  padding-top: 0px;
+#searchNav{
+  width:80%;
 }
 
 #userPhoto{
@@ -62,8 +63,15 @@ background-color: #b3d01d;
   margin-top: 15px;
 }
 
+/*communication css ------------------*/
 
+#arrows{
+  padding-top: 60px;
+}
 
+#communicateChat {
+margin-top: 30px;
+}
 
 
 header, .main, footer {
@@ -74,4 +82,10 @@ header, .main, footer {
       header, .main, footer {
         padding-left: 0;
       }
+    }
+    @media only screen and (max-width : 600px) {
+      #communicateImages{
+        padding-left:25%;
+      }
+      
     }

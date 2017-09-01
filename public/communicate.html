@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>swapr</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <!-- Meterialize icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Meterialize Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+  <!-- navbar header -->
+  <div class="section" id="">
+    <nav>
+      <div class="nav-wrapper main" id="navi">
+        <a href="#!" class="brand-logo right">
+          <header>Swapr</header>
+        </a>
+        <form>
+          <div class="input-field right-align hide-on-med-and-down" id="searchNav">
+            <input id="search" type="search" required>
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons center">close</i>
+          </div>
+        </form>
+      </div>
+    </nav>
+    <!--NAVBAR -->
+    <ul id="slide-out" class="side-nav">
+      <div class="user-view">
+        <div class="background">
+          <img src="./assets/images/navGreen.jpg">
+        </div>
+        <a href="#!user"><img class="circle" src="./assets/images/userStock.png"></a>
+        <a href="#!name"><span class="white-text name">User Name</span></a>
+        <a href="#!email"><span class="white-text email">useremail@gmail.com</span></a>
+      </div>
+      </li>
+      <a href="#!" class="collection-item"><span class="new badge">4</span></a>
+      <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+      <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
+      <li><a class="waves-effect" href="#!"><i class="material-icons">local_offer</i>Your Items</a></li>
+      <li><a class="waves-effect" href="#!"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
+      <li><a class="waves-effect" href="#!"><i class="material-icons">import_export</i>Pending Swaps</a></li>
+
+    </ul>
+    <ul class="right hide-on-med-and-down">
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+  </div>
+  <!-- Communicate images-->
+  <div class="container row" id="communicateImages">
+    <div class="col l4 m6 s12">
+      <h4> Your Item</h4>
+      <div class="card hoverable" id="imageCard">
+        <div class="card-image">
+          <img id="yourItemC" class="responsive-img" src="./assets/images/placeholder.png">
+        </div>
+        <div class="card-action" id="nameOfCard">
+          <h6 id="nameOfItem">Name of Item</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col l4 hide-on-med-and-down" id="arrows">
+      <img class="responsive-img" src="./assets/images/arrow1.png">
+      <img class="responsive-img" src="./assets/images/arrow2.png">
+    </div>
+    <div class="col l4 m6 s12">
+      <h4> Their Item</h4>
+      <div class="card hoverable" id="imageCard">
+        <div class="card-image">
+          <img id="theirItemc" class="responsive-img" src="./assets/images/placeholder.png">
+        </div>
+        <div class="card-action" id="nameOfCard">
+          <h6 id="nameOfItem">Name of Item</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="container row" id="communicateChat">
+      <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+        <div class="input-field">
+          <div class="input-field col m6 s12">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Contact Swapr</label>
+            <a class="waves-effect waves-light light-green btn modal-trigger" id="sendChat" data-target="modalListing">
+          <i class="material-icons right">mail_outline</i>Send</a>
+          </div>
+          <div class="col m6 s12">
+            <img class="responsive-img" src="./assets/images/google.jpg">
+          </div>
+      </form>
+    </div>
+    <!-- main -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <!-- profile Javascript-->
+    <script type="text/javascript" src="assets/javascript/profile.js"></script>
+</body>
+
+</html>
