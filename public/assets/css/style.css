@@ -57,6 +57,7 @@ background-color: #b3d01d;
 
 #userWelcome{
   box-shadow: 2px 2px 2px 2px #aaa;
+  background-color: white;
 }
 
 #addListing{
@@ -71,6 +72,12 @@ background-color: #b3d01d;
 .bidCol{
   margin-bottom:10px;
   margin-top: 15px;
+}
+
+#changeProfile{
+  box-shadow: 2px 2px 2px 2px #aaa;
+  background-color: white;
+  padding: 60px;
 }
 
 /*communication css ------------------*/
