@@ -13,8 +13,14 @@
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleListing.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/styleListing.css">
+  <style>
+    body{
+      background-image: url('/assets/images/doodles.png');
+    }
+
+  </style>
 </head>
 
 <body>
@@ -36,110 +42,41 @@
         </form>
       </div>
     </nav><!--navbutton-->
-    <a href="#" data-activates="slide-out" class="button-collapse hide-on-med-and-down" id="menu"><i class="material-icons menu">menu</i></a>
+    <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons menu">menu</i></a>
     
     <!--NAVBAR -->
     <ul id="slide-out" class="side-nav">
       <div class="user-view">
         <div class="background">
-          <img src="./assets/images/navGreen.jpg">
+          <img src="/assets/images/navGreen.jpg">
         </div>
-        <a href="#!user"><img class="circle" src="./assets/images/userStock.png"></a>
+        <a href="#!user"><img class="circle" src="/assets/images/userStock.png"></a>
         <a href="#!name"><span class="white-text name">User Name</span></a>
         <a href="#!email"><span class="white-text email">useremail@gmail.com</span></a>
       </div>      
         <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
-        <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">local_offer</i>Your Items</a></li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">import_export</i>Pending Swaps</a></li>
-        <a href="#!" class="collection-item"><span class="new badge">4</span></a>
-        <li><a class="waves-effect" href="#!"><i class="material-icons">mail</i>Messages</a></li>
-    </ul>
-
-<!-- Modal for Listing -->
-  <div id="modalListing" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <div class="container">
-        <h4>List an Item</h4>
-        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
-          <!-- new item info input -->
-          <div class="row">
-            <div class="input-field" id="newItem">
-              <div class="col s12">
-                <input placeholder="Item Name" id="itemName" type="text" class="validate">
-                <label for="itemName"></label>
-                </input>
-              </div>
-              <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Item Description</label>
-              </div>
-              <div class="input-field col s12">
-                <input type="file" name="imgUploader" multiple />
-                <input type="submit" name="submit" id="btnSubmit" value="Upload" />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
-    </div>
-  </div>
-
-  <!-- Modal for new Bids -->
-  <div id="modalBids" class="modal bottom-sheet">
-    <div class="modal-content">
-      <h4>Swapr Offers</h4>
-      <!-- bids populated -->
-
-      <div class="card-panel green lighten-5 z-depth-1">
-        <div class="row valign-wrapper bidCol">
-          <div class="col s4 m2">
-            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
-          </div>
-          <div class="col s8 m10">
-            <span class="black-text" id="bidText">
-              This is a square image. Add the "circle" class to it to make it appear circular.
-            </span>
-          </div>
-        </div>
-        </div>
-
-      <div class="card-panel green lighten-5 z-depth-1">
-        <div class="row valign-wrapper bidCol">
-          <div class="col s4 m2">
-            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
-          </div>
-          <div class="col s8 m10">
-            <span class="black-text" id="bidText">
-              This is a square image. Add the "circle" class to it to make it appear circular.
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-    </div>
-  </div>
-  </div> <!-- main -->
+        <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>      
+      </ul>
 
 
   <!-- Item Header -->
 <div class="container main">
-  <div class="row">
-    <div class="col s12 m12" id="itemTitle">
-      Nord Keboard for sale!
+   <div class="card-panel lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s12 m12" id="itemTitle">
+        Nord Keyboard for sale!
+      </div>
     </div>
-
+    <button class="btn waves-effect waves-light light-green" type="submit" name="action">Accept   
+  </button>
+  <button class="btn waves-effect waves-light orange" type="submit" name="action">Decline
+  </button>
+  </div>
     <!-- Carousel  -->
     <div class="carousel row" >
       <div class="card hoverable carousel-item" id="carouselIMG">
         <div class="card-image">
-          <img class="materialboxed" width="auto" height="200px" src="assets/images/nord.jpg">
+          <img class="materialboxed" width="auto" height="200px" src="/assets/images/nord.jpg">
         </div>
       </div>
 
@@ -151,7 +88,7 @@
 
 
     <div id="itemDescription">
-      <div class="card-panel light-green lighten-5 z-depth-1">
+      <div class="card-panel lighten-5 z-depth-1">
         <div class="row valign-wrapper">
           <div class="col s12">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -171,8 +108,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
   <!-- profile Javascript-->
-  <script type="text/javascript" src="assets/javascript/profile.js"></script>
-  <script type="text/javascript" src="assets/javascript/listing.js"></script>
+  <script type="text/javascript" src="/assets/javascript/profile.js"></script>
+  <script type="text/javascript" src="/assets/javascript/listing.js"></script>
 </body>
 
 </html>
