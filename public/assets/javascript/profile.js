@@ -22,6 +22,9 @@ $(document).ready(function(){
         // always return false to prevent standard browser submit and page navigation
         return false;
       });
+
+      //write to page
+
     });
 
    // pre-submit callback

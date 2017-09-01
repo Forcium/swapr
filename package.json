@@ -20,7 +20,9 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "multer": "^1.3.0",
     "mysql2": "^1.4.2",
+    "rand-token": "^0.3.0",
     "sequelize": "^4.8.0"
   }
 }
