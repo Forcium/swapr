@@ -14,6 +14,17 @@ var randtoken = require('rand-token');
 // =============================================================
 module.exports = function(app) {
 
+      app.get("/", function(req, res) {
+        db.Profile.findAll({
+          where: {
+            token: window.localStorage.getItem("token")            
+          }
+        }).then(function(dbRes){
+          res.json(dbRes);
+        });
+      });
+
+
     // GET route for getting all of the posts
     app.post("/results", function(req, res) {
       db.item.findAll({})

@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+  $.get("/", function(){
+
+    window.localStorage.getItem("token");
+
+  }).done(function(){
+
+    if (!window.localStorage.token){
+
+      alert("not logged in");
+
+    }
+    else {
+
+      alert("logged in");
+    }
+  });
   // parallax image js
   $('.parallax').parallax();
   // miles dropdown
