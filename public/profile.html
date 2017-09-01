@@ -18,89 +18,234 @@
 
 <body>
 
-    <!-- page header -->
-  <div class="section red headMarg" id="head">
-    <div class="row container">
-      <div class="col m8">
-        <header class="left-align">Swapr</header>
+<!-- page header -->
+<div class="section headMarg headSmall" id="head">
+  <div class="row container">
+    <header class="left-align small">Swapr</header>
+  </div>
+  <!--NAVBAR -->
+  <ul id="slide-out" class="side-nav fixed">
+    <div class="user-view">
+      <div class="background">
+        <img src="./assets/images/navGreen.jpg">
       </div>
-      <div class="col m4 right-align">
-        <!-- Modal Trigger -->
-         <a class="modal-trigger" href="#modalLogin">Login</a> |
-        <a class="modal-trigger" href="#modalSignup">Signup</a>
-      </div>
-    </div>
-  </div> 
-
-  <div class="row col s12 m4 l3">
-  <ul id="nav-mobile" class="side-nav fixed">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img src="images/office.jpg">
-        </div>
-        <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-        <a href="#!name"><span class="white-text name">John Doe</span></a>
-        <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      </div>
-    </li>
-    <li><a href="#!">Listings</a></li>
-    <li><a href="#!">Bids</a></li>
-    <li>
-      <div class="divider"></div>
-    </li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+      <a href="#!user"><img class="circle" src="./assets/images/userStock.png"></a>
+      <a href="#!name"><span class="white-text name">User Name</span></a>
+      <a href="#!email"><span class="white-text email">useremail@gmail.com</span></a>
+    </div></li>
+    <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">update</i>Update Profile</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Your Items</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Offers Made</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Pending Swaps</a></li>
+  </ul>
+  <ul class="right hide-on-med-and-down">
   </ul>
   <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 </div>
+</div>
 
-  <!-- main container -->
-  <div class="container main">
-    <div class="row" id="userWelcome">
-      <div class="col s8">
-        <h2>Welcome, User Name!</h2>
-      </div>
-      <div class="col s4">
-        <a class="waves-effect waves-light btn" id="addListing"><i class="material-icons right">add</i>ADD A LISTING</a>
+<!-- Modal for Listing -->
+  <div id="modalListing" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="container">
+        <h4>List an Item</h4>
+        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+          <!-- new item info input -->
+          <div class="row">
+            <div class="input-field" id="newItem">
+              <div class="col s12">
+                <input placeholder="Item Name" id="itemName" type="text" class="validate">
+                <label for="itemName"></label>
+                </input>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Item Description</label>
+              </div>
+              <div class="input-field col s12">
+                <input type="file" name="imgUploader" multiple />
+                <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+    </div>
+  </div>
 
-
-
-
-
-
-
-    <div class="row">
-      <div class="col s12 m4 l3">
-        <div class="collection">
-        <a href="#!" class="collection-item">Alvin<br><br></a>
-        <a href="#!" class="collection-item">Listings</a>
-        <a href="#!" class="collection-item">Your Bids</a>
-        <a href="#!" class="collection-item">Pending</a>
-      </div>
-
-      </div>
-      <div class="col s12 m8 l9"> 
-       <h4> Listings</h4> 
-        <div class="card hoverable" id="imageCard">
-          <div class="card-image">
-            <img id="userPhoto" src="./assets/images/placeholder.png">
-            <a class="btn-floating halfway-fab waves-effect waves-light red">
-            <i class="material-icons">error</i></a>
+  <!-- Modal for new Bids -->
+  <div id="modalBids" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Swapr Offers</h4>
+      <!-- bids populated -->
+      
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper bidCol">
+          <div class="col s4 m2">
+            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
           </div>
-          <div class="card-action" id="nameOfCard">
-            <h6 id ="nameOfItem">Name of Item</h6>
+          <div class="col s8 m10">
+            <span class="black-text" id="bidText">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>
+          </div>
+        </div>
+        </div>
+
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper bidCol">
+          <div class="col s4 m2">
+            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
+          </div>
+          <div class="col s8 m10">
+            <span class="black-text" id="bidText">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+
+ 
+<!-- main container -->
+<div class="container main">
+  <div class="row" id="userWelcome">
+    <div class="col s8">
+      <h2>Welcome, User Name!</h2>
+    </div>
+    <div class="col s4">
+      <a class="waves-effect waves-light btn modal-trigger" id="addListing" data-target="modalListing">
+      <i class="material-icons right">add</i>ADD A LISTING</a>
+    </div>
+  </div>
+
+   <!-- List of items -->
+  <!-- <div class="container row" id="listOfItems">
+    <div class="col s12">
+      <h4> Listings</h4>
+      <div class="card hoverable" id="imageCard">
+        <div class="card-image">
+          <img id="userPhoto" class ="responsive-img" src="./assets/images/placeholder.png">
+          <a class="btn-floating halfway-fab waves-effect waves-light green modal-trigger" data-target="modalBids">
+            <i class="material-icons">error</i></a>
+        </div>
+        <div class="card-action" id="nameOfCard">
+          <h6 id="nameOfItem">Name of Item</h6>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- main -->
+
+
+  <!-- Pending swaps -->
+  <div class="row" id="pendingSwaps"> 
+      <h4>Pending Swaps</h4>
+      <!-- pendings populated -->     
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s4 m2">
+            <img src="./assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
+          </div>
+          <div class="col s4 m8">
+            <span class="black-text" id="pendingText">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>  
+          </div> 
+          <div class="col s4 m2">
+            <img src="./assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
+          </div>    
+        </div>      
+      </div>      
+  </div>
+  <!-- main -->
+
+
+  <!-- update profile form-->
+  <!-- <div class="container" id="changeProfile">
+    <form id="signup" class="listing">
+      <div class="row">
+        <div class="input-field" id="usersignUp">
+          <div class="col s6">
+            <input placeholder="firstName" id="firstName" type="text" class="validate">
+            <label for="firstName"></label>
+            </input>
+          </div>
+          <div class="col s6">
+            <input placeholder="lastName" id="lastName" type="text" class="validate">
+            <label for="lastName"></label>
+            </input>
           </div>
         </div>
       </div>
-    </div> <!-- main -->
+      <div class="row">
+        <div class="input-field usersignUp">
+          <div class="col s6">
+            <input placeholder="email" id="email" type="email" class="validate">
+            <label for="email"></label>
+            </input>
+          </div>
+          <div class="col s6">
+            <input placeholder="phone" id="phone" type="text" class="validate">
+            <label for="phone"></label>
+            </input>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field usersignUp">
+          <div class="col s6">
+            <input placeholder="city" id="city" type="text" class="validate">
+            <label for="city"></label>
+            </input>
+          </div>
+          <div class="col s6">
+            <input placeholder="state" id="state" type="text" class="validate">
+            <label for="state"></label>
+            </input>
+          </div>
+        </div>
+      </div>
+      <div class="row col s12">
+        <input placeholder="username" id="username" type="text" class="validate">
+        <label for="username"></label>
+        </input>
+        <input placeholder="password" id="password" type="password" class="validate">
+        <label for="password"></label>
+        </input>
+      </div>
+      <div class="row">
+        <div class="col s6">
+            <input type="file" name="imgUploader" multiple />
+            <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+        </div>
+        <div class="col s6">
+          <a class="waves-effect waves-light btn modal-trigger" id="changeInfo">UPDATE</a>
+        </div>
+      </div>
+    </form>
+  </div> -->
+  <!-- main -->
+
+
+
+
+  
+
 
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-  <!-- layout Javascript-->
-  <script type="text/javascript" src="assets/javascript/layout.js"></script>
+  <!-- profile Javascript-->
+  <script type="text/javascript" src="assets/javascript/profile.js"></script>
 </body>
 
 </html>

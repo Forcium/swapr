@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>swapr</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <!-- Meterialize icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Meterialize Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+
+<!-- page header -->
+<div class="section headMarg headSmall" id="head">
+  <div class="row container">
+    <header class="left-align small">Swapr</header>
+  </div>
+  <!--NAVBAR -->
+  <ul id="slide-out" class="side-nav">
+    <div class="user-view">
+      <div class="background">
+        <img src="./assets/images/navGreen.jpg">
+      </div>
+      <a href="#!user"><img class="circle" src="./assets/images/userStock.png"></a>
+      <a href="#!name"><span class="white-text name">User Name</span></a>
+      <a href="#!email"><span class="white-text email">useremail@gmail.com</span></a>
+    </div></li>
+    <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+    <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Your Items</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Offers Made</a></li>
+    <li><a class="waves-effect" href="#!"><i class="material-icons">cloud</i>Pending Swaps</a></li>
+  </ul>
+  <ul class="right hide-on-med-and-down">
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+</div>
+</div>
+
+<!-- Modal for Listing -->
+  <div id="modalListing" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="container">
+        <h4>List an Item</h4>
+        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+          <!-- new item info input -->
+          <div class="row">
+            <div class="input-field" id="newItem">
+              <div class="col s12">
+                <input placeholder="Item Name" id="itemName" type="text" class="validate">
+                <label for="itemName"></label>
+                </input>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Item Description</label>
+              </div>
+              <div class="input-field col s12">
+                <input type="file" name="imgUploader" multiple />
+                <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+    </div>
+  </div>
+
+  <!-- Modal for new Bids -->
+  <div id="modalBids" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Swapr Offers</h4>
+      <!-- bids populated -->
+      
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper bidCol">
+          <div class="col s4 m2">
+            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
+          </div>
+          <div class="col s8 m10">
+            <span class="black-text" id="bidText">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>
+          </div>
+        </div>
+        </div>
+
+      <div class="card-panel green lighten-5 z-depth-1">
+        <div class="row valign-wrapper bidCol">
+          <div class="col s4 m2">
+            <img src="./assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
+          </div>
+          <div class="col s8 m10">
+            <span class="black-text" id="bidText">
+              This is a square image. Add the "circle" class to it to make it appear circular.
+            </span>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  </div> <!-- main -->
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+  <!-- profile Javascript-->
+  <script type="text/javascript" src="assets/javascript/profile.js"></script>
+</body>
+
+</html>
