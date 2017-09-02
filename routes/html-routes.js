@@ -28,6 +28,18 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
+  app.get("/communicate", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/communicate.html"));
+  });
+
+  app.get("/listing", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/listing.html"));
+  });
+
+
+
+
+
 
   //
   // // blog route loads blog.html

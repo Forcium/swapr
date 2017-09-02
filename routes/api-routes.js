@@ -16,7 +16,7 @@ var uploadsDir = ("./public/assets/userUpload");
 
   var dirLength;
   fs.readdir(uploadsDir, function(err, files){
-    console.log(files);
+
     dirLength = files.length;
   });
 
@@ -41,10 +41,18 @@ var upload = multer({
 // =============================================================
 module.exports = function(app) {
 
+      app.get("/api/loginInfo", function(req, res){
+        db.Profile.findAll({
+          where: {
+            username: req.query.userName,
+            pw: req.query.passWord
+          }
+        }).then(function(dbPost) {
+            res.json(dbPost[0]);
+          });
+        });
+
       app.post("/", function(req, res) {
-
-
-      console.log(req.body.token);
 
         db.Profile.findOne({
           where: {
@@ -67,20 +75,7 @@ module.exports = function(app) {
             }
        }).then(function(dbRes){
 
-
-         if (dbRes) {
-
-           console.log("found account");
-           res.json(dbRes);
-         }
-
-         else {
-
-           console.log("didn't find it");
-         }
-
-
-
+         res.json(dbRes);
 
        });
 
@@ -125,7 +120,7 @@ module.exports = function(app) {
     });
 
     app.post("/api/Upload", function(req, res) {
-          console.log(req.body.imgUploader);
+
              upload(req, res, function(err) {
                  if (err) {
                      return res.redirect("/profile");

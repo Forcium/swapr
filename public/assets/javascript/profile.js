@@ -1,4 +1,26 @@
 $(document).ready(function() {
+
+  $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
+
+    if (!data){
+
+      window.localStorage.clear("token");
+      window.location.href = "/";
+
+    }
+    else {
+
+      //main page welcome header content
+      $('#userWelcome').html("<h2>Welcome, " + data.username);
+      $('#avatarImg').attr("src", data.avatar);
+      $('.name').html(data.username);
+      $('.email').html(data.email);
+
+    }
+
+
+
+
   $('#pendingSwaps').hide();
   $('#listOfItems').hide();
   $('#changeProfile').hide();
@@ -36,25 +58,25 @@ $(document).ready(function() {
     $('#listOfItems').show();
     $('#changeProfile').hide();
     $('#pendingSwaps').hide();
-    $('#stuffUwant').hide();    
+    $('#stuffUwant').hide();
     $('.button-collapse').sideNav('hide');
-  })
+  });
   //offers made
   $('#offer').on("click", function() {
     $('#stuffUwant').show();
     $('#listOfItems').hide();
     $('#changeProfile').hide();
-    $('#pendingSwaps').hide();    
+    $('#pendingSwaps').hide();
     $('.button-collapse').sideNav('hide');
-  })
+  });
   //pending swaps
   $('#pend').on("click", function() {
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
-    $('#pendingSwaps').show();    
+    $('#pendingSwaps').show();
     $('.button-collapse').sideNav('hide');
-  })
+  });
   //update profile
   $('#update').on("click", function() {
     $('#changeProfile').show();
@@ -62,7 +84,9 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#stuffUwant').hide();
     $('.button-collapse').sideNav('hide');
-  })
+  });
+
+});
 
 }); //doc ready
 
