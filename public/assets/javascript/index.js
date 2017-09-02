@@ -10,10 +10,10 @@ $(document).ready(function() {
     }
     else {
 
-      $('#temp1').html("Logged in as: " + data.username + "&nbsp;&nbsp;");
-      $('#temp1').attr("href", "/profile");
-      $('#temp2').html("Sign Out");
-      $('#temp2').attr({"href": "/", "id":"logOutBtn"});
+      $('#navLogin').html("Logged in as: " + data.username + "&nbsp;&nbsp;");
+      $('#navLogin').attr("href", "/profile");
+      $('#navSignup').html("Sign Out");
+      $('#navSignup').attr({"href": "/", "id":"logOutBtn"});
       $('#logOutBtn').on("click", function(){
 
         window.localStorage.clear("token");
@@ -73,7 +73,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
     userLoginInfo({
       userName: userName.val().trim(),
-      passWord: passWord.val().trim()
+      passWord: passWord.val().trim(),
     });
   }
 
@@ -81,10 +81,13 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
     $.post("/api/login", LoginData).done(function(response){
 
-      console.log(response);
-      if (response === 1) {
-      window.localStorage.setItem("token", response.token);
-      window.location = "/profile/";
+      if (response[0] === 1) {
+
+        $.get("/api/loginInfo", LoginData).done(function(response2){
+
+          window.localStorage.setItem("token", response2.token);
+          window.location = "/profile/";
+        });
       }
       else {
         alert("account not found");
