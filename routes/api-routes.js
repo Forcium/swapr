@@ -14,7 +14,6 @@ var fs = require('fs');
 
 var uploadsDir = ("./public/assets/userUpload");
 
- console.log(typeof uploadsDir);
   var dirLength;
   fs.readdir(uploadsDir, function(err, files){
     console.log(files);
@@ -90,7 +89,7 @@ module.exports = function(app) {
 
     // GET route for getting all of the posts
     app.post("/results", function(req, res) {
-      db.item.findAll({})
+      db.Item.findAll({})
         .then(function(dbPost) {
           res.json(dbPost[0].content);
         });
