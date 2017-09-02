@@ -1,3 +1,14 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+
 header {
   font-family: 'Lobster', cursive;
   font-size: 140%;
@@ -90,6 +101,12 @@ background-color: #b3d01d;
 margin-top: 30px;
 }
 
+/*communication css ------------------*/
+#maps{
+  position: relative;
+  left: 25%;
+}
+
 
 header, .main, footer {
       padding-left: 180px;
@@ -104,5 +121,5 @@ header, .main, footer {
       #communicateImages{
         padding-left:25%;
       }
-      
+
     }
