@@ -7,7 +7,9 @@ body {
   main {
     flex: 1 0 auto;
   }
-      
+  h2, h3, p, h4{
+    font-family: 'Raleway', sans-serif;
+  }
 
 header {
   font-family: 'Lobster', cursive;
