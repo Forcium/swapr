@@ -1,0 +1,24 @@
+.panel > .panel-heading, label {
+	color: dodgerblue;
+}
+
+.panel {
+	margin:40px;
+	background-color: lemonchiffon;
+}
+
+#message-input, #user-name-input, label {
+	font-size: 15px;
+}
+
+.card-content {
+	color: dodgerblue;
+	box-shadow: 3px 3px 3px 3px lightgrey;
+
+}
+
+td {
+	color: dodgerblue;
+	border: 1px solid lightgrey;
+	padding: 10px;
+}
