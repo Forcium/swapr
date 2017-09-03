@@ -1,19 +1,25 @@
 $(document).ready(function() {
 
-  $.get("/", function(){
+  $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
 
-    window.localStorage.getItem("token");
 
-  }).done(function(){
+    if (!data){
 
-    if (!window.localStorage.token){
-
-      alert("not logged in");
+      window.localStorage.clear("token");
 
     }
     else {
 
-      alert("logged in");
+      $('#navLogin').html("Logged in as: " + data.username + "&nbsp;&nbsp;");
+      $('#navLogin').attr("href", "/profile");
+      $('#navSignup').html("Sign Out");
+      $('#navSignup').attr({"href": "/", "id":"logOutBtn"});
+      $('#logOutBtn').on("click", function(){
+
+        window.localStorage.clear("token");
+
+      });
+
     }
   });
   // parallax image js
@@ -55,7 +61,40 @@ var submit = $("#submit-search");
 
 // Materialize.scrollFire(options);
 
+$(document).on("click", "#loginBtn", handleUserLogin);
 $(document).on("click", "#signupBtn", handleUserFormSubmit);
+
+  function handleUserLogin(event){
+    event.preventDefault();
+
+    var userName = $("#usernameLogin");
+    var passWord = $("#passwordLogin");
+
+
+    userLoginInfo({
+      userName: userName.val().trim(),
+      passWord: passWord.val().trim(),
+    });
+  }
+
+  function userLoginInfo(LoginData){
+
+    $.post("/api/login", LoginData).done(function(response){
+
+      if (response[0] === 1) {
+
+        $.get("/api/loginInfo", LoginData).done(function(response2){
+
+          window.localStorage.setItem("token", response2.token);
+          window.location = "/profile/";
+        });
+      }
+      else {
+        alert("account not found");
+      }
+    });
+
+  }
 
 
   function handleUserFormSubmit(event) {
@@ -85,7 +124,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
 
   function upsertUser(UserData) {
-    $.post("/api/users", UserData).done(function(res)
+    $.post("/api/isloggedin", UserData).done(function(res)
     {
       window.localStorage.setItem("token", res.token);
       window.location = "/profile/";

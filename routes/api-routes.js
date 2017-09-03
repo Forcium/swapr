@@ -9,25 +9,82 @@
 var db = require("../models");
 var multer = require("multer");
 var randtoken = require('rand-token');
+var fs = require('fs');
+
+
+  var uploadsDir = ("./public/assets/userUpload");
+
+  var dirLength;
+  fs.readdir(uploadsDir, function(err, files){
+
+    dirLength = files.length;
+  });
+
+
+
+var Storage = multer.diskStorage({
+       destination: function(req, file, callback) {
+           callback(null, "./public/assets/userUpload");
+       },
+       filename: function(req, file, callback) {
+         dirLength ++;
+           callback(null, dirLength + ".png");
+       }
+   });
+
+var upload = multer({
+        storage: Storage
+    }).array("imgUploader", 3);
+
 
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-      app.get("/", function(req, res) {
+      app.get("/api/loginInfo", function(req, res){
         db.Profile.findAll({
           where: {
-            token: window.localStorage.getItem("token")            
+            username: req.query.userName,
+            pw: req.query.passWord
+          }
+        }).then(function(dbPost) {
+            res.json(dbPost[0]);
+          });
+        });
+
+      app.post("/", function(req, res) {
+
+        db.Profile.findOne({
+          where: {
+            token: req.body.token
           }
         }).then(function(dbRes){
+
           res.json(dbRes);
         });
       });
 
+     app.post("/api/login", function(req, res) {
+       var token = randtoken.generate(16);
+       db.Profile.update({
+           token: token},
+           {
+             where: {
+             username: req.body.userName,
+             pw: req.body.passWord
+            }
+       }).then(function(dbRes){
+
+         res.json(dbRes);
+
+       });
+
+     });
+
 
     // GET route for getting all of the posts
     app.post("/results", function(req, res) {
-      db.item.findAll({})
+      db.Item.findAll({})
         .then(function(dbPost) {
           res.json(dbPost[0].content);
         });
@@ -41,7 +98,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post("/api/users/", function(req, res) {
+    app.post("/api/isloggedin/", function(req, res) {
 
       var token = randtoken.generate(16);
 
@@ -62,36 +119,15 @@ module.exports = function(app) {
         });
     });
 
+    app.post("/api/Upload", function(req, res) {
 
-    app.put("/api/users/:id", function(req, res) {
-     var uploadsDir = "../public/assets/images";
-      var dirLength;
-      fs.readdir(uploadsDir, function(err, files){
-        dirLength = files.length;
-      });
-
-     var Storage = multer.diskStorage({
-           destination: function(req, file, callback) {
-               callback(null, "../public/assets/images");
-           },
-           filename: function(req, file, callback) {
-             dirLength ++;
-               callback(null, dirLength + ".png");
-           }
-       });
-
-     var upload = multer({
-            storage: Storage
-        }).array("imgUploader", 3); //Field name and max count
-
-   db.Post.update({
-      where: {
-        id: req.body.id
-      }
-    }).then(function(dbPost) {
-      res.json(dbPost);
-    });
-  });
+             upload(req, res, function(err) {
+                 if (err) {
+                     return res.redirect("/profile");
+                 }
+                 return res.redirect("/profile");
+             });
+         });
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
   //   console.log(req.body);

@@ -1,3 +1,16 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+  h2, h3, p, h4{
+    font-family: 'Raleway', sans-serif;
+  }
+
 header {
   font-family: 'Lobster', cursive;
   font-size: 140%;
@@ -57,6 +70,7 @@ background-color: #b3d01d;
 
 #userWelcome{
   box-shadow: 2px 2px 2px 2px #aaa;
+  background-color: white;
 }
 
 #addListing{
@@ -73,6 +87,12 @@ background-color: #b3d01d;
   margin-top: 15px;
 }
 
+#changeProfile{
+  box-shadow: 2px 2px 2px 2px #aaa;
+  background-color: white;
+  padding: 60px;
+}
+
 /*communication css ------------------*/
 
 #arrows{
@@ -81,6 +101,12 @@ background-color: #b3d01d;
 
 #communicateChat {
 margin-top: 30px;
+}
+
+/*communication css ------------------*/
+#maps{
+  position: relative;
+  left: 25%;
 }
 
 
@@ -97,5 +123,5 @@ header, .main, footer {
       #communicateImages{
         padding-left:25%;
       }
-      
+
     }
