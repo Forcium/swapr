@@ -126,13 +126,11 @@ module.exports = function(app) {
 
       var fileNum = parseInt(dirLength) + 1;
 
-      console.log(req.files[0]);
-
       db.Profile.update({
         avatar: "/assets/userUpload/" + req.files[0].filename
       }, {
         where: {
-          username: "elthsu2"
+          token: req.body.hdnTkn
         }
       }).then(function(data) {
 

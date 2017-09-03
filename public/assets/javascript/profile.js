@@ -31,7 +31,8 @@ $(document).ready(function() {
       $('#avatarImg').attr("src", data.avatar);
       $('.name').html(data.username);
       $('.email').html(data.email);
-      
+      $('#hdnTkn').attr("value", window.localStorage.getItem("token"));
+
 
     }
 
