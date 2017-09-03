@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- JQuery Forms -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js'></script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 <style>
@@ -53,7 +55,7 @@
       </div>
 
 
-      <img id="avatarImg" class="circle" src="/assets/images/userStock.png">
+      <img id="avatarImg" class="circle" src="">
       <span class="white-text name"></span>
       <span class="white-text email"></span>
 
@@ -216,7 +218,7 @@
 
   <!-- update profile form-->
   <div class="container" id="changeProfile">
-    <form id="signup" class="listing">
+    <form id="frUploader" class="listing"  enctype="multipart/form-data" action="/api/Upload/" method="POST">
       <div class="row">
         <h4>Update Profile</h4>
         <div class="input-field" id="usersignUp">
@@ -271,10 +273,9 @@
       <div class="row">
         <div class="col s6">
             <input type="file" name="imgUploader" multiple />
-            <input type="submit" name="submit" id="btnSubmit" value="Upload" />
         </div>
         <div class="col s6">
-          <a class="waves-effect waves-light light-green btn modal-trigger" id="changeInfo">UPDATE</a>
+          <button type="submit" value="Update" class="waves-effect waves-light light-green btn modal-trigger" id="frmUploader">UPDATE</button>
         </div>
       </div>
     </form>
@@ -286,6 +287,7 @@
   <script src="https:/cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
   <!-- profile Javascript-->
   <script type="text/javascript" src="/assets/javascript/profile.js"></script>
+
 </body>
 
 </html>

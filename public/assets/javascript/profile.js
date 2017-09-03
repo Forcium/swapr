@@ -31,22 +31,11 @@ $(document).ready(function() {
       $('#avatarImg').attr("src", data.avatar);
       $('.name').html(data.username);
       $('.email').html(data.email);
+      
 
     }
 
-  //upload images
-
-  var options = {
-    beforeSubmit: showRequest, // pre-submit callback
-    success: showResponse // post-submit callback
-  };
-
-  // bind to the form's submit event
-  $('#listing').submit(function() {
-    $(this).ajaxSubmit(options);
-    // always return false to prevent standard browser submit and page navigation
-    return false;
-  });
+      });
 
 //nav bar profile onclick functions=================
 
@@ -105,20 +94,29 @@ $(document).ready(function() {
       }
     });
 
+      var options = {
+        beforeSubmit: showRequest, // pre-submit callback
+        success: showResponse // post-submit callback
+      };
 
-  });
+      // bind to the form's submit event
+      $(document).on("submit", "#frmUploader", function(event) {
+        $(this).ajaxSubmit(options);
+        // always return false to prevent standard browser submit and page navigation
+        return false;
+      });
+    });
 
-});
+    // pre-submit callback
+    function showRequest(formData, jqForm, options) {
+      alert('Uploading is starting.');
+      return true;
+    }
+
+    // post-submit callback
+    function showResponse(responseText, statusText, xhr, $form) {
+      alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
+    }
+
 
 }); //doc ready
-
-// pre-submit callback
-function showRequest(formData, jqForm, options) {
-  alert('Uploading is starting.');
-  return true;
-}
-
-// post-submit callback
-function showResponse(responseText, statusText, xhr, $form) {
-  alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
-}
