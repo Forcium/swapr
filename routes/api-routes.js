@@ -125,9 +125,29 @@ module.exports = function(app) {
       }
 
       var fileNum = parseInt(dirLength) + 1;
+      if (!req.body.password) {
+        req.body.password = req.body.passwordHdn;
+      }
+      if (req.files[0]) {
 
+        req.body.avatar = "/assets/userUpload/" + req.files[0].filename;
+
+      }
+      else {
+
+        req.body.avatar = req.body.avatarHdn;
+      }
+      console.log(req.body);
       db.Profile.update({
-        avatar: "/assets/userUpload/" + req.files[0].filename
+        username: req.body.username,
+        pw: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        city: req.body.city,
+        state: req.body.state,
+        email: req.body.email,
+        phone: req.body.phone,
+        avatar: req.body.avatar
       }, {
         where: {
           token: req.body.hdnTkn
