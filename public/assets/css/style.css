@@ -9,6 +9,7 @@ body {
   }
   h2, h3, p, h4{
     font-family: 'Raleway', sans-serif;
+    color: #4b4343
   }
 
 header {
@@ -60,12 +61,16 @@ background-color: #b3d01d;
 }
 
 #userPhoto{
-  width: 240px;
-  height: 240px;
+  width: 100%;
+  height: auto;
 }
 
 #imageCard{
-  width:240px;
+  width:24%;
+  height: auto;
+  margin-right: 1%;
+  margin-bottom: 10px;
+ 
 }
 
 #userWelcome{
@@ -103,25 +108,28 @@ background-color: #b3d01d;
 margin-top: 30px;
 }
 
-/*communication css ------------------*/
 #maps{
   position: relative;
   left: 25%;
 }
 
-
-header, .main, footer {
+ 
+/*header, .main, footer {
       padding-left: 180px;
-    }
+    }*/
 
     @media only screen and (max-width : 992px) {
       header, .main, footer {
         padding-left: 0;
       }
     }
-    @media only screen and (max-width : 600px) {
+    @media only screen and (max-width : 620px) {
       #communicateImages{
         padding-left:25%;
+      }
+
+      .container{
+        margin: 0;
       }
 
     }
