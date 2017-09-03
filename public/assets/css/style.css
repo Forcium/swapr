@@ -9,7 +9,7 @@ body {
   }
   h2, h3, p, h4{
     font-family: 'Raleway', sans-serif;
-    color: #4b4343
+    color: #727475;
   }
 
 header {
@@ -113,10 +113,13 @@ margin-top: 30px;
   left: 25%;
 }
 
+/*listing css ------------------*/
+
+
  
-/*header, .main, footer {
+header, #navi {
       padding-left: 180px;
-    }*/
+    }
 
     @media only screen and (max-width : 992px) {
       header, .main, footer {
