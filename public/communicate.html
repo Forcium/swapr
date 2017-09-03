@@ -13,8 +13,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/chat.css">
   <style>
     body{
       background-image: url('/assets/images/doodles.png');
@@ -86,6 +91,67 @@
       </div>
     </div>
   </div>
+
+
+  <!-- main container -->
+  <div  class="col s8 m4 container row">
+    <div  class="card horizontal">
+        <div class="card-stacked">
+          <div  class="panel card-content">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Messages</strong></h3>
+            </div>
+            <div class="panel-body">
+              <table class="table table-hover" id='msg-table'>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Add message  -->
+          <div class="panel card-content">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Write a message</strong></h3>
+            </div>
+            <div class="panel-body">
+
+              <!-- Entry Form -->
+              <form>
+                <div class="form-group">
+                  <label for="user-name-input">Name</label>
+                  <input type="text" class="form-control" id="user-name-input">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="message-input">Message</label>
+                  <textarea type="form" class="form-control" id="message-input"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="add-msg-btn">Submit</button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Script -->
+    <script src="assets/javascript/chat.js"></script>
+
     <div class="container row" id="communicateChat">
       <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
         <div class="input-field">
