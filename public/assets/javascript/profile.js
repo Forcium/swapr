@@ -27,13 +27,36 @@ $(document).ready(function() {
     else {
 
       //main page welcome header content
-      $('#userWelcome').html("<h2>Welcome, " + data.username);
+      $('#userWelcome').html("Welcome, " + data.username);
       $('#avatarImg').attr("src", data.avatar);
       $('.name').html(data.username);
       $('.email').html(data.email);
       $('#hdnTkn').attr("value", window.localStorage.getItem("token"));
 
-
+      //main page welcome header content
+      $('#firstName').attr("placeholder", data.firstName);
+      $('#lastName').attr("placeholder", data.lastName);
+      $('#email').attr("placeholder", data.email);
+      $('#phone').attr("placeholder", data.phone);
+      $('#city').attr("placeholder", data.city);
+      $('#state').attr("placeholder", data.state);
+      $('#username').attr("placeholder", data.username);
+      $('#firstName').attr("value", data.firstName);
+      $('#lastName').attr("value", data.lastName);
+      $('#email').attr("value", data.email);
+      $('#phone').attr("value", data.phone);
+      $('#city').attr("value", data.city);
+      $('#state').attr("value", data.state);
+      $('#username').attr("value", data.username);
+      $('#firstNameHdn').attr("value", data.firstName);
+      $('#lastNameHdn').attr("value", data.lastName);
+      $('#emailHdn').attr("value", data.email);
+      $('#phoneHdn').attr("value", data.phone);
+      $('#cityHdn').attr("value", data.city);
+      $('#stateHdn').attr("value", data.state);
+      $('#usernameHdn').attr("value", data.username);
+      $('#passwordHdn').attr("value", data.pw);
+      $('#avatarHdn').attr("value", data.avatar);
     }
 
       });
@@ -71,29 +94,6 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#stuffUwant').hide();
     $('.button-collapse').sideNav('hide');
-
-    $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
-
-      if (!data){
-
-        window.localStorage.clear("token");
-        window.location.href = "/";
-
-      }
-      else {
-
-        //main page welcome header content
-        $('#firstName').attr("placeholder", data.firstName);
-        $('#lastName').attr("placeholder", data.lastName);
-        $('#email').attr("placeholder", data.email);
-        $('#phone').attr("placeholder", data.phone);
-        $('#city').attr("placeholder", data.city);
-        $('#state').attr("placeholder", data.state);
-        $('#username').attr("placeholder", data.username);
-        $('#password').attr("placeholder", data.password);
-
-      }
-    });
 
       var options = {
         beforeSubmit: showRequest, // pre-submit callback
