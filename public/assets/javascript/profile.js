@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+    $('#pendingSwaps').hide();
+    $('#listOfItems').hide();
+    $('#changeProfile').hide();
+    $('#stuffUwant').hide();
+
+
+    //modals
+    $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    });
+    // Initialize collapse button
+    $(".button-collapse").sideNav();
+    // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+    $('.collapsible').collapsible();
+
+
   $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
 
     if (!data){
@@ -17,25 +33,6 @@ $(document).ready(function() {
       $('.email').html(data.email);
 
     }
-
-
-
-
-  $('#pendingSwaps').hide();
-  $('#listOfItems').hide();
-  $('#changeProfile').hide();
-  $('#stuffUwant').hide();
-
-
-
-  //modals
-  $('.modal').modal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-  });
-  // Initialize collapse button
-  $(".button-collapse").sideNav();
-  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
-  $('.collapsible').collapsible();
 
   //upload images
 
@@ -78,12 +75,37 @@ $(document).ready(function() {
     $('.button-collapse').sideNav('hide');
   });
   //update profile
-  $('#update').on("click", function() {
+  $('.update').on("click", function() {
     $('#changeProfile').show();
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
     $('#stuffUwant').hide();
     $('.button-collapse').sideNav('hide');
+
+    $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
+
+      if (!data){
+
+        window.localStorage.clear("token");
+        window.location.href = "/";
+
+      }
+      else {
+
+        //main page welcome header content
+        $('#firstName').attr("placeholder", data.firstName);
+        $('#lastName').attr("placeholder", data.lastName);
+        $('#email').attr("placeholder", data.email);
+        $('#phone').attr("placeholder", data.phone);
+        $('#city').attr("placeholder", data.city);
+        $('#state').attr("placeholder", data.state);
+        $('#username').attr("placeholder", data.username);
+        $('#password').attr("placeholder", data.password);
+
+      }
+    });
+
+
   });
 
 });

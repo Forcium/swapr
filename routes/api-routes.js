@@ -12,7 +12,7 @@ var randtoken = require('rand-token');
 var fs = require('fs');
 
 
-var uploadsDir = ("./public/assets/userUpload");
+  var uploadsDir = ("./public/assets/userUpload");
 
   var dirLength;
   fs.readdir(uploadsDir, function(err, files){
