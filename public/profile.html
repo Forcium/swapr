@@ -148,7 +148,7 @@
 
 <!-- main container -->
 <div class="container main">
-  <div class="row" id="userWelcome">
+  <div class="row">
     <div class="col s8">
       <h3 id="userWelcome"></h3>
     </div>
@@ -269,12 +269,12 @@
         <h4>Update Profile</h4>
         <div class="input-field" id="usersignUp">
           <div class="col s6">
-            <input placeholder="firstName" id="firstName" type="text" class="validate">
+            <input placeholder="firstName" name="firstName" id="firstName" type="text" class="validate">
             <label for="firstName"></label>
             </input>
           </div>
           <div class="col s6">
-            <input placeholder="lastName" id="lastName" type="text" class="validate">
+            <input placeholder="lastName" name="lastName" id="lastName" type="text" class="validate">
             <label for="lastName"></label>
             </input>
           </div>
@@ -283,12 +283,12 @@
       <div class="row">
         <div class="input-field usersignUp">
           <div class="col s6">
-            <input placeholder="email" id="email" type="email" class="validate">
+            <input placeholder="email" name="email" id="email" type="email" class="validate">
             <label for="email"></label>
             </input>
           </div>
           <div class="col s6">
-            <input placeholder="phone" id="phone" type="text" class="validate">
+            <input placeholder="phone" name="phone" id="phone" type="text" class="validate">
             <label for="phone"></label>
             </input>
           </div>
@@ -297,22 +297,22 @@
       <div class="row">
         <div class="input-field usersignUp">
           <div class="col s6">
-            <input placeholder="city" id="city" type="text" class="validate">
+            <input placeholder="city" name="city" id="city" type="text" class="validate">
             <label for="city"></label>
             </input>
           </div>
           <div class="col s6">
-            <input placeholder="state" id="state" type="text" class="validate">
+            <input placeholder="state" name="state" id="state" type="text" class="validate">
             <label for="state"></label>
             </input>
           </div>
         </div>
       </div>
       <div class="row col s12">
-        <input placeholder="username" id="username" type="text" class="validate">
+        <input placeholder="username" name="username" id="username" type="text" class="validate">
         <label for="username"></label>
         </input>
-        <input placeholder="New Password" id="password" type="password" class="validate">
+        <input placeholder="New Password" name="password" id="password" type="password" class="validate">
         <label for="password"></label>
         </input>
       </div>
@@ -322,7 +322,9 @@
         </div>
         <div class="col s6">
           <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
-          <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
+          <input type="hidden" id="passwordHdn" name="passwordHdn" value=""></input>
+          <input type="hidden" id="avatarHdn" name="avatarHdn" value=""></input>
+           <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
         </div>
       </div>
     </form>
