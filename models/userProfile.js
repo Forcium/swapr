@@ -45,13 +45,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [2]
       }
     },
-    zip: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [5]
-      }
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
