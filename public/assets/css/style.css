@@ -79,12 +79,14 @@ background-color: #b3d01d;
 }
 
 #userWelcome{
-  box-shadow: 2px 2px 2px 2px #aaa;
-  background-color: white;
+ padding-left: 50px;
+ margin:0;
+
 }
 
 #addListing{
-  margin-top: 38px;
+  margin-top: 0;
+
 }
 
 #bidImage{
