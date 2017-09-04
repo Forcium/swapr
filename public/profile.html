@@ -158,6 +158,46 @@
     </div>
   </div>
 
+  <!-- main profile page -->
+  <div class="" id="profileHome">
+    <div class="row">
+      <div class="col s12 m7">
+        <div class="card">
+          <div class="card-image">
+            <img src="" id="avatarImg"><!-- isnt working -->
+            <img src="/assets/images/placeholder.png">
+            <span class="white-text name"></span>  <!-- isnt working -->
+            <span class="card-title">First Name</span>
+          </div>
+          <div class="card-action">
+            <p>Rating: </p>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Listings Active: 5</h5>
+          </span>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Recent Offers Made: 3</h5>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Pending Swaps: 1</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- main -->
+
    <!-- List of items -->
   <div class="" id="listOfItems">
     <div class="row col s12">
@@ -223,7 +263,7 @@
 
 
   <!-- update profile form-->
-  <div class="container" id="changeProfile">
+  <div class="" id="changeProfile">
     <form id="frUploader" class="listing"  enctype="multipart/form-data" action="/api/Upload/" method="POST">
       <div class="row">
         <h4>Update Profile</h4>
@@ -282,7 +322,7 @@
         </div>
         <div class="col s6">
           <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
-          <button type="submit" value="Update" class="waves-effect waves-light light-green btn modal-trigger" id="frmUploader">UPDATE</button>
+          <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
         </div>
       </div>
     </form>
