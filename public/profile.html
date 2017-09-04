@@ -72,12 +72,27 @@
   </ul>
 </div>
 </div>
+<!--  -->
+<!-- <div class="row">
+  <div class="col s6">
+      <input type="file" name="imgUploader" multiple />
+  </div>
+  <div class="col s6">
+    <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
+    <input type="hidden" id="passwordHdn" name="passwordHdn" value=""></input>
+    <input type="hidden" id="avatarHdn" name="avatarHdn" value=""></input>
+     <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
+  </div>
+</div> -->
+
+<!--  -->
 
 <!-- Modal for Listing -->
   <div id="modalListing" class="modal modal-fixed-footer">
     <div class="modal-content">
       <div class="container">
         <h4>List an Item</h4>
+
         <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
           <!-- new item info input -->
           <div class="row">
@@ -91,13 +106,25 @@
                 <textarea id="textarea1" class="materialize-textarea"></textarea>
                 <label for="textarea1">Item Description</label>
               </div>
+
+
               <div class="input-field col s12">
                 <input type="file" name="imgUploader" multiple />
-                <input type="submit" name="submit" id="btnSubmit" value="Upload" />
               </div>
+
+              <div class="input-field col s12">
+                <input type="file" name="imgUploader" multiple />
+              </div>
+
+              <div class="input-field col s12">
+                <input type="file" name="imgUploader" multiple />
+              </div>
+
+
             </div>
           </div>
         </form>
+
       </div>
     </div>
     <div class="modal-footer">
