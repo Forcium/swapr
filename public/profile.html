@@ -17,17 +17,16 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js'></script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-<style>
-  body{
-    background-image: url('/assets/images/doodles.png');
-  }
-
-</style>
+  <style>
+    body {
+      background-image: url('/assets/images/doodles.png');
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- navbar header -->
+  <!-- navbar header -->
   <div class="section" id="">
     <nav>
       <div class="nav-wrapper main" id="navi">
@@ -43,67 +42,77 @@
           </div>
         </form>
       </div>
-    </nav><!--navbutton-->
+    </nav>
+    <!--navbutton-->
     <a href="#" data-activates="slide-out" class="button-collapse" id="menu"><i class="material-icons menu">menu</i></a>
 
 
-  <!--NAVBAR -->
-  <ul id="slide-out" class="side-nav">
-    <div class="user-view">
-      <div class="background">
-        <img src="/assets/images/navGreen.jpg">
+    <!--NAVBAR -->
+    <ul id="slide-out" class="side-nav">
+      <div class="user-view">
+        <div class="background">
+          <img src="/assets/images/navGreen.jpg">
+        </div>
+
+
+        <img id="avatarImg" class="circle" src="">
+        <span class="white-text name"></span>
+        <span class="white-text email"></span>
+
       </div>
+      <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+      <li><a class="waves-effect update" id="update"><i class="material-icons">mode_edit</i>Update Profile</a></li>
+      <li><a class="waves-effect" id="urStuff"><i class="material-icons">local_offer</i>Your Items</a></li>
+      <li><a class="waves-effect" id="offer"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
+      <a href="#!" class="collection-item"><span class="new badge">4</span></a>
 
 
-      <img id="avatarImg" class="circle" src="">
-      <span class="white-text name"></span>
-      <span class="white-text email"></span>
+      <li><a class="waves-effect" id="pend"><i class="material-icons">import_export</i>Pending Swaps</a></li>
 
-    </div>
-    <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
-    <li><a class="waves-effect update" id="update"><i class="material-icons">mode_edit</i>Update Profile</a></li>
-    <li><a class="waves-effect" id="urStuff"><i class="material-icons">local_offer</i>Your Items</a></li>
-    <li><a class="waves-effect" id="offer"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
-    <a href="#!" class="collection-item"><span class="new badge">4</span></a>
+    </ul>
+  </div>
+  </div>
 
-
-    <li><a class="waves-effect" id="pend"><i class="material-icons">import_export</i>Pending Swaps</a></li>
-
-  </ul>
-</div>
-</div>
-
-<!-- Modal for Listing -->
+  <!-- Modal for Listing -->
   <div id="modalListing" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <div class="container">
-        <h4>List an Item</h4>
-        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
-          <!-- new item info input -->
-          <div class="row">
-            <div class="input-field" id="newItem">
-              <div class="col s12">
-                <input placeholder="Item Name" id="itemName" type="text" class="validate">
-                <label for="itemName"></label>
-                </input>
-              </div>
-              <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Item Description</label>
-              </div>
-              <div class="input-field col s12">
-                <input type="file" name="imgUploader" multiple />
-                <input type="submit" name="submit" id="btnSubmit" value="Upload" />
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+  <div class="modal-content">
+    <div class="container">
+      <h4>Add a Listing</h4>
+      <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+        <!-- new listing info input -->
+        <div class="input-field row col s12" id="newItem">
+          <input placeholder="Item Name" id="itemName" type="text" class="validate">
+          <label for="itemName"></label>
+          </input>
+        </div>
+        <!-- category -->
+        <div class="input-field col m3 s12">
+          <select>
+            <option value="" disabled selected>Category</option>
+            <option value="Elect">Electronics</option>
+            <option value="Fash">Fashion</option>
+            <option value="HG">Home & Garden</option>
+            <option value="Music">Musical Instrument</option>
+            <option value="SG">Sporting Goods</option>
+            <option value="TH">Toys & Hobbies</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="input-field row col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Item Description</label>
+        </div>
+        <div class="input-field row col s12">
+          <input type="file" name="imgUploader" multiple />
+          <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+        </div>
+      </form>
     </div>
   </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+  </div>
+</div>
 
   <!-- Modal for new Bids -->
   <div id="modalBids" class="modal bottom-sheet">
@@ -125,7 +134,7 @@
             <a class="waves-effect waves-light light-green btn pulse" href="/listing">View Item</a>
           </div>
         </div>
-        </div>
+      </div>
 
       <div class="card-panel green lighten-5 z-depth-1">
         <div class="row valign-wrapper bidCol">
@@ -146,100 +155,100 @@
   </div>
 
 
-<!-- main container -->
-<div class="container main">
-  <div class="row card-panel">
-    <div class="col s8">
-      <h3 id="userWelcome"></h3>
-    </div>
-    <div class="col s4">
-      <a class="waves-effect waves-light btn light-green modal-trigger" id="addListing" data-target="modalListing">
+  <!-- main container -->
+  <div class="container main">
+    <div class="row card-panel">
+      <div class="col s8">
+        <h3 id="userWelcome"></h3>
+      </div>
+      <div class="col s4">
+        <a class="waves-effect waves-light btn light-green modal-trigger" id="addListing" data-target="modalListing">
       <i class="material-icons right">add</i>ADD A LISTING</a>
-    </div>
-  </div>
-
-
-  <!-- main profile page -->
-  <div class="" id="profileHome">
-    <div class="row">
-      <div class="col s12 m7">
-        <div class="card">
-          <div class="card-image">
-            <img src="" id="homePageImg">
-            <span class="card-title card-panel light-green temp" id="homePageFirstName"></span>
-          </div>
-          <div class="card-action">
-            <p>Rating: </p>
-            <i class="material-icons">star</i></a>
-            <i class="material-icons">star</i></a>
-            <i class="material-icons">star</i></a>
-            <i class="material-icons">star</i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col s12 m5">
-        <div class="card-panel infoStuff z-depth-1">
-          <h5>Listings Active: 5</h5>
-          </span>
-        </div>
-      </div>
-      <div class="col s12 m5">
-        <div class="card-panel infoStuff z-depth-1">
-          <h5>Recent Offers Made: 3</h5>
-        </div>
-      </div>
-      <div class="col s12 m5">
-        <div class="card-panel infoStuff z-depth-1">
-          <h5>Pending Swaps: 1</h5>
-        </div>
       </div>
     </div>
-  </div>
+
+
+    <!-- main profile page -->
+    <div class="" id="profileHome">
+      <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src="" id="homePageImg">
+              <span class="card-title card-panel light-green temp" id="homePageFirstName"></span>
+            </div>
+            <div class="card-action">
+              <p>Rating: </p>
+              <i class="material-icons">star</i></a>
+              <i class="material-icons">star</i></a>
+              <i class="material-icons">star</i></a>
+              <i class="material-icons">star</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel infoStuff z-depth-1">
+            <h5>Listings Active: 5</h5>
+            </span>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel infoStuff z-depth-1">
+            <h5>Recent Offers Made: 3</h5>
+          </div>
+        </div>
+        <div class="col s12 m5">
+          <div class="card-panel infoStuff z-depth-1">
+            <h5>Pending Swaps: 1</h5>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- main -->
 
-   <!-- List of items -->
-  <div class="" id="listOfItems">
-    <div class="row col s12">
-      <h4> Listings</h4>
-    </div>
+    <!-- List of items -->
+    <div class="" id="listOfItems">
+      <div class="row col s12">
+        <h4> Listings</h4>
+      </div>
 
-    <div class="row">
-      <div class=" col s3 card hoverable" id="imageCard">
-        <div class="card-image">
-          <img id="userPhoto" class ="responsive-img" src="/assets/images/placeholder.png">
-          <a class="btn-floating halfway-fab waves-effect waves-light green modal-trigger" data-target="modalBids">
+      <div class="row">
+        <div class=" col s3 card hoverable" id="imageCard">
+          <div class="card-image">
+            <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
+            <a class="btn-floating halfway-fab waves-effect waves-light green modal-trigger" data-target="modalBids">
             <i class="material-icons">error</i></a>
-        </div>
-        <div class="card-action" id="nameOfCard">
-          <h6 id="nameOfItem">Name of Item</h6>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- main -->
-
-  <!-- Offers You Made -->
-  <div class="" id="stuffUwant">
-    <div class="row col s12">
-      <h4> Offers Made</h4>
-    </div>
-
-    <div class ="row">
-      <div class="col s3 card hoverable" id="imageCard">
-        <div class="card-image">
-          <img id="userPhoto" class ="responsive-img" src="/assets/images/placeholder.png">
-        </div>
-        <div class="card-action" id="nameOfCard">
-          <h6 id="nameOfItem">Name of Item</h6>
+          </div>
+          <div class="card-action" id="nameOfCard">
+            <h6 id="nameOfItem">Name of Item</h6>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- main -->
+    <!-- main -->
+
+    <!-- Offers You Made -->
+    <div class="" id="stuffUwant">
+      <div class="row col s12">
+        <h4> Offers Made</h4>
+      </div>
+
+      <div class="row">
+        <div class="col s3 card hoverable" id="imageCard">
+          <div class="card-image">
+            <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
+          </div>
+          <div class="card-action" id="nameOfCard">
+            <h6 id="nameOfItem">Name of Item</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- main -->
 
 
-  <!-- Pending swaps -->
-  <div class="row" id="pendingSwaps">
+    <!-- Pending swaps -->
+    <div class="row" id="pendingSwaps">
       <h4>Pending Swaps</h4>
       <!-- pendings populated -->
       <div class="card-panel light-green lighten-5 z-depth-1">
@@ -249,7 +258,7 @@
           </div>
           <div class="col s4 m8">
 
-              <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
+            <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
           </div>
           <div class="col s4 m2">
             <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
@@ -257,84 +266,84 @@
           </div>
         </div>
       </div>
-  </div>
-  <!-- main -->
+    </div>
+    <!-- main -->
 
 
-  <!-- update profile form-->
-  <div class="" id="changeProfile">
-    <form id="frUploader" class="listing"  enctype="multipart/form-data" action="/api/Upload/" method="POST">
-      <div class="row">
-        <h4>Update Profile</h4>
-        <div class="input-field" id="usersignUp">
-          <div class="col s6">
-            <input placeholder="firstName" name="firstName" id="firstName" type="text" class="validate">
-            <label for="firstName"></label>
-            </input>
-          </div>
-          <div class="col s6">
-            <input placeholder="lastName" name="lastName" id="lastName" type="text" class="validate">
-            <label for="lastName"></label>
-            </input>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field usersignUp">
-          <div class="col s6">
-            <input placeholder="email" name="email" id="email" type="email" class="validate">
-            <label for="email"></label>
-            </input>
-          </div>
-          <div class="col s6">
-            <input placeholder="phone" name="phone" id="phone" type="text" class="validate">
-            <label for="phone"></label>
-            </input>
+    <!-- update profile form-->
+    <div class="" id="changeProfile">
+      <form id="frUploader" class="listing" enctype="multipart/form-data" action="/api/Upload/" method="POST">
+        <div class="row">
+          <h4>Update Profile</h4>
+          <div class="input-field" id="usersignUp">
+            <div class="col s6">
+              <input placeholder="firstName" name="firstName" id="firstName" type="text" class="validate">
+              <label for="firstName"></label>
+              </input>
+            </div>
+            <div class="col s6">
+              <input placeholder="lastName" name="lastName" id="lastName" type="text" class="validate">
+              <label for="lastName"></label>
+              </input>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="input-field usersignUp">
-          <div class="col s6">
-            <input placeholder="city" name="city" id="city" type="text" class="validate">
-            <label for="city"></label>
-            </input>
-          </div>
-          <div class="col s6">
-            <input placeholder="state" name="state" id="state" type="text" class="validate">
-            <label for="state"></label>
-            </input>
+        <div class="row">
+          <div class="input-field usersignUp">
+            <div class="col s6">
+              <input placeholder="email" name="email" id="email" type="email" class="validate">
+              <label for="email"></label>
+              </input>
+            </div>
+            <div class="col s6">
+              <input placeholder="phone" name="phone" id="phone" type="text" class="validate">
+              <label for="phone"></label>
+              </input>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row col s12">
-        <input placeholder="username" name="username" id="username" type="text" class="validate">
-        <label for="username"></label>
-        </input>
-        <input placeholder="New Password" name="password" id="password" type="password" class="validate">
-        <label for="password"></label>
-        </input>
-      </div>
-      <div class="row">
-        <div class="col s6">
+        <div class="row">
+          <div class="input-field usersignUp">
+            <div class="col s6">
+              <input placeholder="city" name="city" id="city" type="text" class="validate">
+              <label for="city"></label>
+              </input>
+            </div>
+            <div class="col s6">
+              <input placeholder="state" name="state" id="state" type="text" class="validate">
+              <label for="state"></label>
+              </input>
+            </div>
+          </div>
+        </div>
+        <div class="row col s12">
+          <input placeholder="username" name="username" id="username" type="text" class="validate">
+          <label for="username"></label>
+          </input>
+          <input placeholder="New Password" name="password" id="password" type="password" class="validate">
+          <label for="password"></label>
+          </input>
+        </div>
+        <div class="row">
+          <div class="col s6">
             <input type="file" name="imgUploader" multiple />
+          </div>
+          <div class="col s6">
+            <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
+            <input type="hidden" id="passwordHdn" name="passwordHdn" value=""></input>
+            <input type="hidden" id="avatarHdn" name="avatarHdn" value=""></input>
+            <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
+          </div>
         </div>
-        <div class="col s6">
-          <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
-          <input type="hidden" id="passwordHdn" name="passwordHdn" value=""></input>
-          <input type="hidden" id="avatarHdn" name="avatarHdn" value=""></input>
-           <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <!-- main -->
+      </form>
+    </div>
+    <!-- main -->
 
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https:/cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-  <!-- profile Javascript-->
-  <script type="text/javascript" src="/assets/javascript/profile.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https:/cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+    <!-- profile Javascript-->
+    <script type="text/javascript" src="/assets/javascript/profile.js"></script>
 
 </body>
 
