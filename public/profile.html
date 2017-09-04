@@ -150,7 +150,7 @@
 <div class="container main">
   <div class="row">
     <div class="col s8">
-      <h2 id="userWelcome"></h2>
+      <h3 id="userWelcome"></h3>
     </div>
     <div class="col s4">
       <a class="waves-effect waves-light btn light-green modal-trigger" id="addListing" data-target="modalListing">
@@ -158,11 +158,54 @@
     </div>
   </div>
 
+  <!-- main profile page -->
+  <div class="" id="profileHome">
+    <div class="row">
+      <div class="col s12 m7">
+        <div class="card">
+          <div class="card-image">
+            <img src="" id="avatarImg"><!-- isnt working -->
+            <img src="/assets/images/placeholder.png">
+            <span class="white-text name"></span>  <!-- isnt working -->
+            <span class="card-title">First Name</span>
+          </div>
+          <div class="card-action">
+            <p>Rating: </p>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+            <i class="material-icons">star</i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Listings Active: 5</h5>
+          </span>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Recent Offers Made: 3</h5>
+        </div>
+      </div>
+      <div class="col s12 m5">
+        <div class="card-panel infoStuff z-depth-1">
+          <h5>Pending Swaps: 1</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- main -->
+
    <!-- List of items -->
-  <div class="container row" id="listOfItems">
-    <div class="col s12">
+  <div class="" id="listOfItems">
+    <div class="row col s12">
       <h4> Listings</h4>
-      <div class="card hoverable" id="imageCard">
+    </div>
+  
+    <div class="row">
+      <div class=" col s3 card hoverable" id="imageCard">
         <div class="card-image">
           <img id="userPhoto" class ="responsive-img" src="/assets/images/placeholder.png">
           <a class="btn-floating halfway-fab waves-effect waves-light green modal-trigger" data-target="modalBids">
@@ -177,10 +220,13 @@
   <!-- main -->
 
   <!-- Offers You Made -->
-  <div class="container row" id="stuffUwant">
-    <div class="col s12">
+  <div class="" id="stuffUwant">
+    <div class="row col s12">
       <h4> Offers Made</h4>
-      <div class="card hoverable" id="imageCard">
+    </div>
+
+    <div class ="row">
+      <div class="col s3 card hoverable" id="imageCard">
         <div class="card-image">
           <img id="userPhoto" class ="responsive-img" src="/assets/images/placeholder.png">
         </div>
@@ -217,7 +263,7 @@
 
 
   <!-- update profile form-->
-  <div class="container" id="changeProfile">
+  <div class="" id="changeProfile">
     <form id="frUploader" class="listing"  enctype="multipart/form-data" action="/api/Upload/" method="POST">
       <div class="row">
         <h4>Update Profile</h4>
@@ -278,7 +324,7 @@
           <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
           <input type="hidden" id="passwordHdn" name="passwordHdn" value=""></input>
           <input type="hidden" id="avatarHdn" name="avatarHdn" value=""></input>
-          <button type="submit" value="Update" class="waves-effect waves-light light-green btn modal-trigger" id="frmUploader">UPDATE</button>
+           <button type="submit" value="Update" class="waves-effect waves-light light-green right btn modal-trigger" id="frmUploader">UPDATE</button>
         </div>
       </div>
     </form>

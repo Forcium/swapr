@@ -69,6 +69,7 @@ $(document).ready(function() {
     $('#changeProfile').hide();
     $('#pendingSwaps').hide();
     $('#stuffUwant').hide();
+    $('#profileHome').hide();
     $('.button-collapse').sideNav('hide');
   });
   //offers made
@@ -77,6 +78,7 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#pendingSwaps').hide();
+    $('#profileHome').hide();
     $('.button-collapse').sideNav('hide');
   });
   //pending swaps
@@ -84,6 +86,7 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
+    $('#profileHome').hide();
     $('#pendingSwaps').show();
     $('.button-collapse').sideNav('hide');
   });
@@ -93,6 +96,7 @@ $(document).ready(function() {
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
     $('#stuffUwant').hide();
+    $('#profileHome').hide();
     $('.button-collapse').sideNav('hide');
 
       var options = {

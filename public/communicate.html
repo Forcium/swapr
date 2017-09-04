@@ -32,7 +32,7 @@
   <!-- navbar header -->
   <div class="section" id="">
     <nav>
-      <div class="nav-wrapper main" id="navi">
+      <div class="nav-wrapper" id="navi">
         <a href="/" class="brand-logo right">
           <header>Swapr</header>
         </a>
@@ -54,9 +54,9 @@
         <div class="background">
           <img src="/assets/images/navGreen.jpg">
         </div>
-        <a href="#!user"><img class="circle" src="/assets/images/userStock.png"></a>
-        <a href="#!name"><span class="white-text name">User Name</span></a>
-        <a href="#!email"><span class="white-text email">useremail@gmail.com</span></a>
+          <img id="avatarImg" class="circle" src="">
+          <span class="white-text name"></span>
+          <span class="white-text email"></span>
       </div>
         <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
         <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
@@ -65,8 +65,8 @@
   <!-- Communicate images-->
   <div class="container row" id="communicateImages">
     <div class="col l4 m6 s12">
-      <h4> Your Item</h4>
-      <div class="card hoverable" id="imageCard">
+      <h4> Your Name</h4>
+      <div class="card hoverable" id="imageCardYou">
         <div class="card-image">
           <img id="yourItemC" class="responsive-img" src="/assets/images/placeholder.png">
         </div>
@@ -80,8 +80,8 @@
       <img class="responsive-img" src="/assets/images/arrow2.png">
     </div>
     <div class="col l4 m6 s12">
-      <h4> Their Item</h4>
-      <div class="card hoverable" id="imageCard">
+      <h4> Their Name</h4>
+      <div class="card hoverable" id="imageCardThem">
         <div class="card-image">
           <img id="theirItemc" class="responsive-img" src="/assets/images/placeholder.png">
         </div>
@@ -136,7 +136,7 @@
                   <textarea type="form" class="form-control" id="message-input"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="add-msg-btn">Submit</button>
+                <button type="submit" class="btn btn-primary grey" id="add-msg-btn">Submit</button>
               </form>
 
             </div>
@@ -148,11 +148,11 @@
       </div>
 
     </div>
-
+  </div>
     <!-- Script -->
     <script src="assets/javascript/chat.js"></script>
 
-    <div class="container row" id="communicateChat">
+    <!-- <div class="container row" id="communicateChat">
       <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
         <div class="input-field">
           <div class="input-field col m6 s12">
@@ -166,7 +166,7 @@
           </div>
       </form>
     </div>
-  </div>
+  </div> -->
     <!-- main -->
 
     <!-- Compiled and minified JavaScript -->
