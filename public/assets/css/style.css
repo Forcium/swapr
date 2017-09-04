@@ -75,7 +75,7 @@ background-color: #b3d01d;
   height: auto;
   margin-right: 1%;
   margin-bottom: 10px;
- 
+
 }
 
 #userWelcome{
@@ -102,7 +102,7 @@ background-color: #b3d01d;
 #changeProfile{
   box-shadow: 2px 2px 2px 2px #aaa;
   background-color: white;
-  padding: 60px;
+  padding: 100px;
   margin-bottom: 20px
 }
 
@@ -131,7 +131,7 @@ margin: 30px 0;
 /*listing css ------------------*/
 
 
- 
+
 header, #navi {
       padding-left: 180px;
     }
@@ -141,7 +141,7 @@ header, #navi {
         padding-top: 44px;
         right: 25%;
         left:0;
-        
+
       }
     }
 
