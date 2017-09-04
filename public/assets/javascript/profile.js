@@ -4,12 +4,17 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
-
+    //textera 
+    $('#textarea1').val('New Text');
+    $('#textarea1').trigger('autoresize');
 
     //modals
     $('.modal').modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
     });
+    $('select').material_select();
+    //modals
+  
     // Initialize collapse button
     $(".button-collapse").sideNav();
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)
