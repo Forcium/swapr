@@ -29,9 +29,11 @@ $(document).ready(function() {
       //main page welcome header content
       $('#userWelcome').html("Welcome, " + data.username);
       $('#avatarImg').attr("src", data.avatar);
+      $('#homePageImg').attr("src", data.avatar);
       $('.name').html(data.username);
       $('.email').html(data.email);
       $('#hdnTkn').attr("value", window.localStorage.getItem("token"));
+      $('#homePageFirstName').html("Hello, " + data.firstName +"!");
 
       //main page welcome header content
       $('#firstName').attr("placeholder", data.firstName);
