@@ -5,7 +5,6 @@ $(document).ready(function() {
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
     //textera 
-    $('#textarea1').val('New Text');
     $('#textarea1').trigger('autoresize');
 
     //modals
@@ -14,7 +13,7 @@ $(document).ready(function() {
     });
     $('select').material_select();
     //modals
-  
+
     // Initialize collapse button
     $(".button-collapse").sideNav();
     // Initialize collapsible (uncomment the line below if you use the dropdown variation)
