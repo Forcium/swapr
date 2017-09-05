@@ -127,7 +127,11 @@ background-color: #b3d01d;
 }
 
 #frmUploader{
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.filebtnStyle{
+  padding-top:0;
 }
 
 #homePageFirstName{
