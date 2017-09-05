@@ -1,5 +1,5 @@
 .panel > .panel-heading, label {
-	color: dodgerblue;
+	color: #60b37a;
 }
 
 .panel {
@@ -12,13 +12,13 @@
 }
 
 .card-content {
-	color: dodgerblue;
+	color: #60b37a;
 	box-shadow: 3px 3px 3px 3px lightgrey;
 
 }
 
 td {
-	color: dodgerblue;
+	color: #60b37a;
 	border: 1px solid lightgrey;
 	padding: 10px;
 }

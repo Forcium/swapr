@@ -7,7 +7,7 @@ body {
   main {
     flex: 1 0 auto;
   }
-  h2, h3, p, h4, h5{
+  h2, h3, p, h4, h5, h6{
     font-family: 'Raleway', sans-serif;
     color: #727475;
   }
@@ -75,6 +75,7 @@ background-color: #b3d01d;
   height: auto;
   margin-right: 1%;
   margin-bottom: 10px;
+  z-index: 2;
 
 }
 
@@ -82,6 +83,19 @@ background-color: #b3d01d;
  padding-left: 50px;
  margin:0;
 
+}
+#listOfItems, #stuffUwant {
+  background-color: #fafafa; 
+  padding-right: 30px;
+  padding-left: 30px;
+  z-index:1; 
+}
+
+#pendingSwaps{
+  background-color: #fafafa; 
+  padding-right: 30px;
+  padding-left: 30px;
+  z-index:1;
 }
 
 #addListing{
@@ -110,13 +124,26 @@ background-color: #b3d01d;
   margin-bottom: 20px;
 }
 
+#homePageFirstName{
+  position: relative;
+  left: -10px;
+  z-index: 1;
+  padding-left:30px;
+  padding-right:30px;
+  opacity: .9;
+}
+
+.darkText{
+  color: #3d673c;
+}
 /*communication css ------------------*/
 
 #arrows{
   width:30%;
-  padding-top: 90px;
+  /*padding-top: 90px;*/
   position: relative;
-  left: 65px;
+  /*left: 65px;*/
+  opacity: .75;
 }
 
 #communicateChat {
@@ -126,6 +153,14 @@ margin: 30px 0;
 #maps{
   position: relative;
   left: 25%;
+}
+
+.com{
+  position: relative;
+  left: -10px;
+  z-index: 1;
+  padding: 0;
+  opacity: .9
 }
 
 /*listing css ------------------*/

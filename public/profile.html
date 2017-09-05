@@ -62,9 +62,9 @@
       </div>
       <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
       <li><a class="waves-effect update" id="update"><i class="material-icons">mode_edit</i>Update Profile</a></li>
-      <li><a class="waves-effect" id="urStuff"><i class="material-icons">local_offer</i>Your Items</a></li>
+      <li><a class="waves-effect" id="urStuff"><i class="material-icons">local_offer</i>Your Listings</a></li>
       <li><a class="waves-effect" id="offer"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
-      <a href="#!" class="collection-item"><span class="new badge">4</span></a>
+      <a href="#!" class="collection-item"><span class="new badge green">4</span></a>
 
 
       <li><a class="waves-effect" id="pend"><i class="material-icons">import_export</i>Pending Swaps</a></li>
@@ -75,50 +75,44 @@
 
   <!-- Modal for Listing -->
   <div id="modalListing" class="modal modal-fixed-footer">
-  <div class="modal-content">
-    <div class="container">
-      <h4>Add a Listing</h4>
-      <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
-        <!-- new listing info input -->
-        <div class="input-field row col s12" id="newItem">
-          <input placeholder="Item Name" id="itemName" type="text" class="validate">
-          <label for="itemName"></label>
-          </input>
-        </div>
-        <!-- category -->
-        <div class="input-field col m3 s12">
-          <select>
-            <option value="" disabled selected>Category</option>
-            <option value="Elect">Electronics</option>
-            <option value="Fash">Fashion</option>
-            <option value="HG">Home & Garden</option>
-            <option value="Music">Musical Instrument</option>
-            <option value="SG">Sporting Goods</option>
-            <option value="TH">Toys & Hobbies</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="input-field row col s12">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1">Item Description</label>
-        </div>
-        <div class="input-field col s12">
-           <input type="file" name="imgUploader" multiple />
-         </div>
-         <div class="input-field col s12">
-            <input type="file" name="imgUploader" multiple />
-         </div>
-         <div class="input-field col s12">
-            <input type="file" name="imgUploader" multiple />
+    <div class="modal-content">
+      <div class="container">
+        <h4>Add a Listing</h4>
+        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+          <!-- new listing info input -->
+          <div class="input-field row col s12" id="newItem">
+            <input placeholder="Item Name" id="itemName" type="text" class="validate">
+            <label for="itemName"></label>
+            </input>
           </div>
-      
-      </form>
+          <!-- category -->
+          <div class="input-field row col s12">
+            <select>
+              <option value="" disabled selected>Category</option>
+              <option value="Elect">Electronics</option>
+              <option value="Fash">Fashion</option>
+              <option value="HG">Home & Garden</option>
+              <option value="Music">Musical Instrument</option>
+              <option value="SG">Sporting Goods</option>
+              <option value="TH">Toys & Hobbies</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="input-field row col s12">
+            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Item Description</label>
+          </div>
+          <div class="input-field row col s12">
+            <input type="file" name="imgUploader" multiple />
+            <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
   </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
-  </div>
-</div>
 
   <!-- Modal for new Bids -->
   <div id="modalBids" class="modal bottom-sheet">
@@ -163,7 +157,7 @@
 
   <!-- main container -->
   <div class="container main">
-    <div class="row card-panel">
+    <div class="row card-panel grey lighten-5">
       <div class="col s8">
         <h3 id="userWelcome"></h3>
       </div>
@@ -213,74 +207,79 @@
     <!-- main -->
 
     <!-- List of items -->
-    <div class="" id="listOfItems">
+    <div class="card-panel z-depth-1" id="listOfItems">
       <div class="row col s12">
-        <h4> Listings</h4>
+        <h4 class="darkText"> Listings</h4>
       </div>
 
       <div class="row">
-        <div class=" col s3 card hoverable" id="imageCard">
-          <div class="card-image">
-            <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
-            <a class="btn-floating halfway-fab waves-effect waves-light green modal-trigger" data-target="modalBids">
-            <i class="material-icons">error</i></a>
+        <a href ="/listing">
+          <div class=" col s3 card hoverable" id="imageCard">
+            <div class="card-image">
+              <img id="userPhoto" class="responsive-img"  src="/assets/images/placeholder.png">
+              <a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids">
+              <i class="material-icons">error</i></a>
+            </div>
+            <div class="card-action" id="nameOfCard">
+              <h6 id="nameOfItem">Name of Item</h6>
+            </div>
           </div>
-          <div class="card-action" id="nameOfCard">
-            <h6 id="nameOfItem">Name of Item</h6>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
     <!-- main -->
 
     <!-- Offers You Made -->
-    <div class="" id="stuffUwant">
+    <div class="card-panel z-depth-1" id="stuffUwant">
       <div class="row col s12">
-        <h4> Offers Made</h4>
+        <h4 class="darkText"> Offers Made</h4>
       </div>
 
       <div class="row">
-        <div class="col s3 card hoverable" id="imageCard">
-          <div class="card-image">
-            <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
+        <a href ="/listing">
+          <div class="col s3 card hoverable" id="imageCard">
+            <div class="card-image">
+              <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
+            </div>
+            <div class="card-action" id="nameOfCard">
+              <h6 id="nameOfItem">Name of Item</h6>
+            </div>
           </div>
-          <div class="card-action" id="nameOfCard">
-            <h6 id="nameOfItem">Name of Item</h6>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
     <!-- main -->
 
 
     <!-- Pending swaps -->
-    <div class="row" id="pendingSwaps">
-      <h4>Pending Swaps</h4>
-      <!-- pendings populated -->
-      <div class="card-panel light-green lighten-5 z-depth-1">
-        <div class="row valign-wrapper">
-          <div class="col s4 m2">
-            <img src="/assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
-          </div>
-          <div class="col s4 m8">
+   
+      <div class="row card-panel z-depth-1" id="pendingSwaps">
+        <h4 class="darkText">Pending Swaps</h4>
+        <!-- pendings populated -->
+        <div class="card-panel light-green lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s4 m2">
+              <img src="/assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
+            </div>
+            <div class="col s4 m8">
 
-            <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
-          </div>
-          <div class="col s4 m2">
-            <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
-
+              <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
+            </div>
+            <div class="col s4 m2">
+              <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div>  
+    
     <!-- main -->
 
 
     <!-- update profile form-->
-    <div class="" id="changeProfile">
+    <div class="container grey lighten-5" id="changeProfile">
       <form id="frUploader" class="listing" enctype="multipart/form-data" action="/api/Upload/" method="POST">
         <div class="row">
-          <h4>Update Profile</h4>
+          <h4 class ="darkText">Update Profile</h4>
           <div class="input-field" id="usersignUp">
             <div class="col s6">
               <input placeholder="firstName" name="firstName" id="firstName" type="text" class="validate">
@@ -322,13 +321,19 @@
             </div>
           </div>
         </div>
-        <div class="row col s12">
-          <input placeholder="username" name="username" id="username" type="text" class="validate">
-          <label for="username"></label>
-          </input>
-          <input placeholder="New Password" name="password" id="password" type="password" class="validate">
-          <label for="password"></label>
-          </input>
+        <div class="row">
+          <div class="input-field">
+            <div class="col s6">
+              <input placeholder="username" name="username" id="username" type="text" class="validate">
+              <label for="username"></label>
+              </input>
+            </div>
+            <div class="col s6">
+              <input placeholder="New Password" name="password" id="password" type="password" class="validate">
+              <label for="password"></label>
+              </input>
+            </div>
+          </div>
         </div>
         <div class="row">
           <div class="col s6">
