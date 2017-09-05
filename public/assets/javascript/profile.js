@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
     //textera 
-    $('#textarea1').val('New Text');
+    $('#textarea1').val('');
     $('#textarea1').trigger('autoresize');
 
     //modals
