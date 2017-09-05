@@ -137,5 +137,9 @@ $(document).ready(function() {
       alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
     }
 
-
+    //logout
+    $(document).on("click", "#exit", function(event) {
+      window.localStorage.clear();
+      window.location.href = "/";
+    });
 }); //doc ready
