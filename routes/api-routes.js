@@ -113,18 +113,15 @@ module.exports = function(app) {
 
   //avatar img upload
   var uploadsDir = "./public/assets/userUpload";
-  var dirLength;
-  fs.readdir(uploadsDir, function(err, files) {
-    dirLength = files.length;
-  });
+  var filenameImg;
 
   var Storage = multer.diskStorage({
     destination: function(req, file, callback) {
       callback(null, "./public/assets/userUpload");
     },
     filename: function(req, file, callback) {
-      dirLength++;
-      callback(null, dirLength + ".png");
+      filenameImg = randtoken.generate(12);
+      callback(null, filenameImg + ".png");
     }
   });
 
@@ -139,7 +136,6 @@ module.exports = function(app) {
         return res.redirect("/profile");
       }
 
-      var fileNum = parseInt(dirLength) + 1;
       if (!req.body.password) {
         req.body.password = req.body.passwordHdn;
       }
