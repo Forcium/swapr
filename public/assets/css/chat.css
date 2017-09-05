@@ -1,5 +1,5 @@
 .panel > .panel-heading, label {
-	color: #60b37a;
+	color: #3d673c;
 }
 
 .panel {
@@ -12,7 +12,7 @@
 }
 
 .card-content {
-	color: #60b37a;
+	color: #3d673c;
 	box-shadow: 3px 3px 3px 3px lightgrey;
 
 }

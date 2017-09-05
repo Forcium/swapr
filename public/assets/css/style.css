@@ -124,6 +124,10 @@ background-color: #b3d01d;
   margin-bottom: 20px;
 }
 
+#frmUploader{
+  margin-top: 20px;
+}
+
 #homePageFirstName{
   position: relative;
   left: -10px;
