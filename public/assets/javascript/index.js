@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     if (!data){
 
-      window.localStorage.clear("token");
+      window.localStorage.clear();
 
     }
     else {
@@ -16,7 +16,7 @@ $(document).ready(function() {
       $('#navSignup').attr({"href": "/", "id":"logOutBtn"});
       $('#logOutBtn').on("click", function(){
 
-        window.localStorage.clear("token");
+        window.localStorage.clear();
 
       });
 
@@ -86,6 +86,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
         $.get("/api/loginInfo", LoginData).done(function(response2){
 
           window.localStorage.setItem("token", response2.token);
+          window.localStorage.setItem("profileID", response2.id);
           window.location = "/profile/";
         });
       }
@@ -116,7 +117,6 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
       phone: phoneInput.val().trim(),
       city: cityInput.val().trim(),
       state: stateInput.val().trim(),
-      zip: "90021",
       username: userNameInput.val().trim(),
       pw: passwordInput.val().trim()
     });
@@ -127,6 +127,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     $.post("/api/isloggedin", UserData).done(function(res)
     {
       window.localStorage.setItem("token", res.token);
+      window.localStorage.setItem("profileID", res.id);
       window.location = "/profile/";
     });
   }

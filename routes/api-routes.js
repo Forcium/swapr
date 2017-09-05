@@ -19,11 +19,13 @@ module.exports = function(app) {
 
 
   app.post("/api/addItem", function(req, res) {
-    console.log(req);
+
     db.Item.create(
       {
-      item_name: "hello",
-      ProfileId: 1
+      item_name: req.body.itemName,
+      category: req.body.itemCategory,
+      item_description: req.body.itemDescription,
+      ProfileId: req.body.hdnId
     }).then(function() {
         res.redirect("/listing");
       });

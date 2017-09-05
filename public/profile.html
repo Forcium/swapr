@@ -78,7 +78,7 @@
     <div class="modal-content">
       <div class="container">
         <h4>Add a Listing</h4>
-        <form id="itemForm" class="listing" enctype="multipart/form-data" action="/api/addItem/" method="post">
+        <form id="addListing" name="addListing" action="/api/addItem/" method="POST">
           <!-- new listing info input -->
           <div class="input-field row col s12" id="newItem">
             <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
@@ -87,7 +87,7 @@
           </div>
           <!-- category -->
           <div class="input-field row col s12">
-            <select name="ItemCategory">
+            <select name="itemCategory">
               <option value="" disabled selected>Category</option>
               <option value="Elect">Electronics</option>
               <option value="Fash">Fashion</option>
@@ -99,15 +99,19 @@
             </select>
           </div>
           <div class="input-field row col s12">
-            <textarea name="itemDescription" id="textarea1" class="materialize-textarea"></textarea>
+            <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
             <label for="textarea1">Item Description</label>
           </div>
           <div class="input-field row col s12">
-            <input type="file" name="itemUploader" multiple />
+            <input type="file" name="imgUploader" multiple />
+            <input type="submit" name="submit" id="btnSubmit" value="Upload" />
           </div>
-          <button type="submit" id="addItemBtn" form="itemForm" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
+          <input type="hidden" name="hdnId" id="hdnId" value=""></input>
         </form>
       </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" form="addListing" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
     </div>
   </div>
 
