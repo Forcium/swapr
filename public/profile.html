@@ -79,13 +79,13 @@
         <h4>Add a Listing</h4>
         <form id="addListing" name="addListing" action="/api/addItem/" method="POST">
           <!-- new listing info input -->
-          <div class="input-field row col s12" id="newItem">
+          <div class="input-field col s12" id="newItem">
             <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
             <label for="itemName"></label>
             </input>
           </div>
           <!-- category -->
-          <div class="input-field row col s12">
+          <div class="input-field col s12">
             <select name="itemCategory">
               <option value="" disabled selected>Category</option>
               <option value="Elect">Electronics</option>
@@ -97,15 +97,25 @@
               <option value="Other">Other</option>
             </select>
           </div>
-          <div class="input-field row col s12">
+          <div class="input-field col s12">
             <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
             <label for="textarea1">Item Description</label>
           </div>
-          <div class="input-field row col s12">
+         <!--  <div class="input-field row col s12">
             <input type="file" name="imgUploader" multiple />
             <input type="submit" name="submit" id="btnSubmit" value="Upload" />
           </div>
-          <input type="hidden" name="hdnId" id="hdnId" value=""></input>
+          <input type="hidden" name="hdnId" id="hdnId" value=""></input> -->
+          <div class="file-field input-field">
+            <div class="btn light-green">
+              <span>File</span>
+              <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate"  type="text" placeholder="Upload 3 Images">
+            </div>
+          </div>
+
         </form>
       </div>
     </div>
@@ -114,6 +124,20 @@
     </div>
   </div>
 
+              
+    
+
+
+
+
+
+
+
+
+
+
+
+  
   <!-- Modal for swapr Offers -->
   <div id="modalBids" class="modal bottom-sheet">
     <div class="modal-content">
@@ -322,16 +346,15 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col s6">
-            <p>Update Profile Picture</p>
+        <!-- <div class="row"> -->
+          <div class="col s12">           
             <div class="file-field input-field">
-              <div class="btn light-green">
+              <div class="btn light-green filebtnStyle">
                 <span>File</span>
                 <input type="file" name="imgUploader">
               </div>
               <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+                <input class="file-path validate" type="text" placeholder="  Upload Profile Picture">
               </div>
             </div>
           </div>
