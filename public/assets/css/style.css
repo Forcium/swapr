@@ -129,11 +129,10 @@ background-color: #b3d01d;
 }
 
 #homePageFirstName{
-  position: relative;
-  left: -10px;
-  z-index: 1;
-  padding-left:30px;
-  padding-right:30px;
+  left: -15px;
+  padding: 10px;
+  height:auto;
+  width: 45%;
   opacity: .9;
 }
 
@@ -143,7 +142,7 @@ background-color: #b3d01d;
 /*communication css ------------------*/
 
 #arrows{
-  width:30%;
+  width:20%;
   /*padding-top: 90px;*/
   position: relative;
   /*left: 65px;*/
@@ -160,13 +159,16 @@ margin: 30px 0;
 }
 
 .com{
-  position: relative;
-  left: -10px;
-  z-index: 1;
-  padding: 0;
-  opacity: .9
+  left: -15px;
+  padding: 10px;
+  height:auto;
+  width: 65%;
+  opacity: .9;
 }
 
+#imageCardYou, #imageCardThem{
+  width: 40%
+}
 /*listing css ------------------*/
 
 
@@ -184,16 +186,22 @@ header, #navi {
       }
     }
 
-    @media only screen and (max-width : 992px) {
+    @media only screen and (max-width : 1200px) {
+      #arrows{
+        width: 16%;
+      }
+      #imageCardYou, #imageCardThem{
+        width: 42%
+      }
+
+    }
+
+    @media only screen and (max-width : 993px) {
       header, .main, footer {
         padding-left: 0;
       }
-    }
-    @media only screen and (max-width : 620px) {
-      #communicateImages{
-        padding-left:25%;
+        #imageCardYou, #imageCardThem{
+        width: 50%
       }
-
-      
-
     }
+    
