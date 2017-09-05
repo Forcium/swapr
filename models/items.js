@@ -7,11 +7,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     category: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     item_description: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     item_img1: {
       type: DataTypes.STRING,
