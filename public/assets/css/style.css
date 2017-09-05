@@ -46,8 +46,8 @@ header {
 }
 
 .infoStuff{
-  background-color: #FFFACD;
-  opacity: .8;
+  background-color: #dcedc8;
+  opacity: .67;
 }
 /*profile css ------------------*/
 .headMarg{
@@ -75,7 +75,9 @@ background-color: #b3d01d;
   height: auto;
   margin-right: 1%;
   margin-bottom: 10px;
+  padding-top: 10px;
   z-index: 2;
+  background-color: #f1f8e9;
 
 }
 
