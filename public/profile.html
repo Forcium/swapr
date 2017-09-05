@@ -213,10 +213,10 @@
       </div>
 
       <div class="row">
-        <a href ="/listing">
+        <a href="/listing">
           <div class=" col s3 card hoverable" id="imageCard">
             <div class="card-image">
-              <img id="userPhoto" class="responsive-img"  src="/assets/images/placeholder.png">
+              <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
               <a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids">
               <i class="material-icons">error</i></a>
             </div>
@@ -236,7 +236,7 @@
       </div>
 
       <div class="row">
-        <a href ="/listing">
+        <a href="/listing">
           <div class="col s3 card hoverable" id="imageCard">
             <div class="card-image">
               <img id="userPhoto" class="responsive-img" src="/assets/images/placeholder.png">
@@ -253,24 +253,24 @@
 
     <!-- Pending swaps -->
 
-      <div class="row card-panel z-depth-1" id="pendingSwaps">
-        <h4 class="darkText">Pending Swaps</h4>
-        <!-- pendings populated -->
-        <div class="card-panel light-green lighten-5 z-depth-1">
-          <div class="row valign-wrapper">
-            <div class="col s4 m2">
-              <img src="/assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
-            </div>
-            <div class="col s4 m8">
+    <div class="row card-panel z-depth-1" id="pendingSwaps">
+      <h4 class="darkText">Pending Swaps</h4>
+      <!-- pendings populated -->
+      <div class="card-panel light-green lighten-5 z-depth-1">
+        <div class="row valign-wrapper">
+          <div class="col s4 m2">
+            <img src="/assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
+          </div>
+          <div class="col s4 m8">
 
-              <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
-            </div>
-            <div class="col s4 m2">
-              <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
-            </div>
+            <a class="waves-effect waves-green btn-flat" href="/communicate">This will take you to the communication page</a>
+          </div>
+          <div class="col s4 m2">
+            <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
           </div>
         </div>
       </div>
+    </div>
 
     <!-- main -->
 
@@ -279,7 +279,7 @@
     <div class="container grey lighten-5" id="changeProfile">
       <form id="frUploader" class="listing" enctype="multipart/form-data" action="/api/Upload/" method="POST">
         <div class="row">
-          <h4 class ="darkText">Update Profile</h4>
+          <h4 class="darkText">Update Profile</h4>
           <div class="input-field" id="usersignUp">
             <div class="col s6">
               <input placeholder="firstName" name="firstName" id="firstName" type="text" class="validate">
@@ -338,7 +338,15 @@
         <div class="row">
           <div class="col s6">
             <p>Update Profile Picture</p>
-            <input type="file" name="imgUploader" multiple />
+            <div class="file-field input-field">
+              <div class="btn light-green">
+                <span>File</span>
+                <input type="file" name="imgUploader">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
           </div>
           <div class="col s6">
             <input type="hidden" id="hdnTkn" name="hdnTkn" value=""></input>
