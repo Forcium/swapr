@@ -96,7 +96,7 @@ module.exports = function(app) {
   });
 
 
-  //Uploader
+  //avatar img upload
   var uploadsDir = "./public/assets/userUpload";
   var dirLength;
   fs.readdir(uploadsDir, function(err, files) {
