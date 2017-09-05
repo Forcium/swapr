@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
-    //textera 
+    //textera
     $('#textarea1').trigger('autoresize');
 
     //modals
@@ -112,6 +112,13 @@ $(document).ready(function() {
 
       // bind to the form's submit event
       $(document).on("submit", "#frmUploader", function(event) {
+        $(this).ajaxSubmit(options);
+        // always return false to prevent standard browser submit and page navigation
+        return false;
+      });
+
+      $(document).on("submit", "#additembtn", function(event) {
+
         $(this).ajaxSubmit(options);
         // always return false to prevent standard browser submit and page navigation
         return false;

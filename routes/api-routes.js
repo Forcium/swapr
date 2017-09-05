@@ -17,6 +17,19 @@ var multer = require("multer");
 // =============================================================
 module.exports = function(app) {
 
+
+  app.post("/api/addItem", function(req, res) {
+    console.log(req);
+    db.Item.create(
+      {
+      item_name: "hello",
+      ProfileId: 1
+    }).then(function() {
+        res.redirect("/listing");
+      });
+    });
+
+
   app.get("/api/loginInfo", function(req, res) {
     db.Profile.findAll({
       where: {

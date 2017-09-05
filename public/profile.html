@@ -78,16 +78,16 @@
     <div class="modal-content">
       <div class="container">
         <h4>Add a Listing</h4>
-        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+        <form id="itemForm" class="listing" enctype="multipart/form-data" action="/api/addItem/" method="post">
           <!-- new listing info input -->
           <div class="input-field row col s12" id="newItem">
-            <input placeholder="Item Name" id="itemName" type="text" class="validate">
+            <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
             <label for="itemName"></label>
             </input>
           </div>
           <!-- category -->
           <div class="input-field row col s12">
-            <select>
+            <select name="ItemCategory">
               <option value="" disabled selected>Category</option>
               <option value="Elect">Electronics</option>
               <option value="Fash">Fashion</option>
@@ -99,18 +99,15 @@
             </select>
           </div>
           <div class="input-field row col s12">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <textarea name="itemDescription" id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Item Description</label>
           </div>
           <div class="input-field row col s12">
-            <input type="file" name="imgUploader" multiple />
-            <input type="submit" name="submit" id="btnSubmit" value="Upload" />
+            <input type="file" name="itemUploader" multiple />
           </div>
+          <button type="submit" id="addItemBtn" form="itemForm" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</button>
         </form>
       </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
     </div>
   </div>
 
@@ -252,7 +249,7 @@
 
 
     <!-- Pending swaps -->
-   
+
       <div class="row card-panel z-depth-1" id="pendingSwaps">
         <h4 class="darkText">Pending Swaps</h4>
         <!-- pendings populated -->
@@ -270,8 +267,8 @@
             </div>
           </div>
         </div>
-      </div>  
-    
+      </div>
+
     <!-- main -->
 
 
