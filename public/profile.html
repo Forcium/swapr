@@ -65,9 +65,8 @@
       <li><a class="waves-effect" id="urStuff"><i class="material-icons">local_offer</i>Your Listings</a></li>
       <li><a class="waves-effect" id="offer"><i class="material-icons">local_grocery_store</i>Offers Made</a></li>
       <a href="#!" class="collection-item"><span class="new badge green">4</span></a>
-
-
       <li><a class="waves-effect" id="pend"><i class="material-icons">import_export</i>Pending Swaps</a></li>
+      <li><a class="waves-effect" id="exit"><i class="material-icons">exit_to_app</i>Logout</a></li>
     </ul>
   </div>
   </div>
@@ -78,16 +77,16 @@
     <div class="modal-content">
       <div class="container">
         <h4>Add a Listing</h4>
-        <form id="listing" enctype="multipart/form-data" action="api/Upload/" method="post">
+        <form id="addListing" name="addListing" action="/api/addItem/" method="POST">
           <!-- new listing info input -->
           <div class="input-field row col s12" id="newItem">
-            <input placeholder="Item Name" id="itemName" type="text" class="validate">
+            <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
             <label for="itemName"></label>
             </input>
           </div>
           <!-- category -->
           <div class="input-field row col s12">
-            <select>
+            <select name="itemCategory">
               <option value="" disabled selected>Category</option>
               <option value="Elect">Electronics</option>
               <option value="Fash">Fashion</option>
@@ -99,18 +98,19 @@
             </select>
           </div>
           <div class="input-field row col s12">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
             <label for="textarea1">Item Description</label>
           </div>
           <div class="input-field row col s12">
             <input type="file" name="imgUploader" multiple />
             <input type="submit" name="submit" id="btnSubmit" value="Upload" />
           </div>
+          <input type="hidden" name="hdnId" id="hdnId" value=""></input>
         </form>
       </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</a>
+      <button type="submit" form="addListing" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
     </div>
   </div>
 
@@ -252,7 +252,7 @@
 
 
     <!-- Pending swaps -->
-   
+
       <div class="row card-panel z-depth-1" id="pendingSwaps">
         <h4 class="darkText">Pending Swaps</h4>
         <!-- pendings populated -->
@@ -270,8 +270,8 @@
             </div>
           </div>
         </div>
-      </div>  
-    
+      </div>
+
     <!-- main -->
 
 
