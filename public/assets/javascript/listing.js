@@ -10,6 +10,16 @@ $(document).ready(function(){
     }
     else {
 
+      $.post("/api/listing/:listingID", {
+
+        profileID: window.localStorage.getItem("profileID")
+
+      }).then(function(data){
+
+        console.log(data);
+
+      });
+
       $('#carousel1').attr('src', '/assets/userUpload/1.png');
       $('#carousel2').attr('src', '/assets/userUpload/2.png');
       $('#carousel3').attr('src', '/assets/userUpload/3.png');

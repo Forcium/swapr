@@ -43,6 +43,26 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/allListings", function(req, res) {
+    db.Item.findAll({
+      where: {
+        ProfileID: req.body.profileID
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  app.get("/api/listing/:listingID", function(req, res) {
+    db.Item.findAll({
+      where: {
+        id: req.params.listingID
+      }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
   app.post("/", function(req, res) {
 
     db.Profile.findOne({
