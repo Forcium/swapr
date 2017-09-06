@@ -43,7 +43,6 @@ module.exports = function(app) {
 
   app.post("/api/addItem", function(req, res) {
 
-
 //item 1 ~~~~~~~~~~~~~~~~~~
     item1(req, res, function(err) {
       if (err) {
@@ -54,6 +53,13 @@ module.exports = function(app) {
       if (req.files[0]) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
+      if (req.files[1]) {
+        req.body.itemImage2 = "/assets/userUpload/" + req.files[1].filename;
+      }
+      if (req.files[2]) {
+        req.body.itemImage3 = "/assets/userUpload/" + req.files[2].filename;
+      }
+
 
     db.Item.create(
       {
@@ -69,7 +75,6 @@ module.exports = function(app) {
       });
     });
   });
-
 
 
 
@@ -95,8 +100,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/listing/:listingID", function(req, res) {
-
-    db.Item.findOne({
+    db.Item.findAll({
       where: {
         id: req.params.listingID
       }
@@ -149,19 +153,6 @@ module.exports = function(app) {
       .then(function(dbPost) {
         res.json(dbPost);
       });
-  });
-
-  app.get("/listing", function(req, res) {
-    console.log(req.body);
-    db.Item.findAll({
-      where: {
-        ProfileId: req.body.profileID
-      }
-    }).then(function(dbGet){
-      console.log(dbGet);
-      res.json(dbGet);
-    });
-
   });
 
   app.post("/api/isloggedin/", function(req, res) {
