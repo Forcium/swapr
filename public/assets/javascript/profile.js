@@ -129,7 +129,7 @@ $(document).ready(function() {
         return false;
       });
 
-      $(document).on("submit", "#btnSubmit", function(event) {
+      $(document).on("submit", "#addListing", function(event) {
 
         $(this).ajaxSubmit(options);
         // always return false to prevent standard browser submit and page navigation

@@ -80,7 +80,9 @@
     <div class="modal-content">
       <div class="container">
         <h4>Add a Listing</h4>
-        <form id="addListing" name="addListing" action="/api/addItem/" method="POST">
+
+
+        <form class="listing" enctype="multipart/form-data" id="addListing" name="addListing" action="/api/addItem/" method="POST">
           <!-- new listing info input -->
           <div class="input-field col s12" id="newItem">
             <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
@@ -107,15 +109,42 @@
          <!--  <div class="input-field row col s12">
             <input type="file" name="imgUploader" multiple />
             <input type="submit" name="submit" id="btnSubmit" value="Upload" />
-          </div> -->
+
+          </div>-->
+
+
+
           <input type="hidden" name="hdnId" id="hdnId" value=""></input>
+
+
           <div class="file-field input-field">
             <div class="btn light-green">
               <span>File</span>
-              <input type="file" multiple>
+              <input name="img1" type="file" multiple>
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate"  type="text" placeholder="Upload 3 Images">
+              <input class="file-path validate"  type="text" placeholder="Upload Images">
+            </div>
+          </div>
+
+          <div class="file-field input-field">
+            <div class="btn light-green">
+              <span>File</span>
+              <input name="img2" type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate"  type="text" placeholder="Upload Images">
+            </div>
+          </div>
+
+
+          <div class="file-field input-field">
+            <div class="btn light-green">
+              <span>File</span>
+              <input name="img3" type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate"  type="text" placeholder="Upload Images">
             </div>
           </div>
 
@@ -123,7 +152,10 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" form="addListing" id="addListingSubmitBtn" class="modal-action modal-close waves-effect waves-green btn-flat ">Submit</button>
+
+      <button type="submit" value="Update" form="addListing" class="modal-action modal-close waves-effect waves-green btn-flat " id="btnSubmit">Submit</button>
+
+
     </div>
   </div>
 
