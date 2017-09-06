@@ -1,11 +1,5 @@
 $(document).ready(function(){
 
-  var urlArr = window.location.pathname.split('/');
-  var urlLength;
-  console.log(window.location.pathname);
-  console.log(urlArr);
-
-
   $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
 
     if (!data){
