@@ -17,19 +17,60 @@ var multer = require("multer");
 // =============================================================
 module.exports = function(app) {
 
+  //avatar img upload
+  var uploadsDir = "./public/assets/userUpload";
+  var filenameImg;
+
+  var Storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+      callback(null, "./public/assets/userUpload");
+    },
+    filename: function(req, file, callback) {
+      filenameImg = randtoken.generate(12);
+      callback(null, filenameImg + ".png");
+    }
+  });
+
+  var upload = multer({
+    storage: Storage
+  }).array("imgUploader", 3); //Field name and max count
+
+  var item1 = multer({
+    storage: Storage
+  }).array("img1", 3); //Field name and max count
+
+
 
   app.post("/api/addItem", function(req, res) {
+
+//item 1 ~~~~~~~~~~~~~~~~~~
+    item1(req, res, function(err) {
+      if (err) {
+        return res.redirect("/profile");
+      }
+
+      console.log(req.body);
+      if (req.files[0]) {
+        req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
+      }
+
 
     db.Item.create(
       {
       item_name: req.body.itemName,
       category: req.body.itemCategory,
       item_description: req.body.itemDescription,
+      item_img1: req.body.itemImage1,
+      item_img2: req.body.itemImage2,
+      item_img3: req.body.itemImage3,
       ProfileId: req.body.hdnId
     }).then(function() {
         res.redirect("/listing");
       });
     });
+  });
+
+
 
 
   app.get("/api/loginInfo", function(req, res) {
@@ -131,23 +172,7 @@ module.exports = function(app) {
   });
 
 
-  //avatar img upload
-  var uploadsDir = "./public/assets/userUpload";
-  var filenameImg;
 
-  var Storage = multer.diskStorage({
-    destination: function(req, file, callback) {
-      callback(null, "./public/assets/userUpload");
-    },
-    filename: function(req, file, callback) {
-      filenameImg = randtoken.generate(12);
-      callback(null, filenameImg + ".png");
-    }
-  });
-
-  var upload = multer({
-    storage: Storage
-  }).array("imgUploader", 3); //Field name and max count
 
   app.post("/api/Upload", function(req, res) {
 
