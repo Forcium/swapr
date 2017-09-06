@@ -43,6 +43,7 @@ module.exports = function(app) {
 
   app.post("/api/addItem", function(req, res) {
 
+
 //item 1 ~~~~~~~~~~~~~~~~~~
     item1(req, res, function(err) {
       if (err) {
@@ -54,7 +55,6 @@ module.exports = function(app) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
 
-
     db.Item.create(
       {
       item_name: req.body.itemName,
@@ -64,8 +64,8 @@ module.exports = function(app) {
       item_img2: req.body.itemImage2,
       item_img3: req.body.itemImage3,
       ProfileId: req.body.hdnId
-    }).then(function() {
-        res.redirect("/listing");
+    }).then(function(data) {
+        res.redirect("/listing/" + data.id);
       });
     });
   });
@@ -95,7 +95,8 @@ module.exports = function(app) {
   });
 
   app.get("/api/listing/:listingID", function(req, res) {
-    db.Item.findAll({
+
+    db.Item.findOne({
       where: {
         id: req.params.listingID
       }
@@ -148,6 +149,19 @@ module.exports = function(app) {
       .then(function(dbPost) {
         res.json(dbPost);
       });
+  });
+
+  app.get("/listing", function(req, res) {
+    console.log(req.body);
+    db.Item.findAll({
+      where: {
+        ProfileId: req.body.profileID
+      }
+    }).then(function(dbGet){
+      console.log(dbGet);
+      res.json(dbGet);
+    });
+
   });
 
   app.post("/api/isloggedin/", function(req, res) {

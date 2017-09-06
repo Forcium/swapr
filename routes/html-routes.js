@@ -32,9 +32,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/communicate.html"));
   });
 
-  app.get("/listing", function(req, res) {
+  app.get("/listing/:id", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/listing.html"));
   });
+
 
  app.get("/chat", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/chat.html"));

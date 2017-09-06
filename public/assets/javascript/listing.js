@@ -10,20 +10,19 @@ $(document).ready(function(){
     }
     else {
 
-      $.post("/api/listing/:listingID", {
+      $.get("/api" + window.location.pathname, {
 
         profileID: window.localStorage.getItem("profileID")
 
       }).then(function(data){
 
-        console.log(data);
+      $('.nameText').html(data.item_name);
+      $('.darkText').html(data.item_description);
+      $('#carousel1').attr('src', data.item_img1);
+      $('#carousel2').attr('src', data.item_img2);
+      $('#carousel3').attr('src', data.item_img3);
 
       });
-
-      $('#carousel1').attr('src', '/assets/userUpload/1.png');
-      $('#carousel2').attr('src', '/assets/userUpload/2.png');
-      $('#carousel3').attr('src', '/assets/userUpload/3.png');
-
 
       $('.carousel').carousel();
     }
