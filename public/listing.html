@@ -59,86 +59,76 @@
       <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
       <li><a class="waves-effect" id="exit"><i class="material-icons">exit_to_app</i>Logout</a></li>
     </ul>
-
-      <div id="modalEdit" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <div class="container">
-        <h4>Edit a Listing</h4>
-
-
-        <form class="listing" enctype="multipart/form-data" id="editListing" name="editListing" action="/api/editItem/" method="POST">
-          <!-- new listing info input -->
-          <div class="input-field col s12" id="newItem">
-            <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
-            <label for="itemName"></label>
-            </input>
-          </div>
-          <!-- category -->
-          <div class="input-field col s12">
-            <select name="itemCategory">
-              <option value="" disabled selected>Category</option>
-              <option value="Elect">Electronics</option>
-              <option value="Fash">Fashion</option>
-              <option value="HG">Home & Garden</option>
-              <option value="Music">Musical Instrument</option>
-              <option value="SG">Sporting Goods</option>
-              <option value="TH">Toys & Hobbies</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="input-field col s12">
-            <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
-            <label for="textarea1">Item Description</label>
-          </div>
-         <!--  <div class="input-field row col s12">
+    <!-- edit listing modole -->
+    <div id="modalEdit" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <div class="container">
+          <h4>Edit a Listing</h4>
+          <form class="listing" enctype="multipart/form-data" id="editListing" name="editListing" action="/api/editItem/" method="POST">
+            <!-- new listing info input -->
+            <div class="input-field col s12" id="newItem">
+              <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
+              <label for="itemName"></label>
+              </input>
+            </div>
+            <!-- category -->
+            <div class="input-field col s12">
+              <select name="itemCategory">
+                <option value="" disabled selected>Category</option>
+                <option value="Elect">Electronics</option>
+                <option value="Fash">Fashion</option>
+                <option value="HG">Home & Garden</option>
+                <option value="Music">Musical Instrument</option>
+                <option value="SG">Sporting Goods</option>
+                <option value="TH">Toys & Hobbies</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="input-field col s12">
+              <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
+              <label for="textarea1">Item Description</label>
+            </div>
+            <!--  <div class="input-field row col s12">
             <input type="file" name="imgUploader" multiple />
             <input type="submit" name="submit" id="btnSubmit" value="Upload" />
 
           </div>-->
-          <input type="hidden" name="hdnId" id="hdnId" value=""></input>
-
-          <div class="file-field input-field">
-            <div class="btn light-green">
-              <span>File</span>
-              <input name="img1" type="file" multiple>
+            <input type="hidden" name="hdnId" id="hdnId" value=""></input>
+            <div class="file-field input-field">
+              <div class="btn light-green">
+                <span>File</span>
+                <input name="img1" type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload Images">
+              </div>
             </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate"  type="text" placeholder="Upload Images">
+            <div class="file-field input-field">
+              <div class="btn light-green">
+                <span>File</span>
+                <input name="img1" type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload Images">
+              </div>
             </div>
-          </div>
-
-          <div class="file-field input-field">
-            <div class="btn light-green">
-              <span>File</span>
-              <input name="img1" type="file" multiple>
+            <div class="file-field input-field">
+              <div class="btn light-green">
+                <span>File</span>
+                <input name="img1" type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload Images">
+              </div>
             </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate"  type="text" placeholder="Upload Images">
-            </div>
-          </div>
-
-
-          <div class="file-field input-field">
-            <div class="btn light-green">
-              <span>File</span>
-              <input name="img1" type="file" multiple>
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate"  type="text" placeholder="Upload Images">
-            </div>
-          </div>
-
-        </form>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" value="Update" form="editListing" class="modal-action modal-close waves-effect waves-green btn-flat " id="btnSubmit">Submit</button>
       </div>
     </div>
-    <div class="modal-footer">
-
-      <button type="submit" value="Update" form="editListing" class="modal-action modal-close waves-effect waves-green btn-flat " id="btnSubmit">Submit</button>
-    </div>
-  </div>
-
-<!-- end of listing -->
-
+    <!-- end of edit listing -->
     <!-- Item Header -->
     <div class="container main">
       <div class="card-panel lighten-5 z-depth-1 grey lighten-5">
@@ -147,19 +137,39 @@
             <h2 class="nameText"></h2>
           </div>
         </div>
-        <a class="btn waves-effect waves-light light-green" id="accept" type="submit" href="/communicate" name="action">Accept
-        </a>
-        <a class="btn waves-effect waves-light orange" id="decline" type="submit" name="action">Decline
-        </a>
+        <div class=row>
+          <div class="col l4">
+            <a class="btn waves-effect waves-light light-green" id="accept" type="submit" href="/communicate" name="action">Accept
+          </a>
+            <a class="btn waves-effect waves-light orange" id="decline" type="submit" name="action">Decline
+          </a>
+          </div>
+          <div class="col l3">
+          <div class="input-field">
+            <select class="icons">
+              <option value="" disabled selected>Choose a Listing</option>
+              <option value="" data-icon="images/sample-1.jpg" class="left circle">example 1</option>
+              <option value="" data-icon="images/office.jpg" class="left circle">example 2</option>
+              <option value="" data-icon="images/yuna.jpg" class="left circle">example 3</option>
+            </select>
+          </div>
+          </div>
+          <div class="col l3">
+          <a class="waves-effect waves-light btn pulse light-green">Swap</a>
+          </div>
+          
 
-         <a class="waves-effect waves-light btn light-green modal-trigger" id="editListing" data-target="modalEdit">
-      <i class="material-icons right">edit</i>EDIT A LISTING</a>
+        
+        <div class="col l2">
+          <a class="btn-floating btn waves-effect waves-light orange modal-trigger right" id="editListing" data-target="modalEdit"><i class="material-icons">edit</i></a>
+        </div>
+        </div>
       </div>
       <!-- Carousel  -->
       <div class="carousel row" id="main">
         <div class="card hoverable carousel-item" id="carouselIMG">
           <div class="card-image">
-            <img class="materialboxed" id="carousel1"  src="">
+            <img class="materialboxed" id="carousel1" src="">
           </div>
         </div>
         <div class="card hoverable carousel-item" id="carouselIMG2">
