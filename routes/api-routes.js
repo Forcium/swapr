@@ -40,7 +40,6 @@ module.exports = function(app) {
   }).array("img1", 3); //Field name and max count
 
 
-
   app.post("/api/addItem", function(req, res) {
 
 //item 1 ~~~~~~~~~~~~~~~~~~
@@ -59,8 +58,6 @@ module.exports = function(app) {
       if (req.files[2]) {
         req.body.itemImage3 = "/assets/userUpload/" + req.files[2].filename;
       }
-
-
     db.Item.create(
       {
       item_name: req.body.itemName,
@@ -71,12 +68,27 @@ module.exports = function(app) {
       item_img3: req.body.itemImage3,
       ProfileId: req.body.hdnId
     }).then(function(data) {
+
         res.redirect("/listing/" + data.id);
       });
     });
   });
 
 
+  app.post("/api/makeOffer/:sellerItemId/:buyerItemId", function(req, res){
+
+      var seller = req.params.sellerItemId;
+      var buyer = req.params.buyerItemId;
+      console.log(seller);
+      console.log(buyer);
+    db.Transaction.create({
+      sellerItemId: seller,
+      ItemId: buyer,
+      SellerProfileId: req.body.profileID
+    }).then(function(dbPost){
+      res.json(dbPost);
+    });
+  });
 
   app.get("/api/loginInfo", function(req, res) {
     db.Profile.findAll({

@@ -62,7 +62,19 @@ module.exports = function(sequelize, DataTypes) {
   Profile.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
+    Profile.belongsToMany(models.Item, {
+      as: 'TransactionsSeller',
+      through: 'Transaction',
+      foreignKey: 'SellerProfileId',
+      otherKey: 'sellerItemId'
+    });
     Profile.hasMany(models.Item, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+    Profile.hasMany(models.Transaction, {
       onDelete: "cascade"
     });
   };
