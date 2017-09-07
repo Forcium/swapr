@@ -151,11 +151,10 @@ module.exports = function(app) {
   });
 
 
-  // GET route for getting all of the posts
-  app.post("/results", function(req, res) {
+  app.get("/results", function(req, res) {
     db.Item.findAll({})
       .then(function(dbPost) {
-        res.json(dbPost[0].content);
+        res.json(dbPost);
       });
   });
 

@@ -34,26 +34,6 @@ $(document).ready(function() {
 var card = $("#carditem");
 var submit = $("#submit-search");
 
- // submit.click(function(event){
- //      event.preventDefault();
- //    card.animate({bottom: "210px"});
- //  });
-
- submit.click(function(event){
-      event.preventDefault();
-    $("html").animate({top: "510px"});
-
-  });
-
-  //    submit.click(function(event){
-  //     event.preventDefault();
-  //      $('html, body').animate({
-  //                   scrollTop: $("html").offset().top
-  //               }, 2000);
-
-  // });
-// ----------------------------------------
-
   $('#textarea1').val('New Text');
   $('#textarea1').trigger('autoresize');
 });
@@ -130,25 +110,35 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
       window.location = "/profile/";
     });
   }
+
+
   $(document).on("click", "#submit-search", function(event){
     event.preventDefault();
+
+    $('.body_content').empty();
+    $.get("/results", function(data){
+
+    for (var i = 0; i < data.length; i++) {
 
     var cards;
 
     cards = '<div class="col s12 m3">' +
-    '<div class="card card hoverable" id="card">' +
+    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable" id="card">' +
     '<div class="card-image">' +
-    '<img src="assets/images/nord.jpg">'  +
+    '<img src="'+ data[i].item_img1 +'">'  +
     '</div>' +
     '<div class="card-content">' +
-    '<span id="title"class="card-title">Nord Electro up for grabs!</span>' +
-    '<span>Leaving the State. Must trade fast!</span> <br />' +
-    '<span class="card"> Los Angeles, CA </span>' +
-    '</div>' +
+    '<span id="title"class="card-title"><h4>'+ data[i].item_name +'</h4></span>' +
+    '</div></a>' +
     '</div>' +
     '</div>';
 
-
     console.log(cards);
     $('.body_content').append(cards);
+
+  }
+
+
+  });
+
 });
