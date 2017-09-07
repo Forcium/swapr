@@ -55,10 +55,16 @@ $.post("/", {
 
 
       $("#msg-table > tbody").append("<tr><td><img id='avatarImg' class='circle' src='" + userName + "'></td><td><div class='chatMessage'>" + userMessage + "</div></td></tr>");
-
+      updateScroll();
 
     });
 
   }
 
 });
+
+
+function updateScroll(){
+    var element = document.getElementById("Convos");
+    element.scrollTop = element.scrollHeight;
+}
