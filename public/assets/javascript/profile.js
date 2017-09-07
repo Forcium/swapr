@@ -75,6 +75,7 @@ $(document).ready(function() {
     $.post("/api/allListings", {
       profileID: window.localStorage.getItem("profileID")
     }).then(function(data){
+        $('#listingCards').empty();
       for (var i = 0; i < data.length; i++) {
         $('#listingCards').append('<a href="/listing/'+data[i].id+'" class="indItemCard" value="'+data[i].id+'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='+data[i].item_img1+'><a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'+data[i].item_name+'</h6></div></div></a>');
       }
