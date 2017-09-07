@@ -40,7 +40,7 @@ text-align: center;
 }
 
 #Convos{
-
+	max-height: 700px;
 	overflow-y: auto;
 	background-color: white;
 	border-color: white;
