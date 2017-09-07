@@ -7,13 +7,15 @@
   color: #666;
   text-align: center;
   background-color: #fafafa
+  z-index:0;
   /*box-shadow: 4px 4px 5px #888888 ;*/
 }
 
 
 #carouselIMG, #carouselIMG2, #carouselIMG3  {
-	height: 50%;
-	width: 50%;
+	height: 400px;
+	width: 400px;
+  
 }
 
 #accept, #decline {
@@ -22,4 +24,6 @@
 
 #main {
   z-index: 2;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

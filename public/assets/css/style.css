@@ -183,20 +183,14 @@ header, #navi {
     }
 
     @media only screen and (max-width : 1300px) {
-      #arrows{
-        padding-top: 44px;
-        right: 25%;
-        left:0;
-
-      }
+      
     }
 
     @media only screen and (max-width : 1200px) {
-      #arrows{
-        width: 16%;
-      }
+      
+    
       #imageCardYou, #imageCardThem{
-        width: 42%
+        width: 50%
       }
 
     }
@@ -207,6 +201,13 @@ header, #navi {
       }
         #imageCardYou, #imageCardThem{
         width: 50%
+      }
+      #ConvosWrite{
+        width:205%;
+        margin-top: 6px;
+      }
+      #Convos {
+        width:205%;
       }
     }
     
