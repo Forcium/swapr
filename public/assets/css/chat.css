@@ -3,22 +3,33 @@
 }
 
 .panel {
-	margin:40px;
+	/*margin:40px;*/
 	background-color: lemonchiffon;
 }
+.card-content {
+  color: #3d673c;
+  box-shadow: 3px 3px 3px 3px lightgrey;
+  width: 100%;
+  padding-top: 8px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom:20px;
+  margin-bottom: 20px;
+}
+
 
 #message-input, #user-name-input, label {
 	font-size: 15px;
 }
 
-.card-content {
-	color: #3d673c;
-	box-shadow: 3px 3px 3px 3px lightgrey;
-
-}
 
 td {
 	color: #60b37a;
 	border: 1px solid lightgrey;
 	padding: 10px;
 }
+
+#mess{
+  width:50%;
+  margin-top: 6px;
+} 

@@ -147,12 +147,11 @@ background-color: #b3d01d;
 }
 /*communication css ------------------*/
 
-#arrows{
-  width:20%;
-  /*padding-top: 90px;*/
-  position: relative;
-  /*left: 65px;*/
-  opacity: .75;
+.swap{
+  margin: 0;
+}
+.swapDiv{
+  margin: o;
 }
 
 #communicateChat {
@@ -171,9 +170,9 @@ margin: 30px 0;
   width: 65%;
   opacity: .9;
 }
-
+ 
 #imageCardYou, #imageCardThem{
-  width: 40%
+  width: 50%
 }
 /*listing css ------------------*/
 
