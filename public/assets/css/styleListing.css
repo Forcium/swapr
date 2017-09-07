@@ -9,3 +9,16 @@
   background-color: #fafafa
   /*box-shadow: 4px 4px 5px #888888 ;*/
 }
+
+#carouselIMG, #carouselIMG2, #carouselIMG3  {
+	height: 50%;
+	width: 50%;
+}
+
+#accept, #decline {
+  z-index: 1;
+}
+
+#main {
+  z-index: 2;
+}
