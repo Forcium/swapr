@@ -112,12 +112,6 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
   }
 
 
-  function updateScroll(){
-      var element = document.getElementById("body_content");
-      element.scrollTop = 3000;
-  }
-
-
   $(document).on("click", "#submit-search", function(event){
     event.preventDefault();
 
@@ -129,22 +123,21 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var cards;
 
     cards = '<div class="col s12 m3">' +
-    '<div class="card card hoverable" id="card">' +
+    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable" id="card">' +
     '<div class="card-image">' +
     '<img src="'+ data[i].item_img1 +'">'  +
     '</div>' +
     '<div class="card-content">' +
-    '<span id="title"class="card-title">'+ data[i].item_name +'</span>' +
-    '</div>' +
+    '<span id="title"class="card-title"><h4>'+ data[i].item_name +'</h4></span>' +
+    '</div></a>' +
     '</div>' +
     '</div>';
 
     console.log(cards);
     $('.body_content').append(cards);
 
-
   }
-  updateScroll();
+
 
   });
 
