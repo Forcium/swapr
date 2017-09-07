@@ -1,19 +1,7 @@
 $(document).ready(function(){
 
-  $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
-
-    if (!data){
-
-      window.localStorage.clear("token");
-      window.location.href = "/";
-
-    }
-    else {
-
       $.get("/api" + window.location.pathname, {
-
         profileID: window.localStorage.getItem("profileID")
-
       }).then(function(data){
 
       $('.nameText').html(data.item_name);
@@ -22,24 +10,23 @@ $(document).ready(function(){
       $('#carousel2').attr('src', data.item_img2);
       $('#carousel3').attr('src', data.item_img3);
 
+
+      if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))){
+
+        console.log("matched");
+        $(".sellerBtn").empty();
+
+
+      }
+
+      else {
+
+        console.log("not matched");
+        $(".ownerBtn").empty();
+
+      }
+
       });
 
       $('.carousel').carousel();
-    }
   });
-
-  $(document).on("click", "#makeoffer", function(event){
-    event.preventDefault();
-    var pathArray = window.location.pathname.split('/');
-    var query = "/api/makeOffer/" + pathArray[2] + "/1";
-    console.log(query);
-    $.post(query, {
-
-      profileID: window.localStorage.getItem("profileID")
-
-    }).then(function(data){
-      console.log(data);
-      window.location.href = "/listing/" + pathArray[2];
-    });
-  });
-});
