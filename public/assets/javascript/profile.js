@@ -90,6 +90,15 @@ $(document).ready(function() {
   });
   //offers made
   $('#offer').on("click", function() {
+    $.get("/api/stuffUwant", {
+      where: {
+        profileID: window.localStorage.getItem("profileID")
+      }
+    }).then(function(data){
+
+
+    });
+
     $('#stuffUwant').show();
     $('#listOfItems').hide();
     $('#changeProfile').hide();
