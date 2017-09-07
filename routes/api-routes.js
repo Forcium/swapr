@@ -107,6 +107,7 @@ module.exports = function(app) {
         ProfileID: req.body.profileID
       }
     }).then(function(dbPost) {
+      console.log(dbPost);
       res.json(dbPost);
     });
   });
