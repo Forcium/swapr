@@ -30,12 +30,23 @@ module.exports = function(sequelize, DataTypes) {
   Item.associate = function(models) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
+    Item.belongsToMany(models.Profile, {
+      as: 'TransactionsSellerItem',
+      through: 'Transaction',
+      foreignKey: 'sellerItemId',
+      otherKey: 'SellerProfileId'
+    });
+    Item.hasMany(models.Transaction, {
+      onDelete: "cascade"
+    });
     Item.belongsTo(models.Profile, {
       foreignKey: {
         allowNull: false
       }
     });
   };
+
+
 
   return Item;
 };

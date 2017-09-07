@@ -27,4 +27,19 @@ $(document).ready(function(){
       $('.carousel').carousel();
     }
   });
+
+  $(document).on("click", "#makeoffer", function(event){
+    event.preventDefault();
+    var pathArray = window.location.pathname.split('/');
+    var query = "/api/makeOffer/" + pathArray[2] + "/1";
+    console.log(query);
+    $.post(query, {
+
+      profileID: window.localStorage.getItem("profileID")
+
+    }).then(function(data){
+      console.log(data);
+      window.location.href = "/listing/" + pathArray[2];
+    });
+  });
 });
