@@ -100,7 +100,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/listing/:listingID", function(req, res) {
-    db.Item.findAll({
+    db.Item.findOne({
       where: {
         id: req.params.listingID
       }
@@ -220,6 +220,16 @@ module.exports = function(app) {
 
     });
   });
+
+
+  app.get("/api/users", function(req, res) {
+    db.Profile.findAll({})
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+
 
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
