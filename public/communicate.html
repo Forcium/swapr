@@ -84,7 +84,7 @@
     </div>
     
     <div class="row">
-      <div class="col l8">
+      <div class="col l6">
         <div class="row">
           <div class="col l6" id="imageCardYou">
             <div class="card hoverable">
@@ -109,17 +109,15 @@
         </div>
         <div class="row">
           <div class="col l12">
-            <h3>Swap Spot</h3>
-            
+            <!-- <h4>Swap Spot</h4>  --> 
               <div id="map-canvas"></div>
-              <div id="panel"></div>
-            
+              <div id="panel"></div>     
           </div>
         </div>
       </div>
       <!-- messenger -->
-      <div class="col l4" id="mess">
-        <div class="panel card-content">
+      <div class="col l6" id="mess">
+        <div class="panel card-content" id="Convos">
           <div class="panel-heading">
             <h4 class="panel-title center-align"><strong>Messages</strong></h4>
           </div>
@@ -144,6 +142,10 @@
           <div class="panel-body">
             <!-- Entry Form -->
             <form>
+              <div class="form-group">
+                  <label for="user-name-input">Name</label>
+                  <input type="text" class="form-control" id="user-name-input">
+                </div>
               <div class="form-group">
                 <label for="message-input">Message</label>
                 <textarea type="form" class="form-control" id="message-input"></textarea>
