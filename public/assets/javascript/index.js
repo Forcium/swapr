@@ -10,7 +10,7 @@ $(document).ready(function() {
     }
     else {
 
-      $('#navLogin').html("Logged in as: " + data.username + "&nbsp;&nbsp;");
+      $('#navLogin').html(data.username + "&nbsp;&nbsp;");
       $('#navLogin').attr("href", "/profile");
       $('#navSignup').html("Sign Out");
       $('#navSignup').attr({"href": "/", "id":"logOutBtn"});
@@ -19,7 +19,6 @@ $(document).ready(function() {
         window.localStorage.clear();
 
       });
-
     }
   });
   // parallax image js

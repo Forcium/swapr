@@ -18,7 +18,11 @@ header {
   text-shadow: 2px 2px 2px #aaa;
   color: white;
   padding-right:50px;
-};
+}
+
+header, #navi {
+      padding-left: 180px;
+}
 
 #userLogin {
   width: 80;
@@ -179,40 +183,31 @@ margin: 30px 0;
 #imageCardYou, #imageCardThem{
   width: 50%
 }
-/*listing css ------------------*/
-
-
-
-header, #navi {
-      padding-left: 180px;
-    }
-
-    @media only screen and (max-width : 1300px) {
-      
-    }
-
-    @media only screen and (max-width : 1200px) {
-      
+/*media queries ------------------*/
     
-      #imageCardYou, #imageCardThem{
-        width: 50%
-      }
 
-    }
+@media only screen and (max-width : 1200px) {
+  
 
-    @media only screen and (max-width : 993px) {
-      header, .main, footer {
-        padding-left: 0;
-      }
-        #imageCardYou, #imageCardThem{
-        width: 50%
-      }
-      #ConvosWrite{
-        width:205%;
-        margin-top: 6px;
-      }
-      #Convos {
-        width:205%;
-      }
-    }
+  #imageCardYou, #imageCardThem{
+    width: 50%
+  }
+
+}
+
+@media only screen and (max-width : 993px) {
+  header, .main, footer {
+    padding-left: 0;
+  }
+    #imageCardYou, #imageCardThem{
+    width: 50%
+  }
+  #ConvosWrite{
+    width:205%;
+    margin-top: 6px;
+  }
+  #Convos {
+    width:205%;
+  }
+}
     
