@@ -49,6 +49,11 @@ header {
   background-color: #dcedc8;
   opacity: .67;
 }
+
+#search-stuff{
+  padding-top: 50px;
+  padding-bottom:30px;
+}
 /*profile css ------------------*/
 .headMarg{
 margin-bottom: 40px;
