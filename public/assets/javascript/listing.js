@@ -14,7 +14,7 @@ $(document).ready(function() {
 
     //edit item
     $(document).on("click", "#editListing", function(event) {
-      event.preventDefault();
+
       var pathArray = window.location.href.split('/');
       console.log(pathArray);
       var qstring = pathArray[4];
