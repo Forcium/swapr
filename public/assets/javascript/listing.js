@@ -20,6 +20,8 @@ $(document).ready(function() {
       var qstring = pathArray[4];
       $("#hdnId").attr("value", qstring);
 
+    });
+
 
       //if yours of item  is you
       if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))) {
@@ -85,16 +87,10 @@ $(document).ready(function() {
           });
         });
 
-
       }
 
     });
 
-
-  });
-
   $('.carousel').carousel();
-
-
 
 });
