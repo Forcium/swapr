@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
 
-
   $.get("/api" + window.location.pathname, {
     profileID: window.localStorage.getItem("profileID")
   }).then(function(data) {
@@ -13,75 +12,86 @@ $(document).ready(function() {
     $('#carousel2').attr('src', data.item_img2);
     $('#carousel3').attr('src', data.item_img3);
 
-    //if yours of item  is you
-    if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))) {
 
-      console.log("matched");
-      $(".sellerBtn").empty();
-      $(".sellerBtnSubmit").empty();
+    $(document).on("click", "#editListing", function(event) {
 
-    }
-    //if others
-    else {
+      var pathArray = window.location.href.split('/');
+      console.log(pathArray);
+      var qstring = pathArray[4];
+      $("#hdnId").attr("value", qstring);
+    });
 
-      console.log("not matched");
-      $(".ownerBtn").empty();
-      $('select').material_select('destroy');
+      //if yours of item  is you
+      if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))) {
 
+        console.log("matched");
+        $(".sellerBtn").empty();
+        $(".sellerBtnSubmit").empty();
 
-      $.post("/api/allListings", {
-        profileID: window.localStorage.getItem("profileID")
-      }).then(function(data) {
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-          // var value = "some value";
-          console.log(data[i].id);
-          $("#selectDropdown").append(
-          $("<option></option>")
-          .prop("value", data[i].id)
-          .text(data[i].item_name)
-          .attr("data-icon", data[i].item_img1)
-          .attr('class', 'circle left')
+      }
+      //if others
+      else {
 
-    );
-
-          //intialize
-          $('select').material_select();
-        }
-          $('.swapBtn').on('click', function(event){
-          event.preventDefault();
-          var x = $("#selectDropdown").val();
-          console.log(x);
-          var pathArray = window.location.pathname.split( '/' );
-          console.log(pathArray);
-          $.post("/api/makeOffer/" + pathArray[2] + "/" + sellerID + "/" + x, {
-
-            profileID: window.localStorage.getItem("profileID")
-
-          }).then(function(data){
+        console.log("not matched");
+        $(".ownerBtn").empty();
+        $('select').material_select('destroy');
 
 
-            $('.sellerBtn').empty();
-            $('.sellerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
-            $('.sellerBtnSubmit').empty();
-            $('.seeBidBtn').html("See your bid");
+
+        $.post("/api/allListings", {
+          profileID: window.localStorage.getItem("profileID")
+        }).then(function(data) {
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            // var value = "some value";
+            console.log(data[i].id);
+            $("#selectDropdown").append(
+              $("<option></option>")
+              .prop("value", data[i].id)
+              .text(data[i].item_name)
+              .attr("data-icon", data[i].item_img1)
+              .attr('class', 'circle left')
+
+            );
+
+            //intialize
+            $('select').material_select();
+          }
+          $('.swapBtn').on('click', function(event) {
+            event.preventDefault();
+            var x = $("#selectDropdown").val();
+            console.log(x);
+            var pathArray = window.location.pathname.split('/');
+            console.log(pathArray);
+            $.post("/api/makeOffer/" + pathArray[2] + "/" + sellerID + "/" + x, {
+
+              profileID: window.localStorage.getItem("profileID")
+
+            }).then(function(data) {
 
 
-            $('.seeBidBtn').on("click", function(event){
-              event.preventDefault();
-              window.location.href = "/profile/?offers";
+              $('.sellerBtn').empty();
+              $('.sellerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
+              $('.sellerBtnSubmit').empty();
+              $('.seeBidBtn').html("See your bid");
 
+
+              $('.seeBidBtn').on("click", function(event) {
+                event.preventDefault();
+                window.location.href = "/profile/?offers";
+
+              });
             });
           });
         });
-      });
 
-    }
 
-  });
+      }
+
+    });
 
   $('.carousel').carousel();
 
-  // $('select').material_select();
+
 
 });
