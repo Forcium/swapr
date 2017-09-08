@@ -12,13 +12,29 @@ $(document).ready(function() {
     $('#carousel2').attr('src', data.item_img2);
     $('#carousel3').attr('src', data.item_img3);
 
-
+    //edit item
     $(document).on("click", "#editListing", function(event) {
-
+      event.preventDefault();
       var pathArray = window.location.href.split('/');
       console.log(pathArray);
       var qstring = pathArray[4];
       $("#hdnId").attr("value", qstring);
+
+    });
+
+    //delete item
+    $(document).on("click", "#deleteItem", function(event){
+      event.preventDefault();
+      if (confirm("Are you sure you want to delete this item?") === true){
+        var pathArray = window.location.href.split('/');
+        console.log(pathArray);
+        var qstring = pathArray[4];
+        $.post("/api/deleteItem/" + qstring, {
+          profileID: window.localStorage.getItem("profileID"),
+        }).then(function(data){
+          window.location.href = "/profile";
+        });
+      }
 
     });
 

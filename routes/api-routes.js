@@ -85,9 +85,6 @@ module.exports = function(app) {
     itemUpdater(req, res, function(err) {
 
 
-
-
-
       if (err) {
         return res.redirect("/profile");
       }
@@ -310,6 +307,18 @@ module.exports = function(app) {
       where: {
         id: req.body.profileID,
         token: req.body.token
+      }
+    })
+    .then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  app.post("/api/deleteItem/:itemID", function(req, res) {
+    db.Item.destroy({
+      where: {
+        id: req.params.itemID,
+        ProfileId: req.body.profileID,
       }
     })
     .then(function(dbPost) {
