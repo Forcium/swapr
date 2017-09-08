@@ -39,6 +39,10 @@ module.exports = function(app) {
     storage: Storage
   }).array("img1", 3); //Field name and max count
 
+  var itemUpdater = multer({
+    storage: Storage
+  }).array("itemUpdate", 3); //Field name and max count
+
 
   app.post("/api/addItem", function(req, res) {
 
@@ -75,16 +79,63 @@ module.exports = function(app) {
   });
 
 
-  app.post("/api/makeOffer/:sellerItemId/:buyerItemId", function(req, res){
+  app.post("/api/editItem", function(req, res) {
+
+//item 1 ~~~~~~~~~~~~~~~~~~
+    itemUpdater(req, res, function(err) {
+
+
+
+
+
+      if (err) {
+        return res.redirect("/profile");
+      }
+
+      console.log(req.body);
+      if (req.files[0]) {
+        req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
+      }
+      if (req.files[1]) {
+        req.body.itemImage2 = "/assets/userUpload/" + req.files[1].filename;
+      }
+      if (req.files[2]) {
+        req.body.itemImage3 = "/assets/userUpload/" + req.files[2].filename;
+      }
+    db.Item.update(
+      {
+      item_name: req.body.itemName,
+      category: req.body.itemCategory,
+      item_description: req.body.itemDescription,
+      item_img1: req.body.itemImage1,
+      item_img2: req.body.itemImage2,
+      item_img3: req.body.itemImage3,
+      ProfileId: req.body.hdnId
+      }, {
+        where: {
+          id: req.body.hdnId
+        }
+    }).then(function(data) {
+      console.log(data);
+        res.redirect("/listing/" + data[0]);
+      });
+    });
+  });
+
+
+  app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, res){
+
 
       var seller = req.params.sellerItemId;
+      var sellerID = req.params.sellerID;
       var buyer = req.params.buyerItemId;
       console.log(seller);
       console.log(buyer);
     db.Transaction.create({
       sellerItemId: seller,
       ItemId: buyer,
-      SellerProfileId: req.body.profileID
+      SellerProfileId: sellerID,
+      ProfileId: req.body.profileID
     }).then(function(dbPost){
       res.json(dbPost);
     });
@@ -155,6 +206,18 @@ module.exports = function(app) {
   app.get("/results", function(req, res) {
     db.Item.findAll({})
       .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  app.get("/api/stuffUwant", function(req, res) {
+
+    db.Transaction.findAll({
+      where: {
+        ProfileId: req.query.ProfileId
+      },
+    }).then(function(dbPost) {
+
         res.json(dbPost);
       });
   });

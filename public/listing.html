@@ -59,18 +59,31 @@
       <li><a class="waves-effect" href="/profile"><i class="material-icons">face</i>Your Profile</a></li>
       <li><a class="waves-effect" id="exit"><i class="material-icons">exit_to_app</i>Logout</a></li>
     </ul>
+
+
+
+
+
+
+
+
+
+
     <!-- edit listing modole -->
     <div id="modalEdit" class="modal modal-fixed-footer">
       <div class="modal-content">
         <div class="container">
           <h4>Edit a Listing</h4>
           <form class="listing" enctype="multipart/form-data" id="editListing" name="editListing" action="/api/editItem/" method="POST">
+
             <!-- new listing info input -->
             <div class="input-field col s12" id="newItem">
               <input name="itemName" placeholder="Item Name" id="itemName" type="text" class="validate">
               <label for="itemName"></label>
               </input>
             </div>
+
+
             <!-- category -->
             <div class="input-field col s12">
               <select name="itemCategory">
@@ -84,6 +97,9 @@
                 <option value="Other">Other</option>
               </select>
             </div>
+
+
+            <!-- item description -->
             <div class="input-field col s12">
               <textarea name="itemDescription" id="itemDescription" class="materialize-textarea"></textarea>
               <label for="textarea1">Item Description</label>
@@ -97,7 +113,7 @@
             <div class="file-field input-field">
               <div class="btn light-green">
                 <span>File</span>
-                <input name="img1" type="file">
+                <input name="itemUpdate" type="file">
               </div>
               <div class="file-path-wrapper">
                 <input class="file-path validate" type="text" placeholder="Upload Images">
@@ -106,7 +122,7 @@
             <div class="file-field input-field">
               <div class="btn light-green">
                 <span>File</span>
-                <input name="img1" type="file">
+                <input name="itemUpdate" type="file">
               </div>
               <div class="file-path-wrapper">
                 <input class="file-path validate" type="text" placeholder="Upload Images">
@@ -115,7 +131,7 @@
             <div class="file-field input-field">
               <div class="btn light-green">
                 <span>File</span>
-                <input name="img1" type="file">
+                <input name="itemUpdate" type="file">
               </div>
               <div class="file-path-wrapper">
                 <input class="file-path validate" type="text" placeholder="Upload Images">
@@ -128,6 +144,17 @@
         <button type="submit" value="Update" form="editListing" class="modal-action modal-close waves-effect waves-green btn-flat " id="btnSubmit">Submit</button>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
     <!-- end of edit listing -->
     <!-- Item Header -->
     <div class="container main" id ="caroDiv">
@@ -152,7 +179,7 @@
               </select>
             </div>
           </div>
-          <div class="col l3 sellerBtn">
+          <div class="col l3 sellerBtnSubmit">
             <a class="waves-effect waves-light btn pulse light-green swapBtn">Swap</a>
           </div>
           <div class="col l2 ownerBtn">
