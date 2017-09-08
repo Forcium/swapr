@@ -74,6 +74,10 @@ background-color: #b3d01d;
   width:80%;
 }
 
+#navi{
+  padding-right: 10px;
+}
+
 #userPhoto{
   width: 100%;
   height: auto;
@@ -87,7 +91,6 @@ background-color: #b3d01d;
   padding-top: 10px;
   z-index: 2;
   background-color: #f1f8e9;
-
 }
 
 #userWelcome{
