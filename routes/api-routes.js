@@ -85,9 +85,6 @@ module.exports = function(app) {
     itemUpdater(req, res, function(err) {
 
 
-
-
-
       if (err) {
         return res.redirect("/profile");
       }
@@ -304,7 +301,30 @@ module.exports = function(app) {
       });
   });
 
+  // DELETE route for deleting acct
+  app.post("/api/deleteAcct", function(req, res) {
+    db.Profile.destroy({
+      where: {
+        id: req.body.profileID,
+        token: req.body.token
+      }
+    })
+    .then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
 
+  app.post("/api/deleteItem/:itemID", function(req, res) {
+    db.Item.destroy({
+      where: {
+        id: req.params.itemID,
+        ProfileId: req.body.profileID,
+      }
+    })
+    .then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
 
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
@@ -339,17 +359,7 @@ module.exports = function(app) {
   //   });
   // });
   //
-  // // DELETE route for deleting posts
-  // app.delete("/api/posts/:id", function(req, res) {
-  //   db.Post.destroy({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   })
-  //   .then(function(dbPost) {
-  //     res.json(dbPost);
-  //   });
-  // });
+
   //
   // // PUT route for updating posts
   // app.put("/api/posts", function(req, res) {

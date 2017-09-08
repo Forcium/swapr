@@ -1,25 +1,38 @@
 $(document).ready(function() {
 
-    //main profile
+  //Get number of Listings
+  $.post("/api/allListings", {
+    profileID: window.localStorage.getItem("profileID")
+  }).then(function(data){
+    $("#listingsActive").html("Listings Active: " + data.length);
+  });
 
+  //Get number of Offers
+  $.get("/api/stuffUwant", {
+      ProfileId: window.localStorage.getItem("profileID")
+  }).then(function(data3){
+    $("#recentOffers").html("Offers Made: " + data3.length);
+  });
+
+  //main profile
+  //Looking for the query string "offers" from url
   var pathArray = window.location.href.split('/');
   var qstring = pathArray[4];
 
+  //If query string "?offers" exists, remove the "?"
   if (pathArray[4]) {
-
   qstring = qstring.substr(1);
-  console.log(qstring);
-  if (qstring === "offers") {
 
-    console.log("hi");
-    $('#stuffUwant').attr("style", "display: static");
-    $('#listOfItems').hide();
-    $('#changeProfile').hide();
-    $('#pendingSwaps').hide();
-    $('#profileHome').hide();
-    $('.button-collapse').sideNav('hide');
+    if (qstring === "offers") {
 
-  }
+      $('#stuffUwant').attr("style", "display: static");
+      $('#listOfItems').hide();
+      $('#changeProfile').hide();
+      $('#pendingSwaps').hide();
+      $('#profileHome').hide();
+      $('.button-collapse').sideNav('hide');
+
+    }
 
   }
 
@@ -185,6 +198,18 @@ $(document).ready(function() {
     function showResponse(responseText, statusText, xhr, $form) {
       alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
     }
+
+    //delete account button
+    $(document).on("click", "#deleteAcct", function(event){
+      event.preventDefault();
+      $.post("/api/deleteAcct", {
+        profileID: window.localStorage.getItem("profileID"),
+        token: window.localStorage.getItem("token")
+      }).then(function(data){
+        window.localStorage.clear();
+        window.location.href = "/";
+      });
+    });
 
     //logout
     $(document).on("click", "#exit", function(event) {
