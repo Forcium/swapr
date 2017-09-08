@@ -111,6 +111,14 @@ background-color: #b3d01d;
   background-color: #f1f8e9;
 }
 
+/*.card-image{
+  height:150px;
+}*/
+ 
+h4 {
+  font-size: 18px;
+}
+
 #profDivs{
   padding-bottom: 200px;
 }
