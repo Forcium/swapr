@@ -69,6 +69,9 @@ header, #navi {
   text-shadow: 2px 2px 2px #aaa;
   color: white;
 }
+.git-hub{
+  margin-top: 26px;
+}
 #search-stuff{
     padding-bottom: 200px;
   }
