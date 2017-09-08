@@ -45,9 +45,9 @@ $(document).ready(function() {
     );
 
           //intialize
-  $('select').material_select();
+        $('select').material_select();
         }
-          $('.swapBtn').on('click', function(data){
+        $('.swapBtn').on('click', function(data){
           var x = $("#selectDropdown").val();
           console.log(x);
         });

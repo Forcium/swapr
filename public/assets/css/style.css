@@ -21,8 +21,9 @@ header {
 }
 
 header, #navi {
-      padding-left: 180px;
+  padding-left: 180px;
 }
+
 
 #userLogin {
   width: 80;
@@ -58,7 +59,21 @@ header, #navi {
   padding-top: 50px;
   padding-bottom:30px;
 }
+
+.page-footer{
+   background-color: #b3d01d;
+}
+
+#footName{
+  font-family: 'Lobster', cursive;
+  text-shadow: 2px 2px 2px #aaa;
+  color: white;
+}
+#search-stuff{
+    padding-bottom: 200px;
+  }
 /*profile css ------------------*/
+
 .headMarg{
 margin-bottom: 40px;
 clear: both;
@@ -93,6 +108,9 @@ background-color: #b3d01d;
   background-color: #f1f8e9;
 }
 
+#profDivs{
+  padding-bottom: 200px;
+}
 #userWelcome{
  padding-left: 50px;
  margin:0;
@@ -182,6 +200,9 @@ margin: 30px 0;
   width: 65%;
   opacity: .9;
 }
+#comDiv{
+  padding-bottom: 200px;
+}
  
 .imageCardYou, .imageCardThem{
   width: 50%
@@ -202,7 +223,7 @@ margin: 30px 0;
   header, .main, footer {
     padding-left: 0;
   }
-    #imageCardYou, #imageCardThem{
+  #imageCardYou, #imageCardThem{
     width: 50%
   }
   #ConvosWrite{
@@ -211,6 +232,18 @@ margin: 30px 0;
   }
   #Convos {
     width:205%;
+  }
+  #profDivs{
+    padding-bottom: 30px;
+  }
+  #comDiv{
+    padding-bottom: 30px;
+  }
+  #caroDiv{
+    padding-bottom: 30px;
+  }
+  #search-stuff{
+    padding-bottom: 30px;
   }
 }
     

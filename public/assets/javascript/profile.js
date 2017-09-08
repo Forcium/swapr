@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    //main profile
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
     $('#changeProfile').hide();
