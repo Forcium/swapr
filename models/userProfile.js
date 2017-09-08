@@ -71,7 +71,8 @@ module.exports = function(sequelize, DataTypes) {
     Profile.hasMany(models.Item, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      onDelete: "cascade"
     });
 
     Profile.hasMany(models.Transaction, {

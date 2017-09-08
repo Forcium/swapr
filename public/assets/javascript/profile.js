@@ -186,6 +186,18 @@ $(document).ready(function() {
       alert('status: ' + statusText + '\n\nresponseText: \n' + responseText);
     }
 
+    //delete account button
+    $(document).on("click", "#deleteAcct", function(event){
+      event.preventDefault();
+      $.post("/api/deleteAcct", {
+        profileID: window.localStorage.getItem("profileID"),
+        token: window.localStorage.getItem("token")
+      }).then(function(data){
+        window.localStorage.clear();
+        window.location.href = "/";
+      });
+    });
+
     //logout
     $(document).on("click", "#exit", function(event) {
       window.localStorage.clear();
