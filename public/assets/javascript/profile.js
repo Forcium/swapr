@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    //main profile
+
   var pathArray = window.location.href.split('/');
   var qstring = pathArray[4];
 
@@ -19,6 +22,7 @@ $(document).ready(function() {
   }
 
   }
+
 
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
