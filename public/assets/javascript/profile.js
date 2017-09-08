@@ -1,4 +1,24 @@
 $(document).ready(function() {
+  var pathArray = window.location.href.split('/');
+  var qstring = pathArray[4];
+
+  if (pathArray[4]) {
+
+  qstring = qstring.substr(1);
+  console.log(qstring);
+  if (qstring === "offers") {
+
+    console.log("hi");
+    $('#stuffUwant').attr("style", "display: static");
+    $('#listOfItems').hide();
+    $('#changeProfile').hide();
+    $('#pendingSwaps').hide();
+    $('#profileHome').hide();
+    $('.button-collapse').sideNav('hide');
+
+  }
+
+  }
 
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
@@ -91,12 +111,16 @@ $(document).ready(function() {
   });
   //offers made
   $('#offer').on("click", function() {
-    $.get("/api/stuffUwant", {
-      where: {
-        profileID: window.localStorage.getItem("profileID")
-      }
-    }).then(function(data){
 
+    $.get("/api/stuffUwant", {
+        ProfileId: window.localStorage.getItem("profileID")
+    }).then(function(data3){
+
+      $('#offerMadeCards').empty();
+
+    for (var i = 0; i < data3.length; i++) {
+      $('#offerMadeCards').append('<a href="/listing/'+data3[i].sellerItemId+'" class="indItemCard" value="'+data3[i].sellerItemId+'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src=""></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem"></h6></div></div></a>');
+    }
 
     });
 

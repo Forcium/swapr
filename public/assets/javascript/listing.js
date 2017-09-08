@@ -1,11 +1,12 @@
 $(document).ready(function() {
 
-  
+
 
   $.get("/api" + window.location.pathname, {
     profileID: window.localStorage.getItem("profileID")
   }).then(function(data) {
 
+    var sellerID = data.ProfileId;
     $('.nameText').html(data.item_name);
     $('.darkText').html(data.item_description);
     $('#carousel1').attr('src', data.item_img1);
@@ -17,7 +18,7 @@ $(document).ready(function() {
 
       console.log("matched");
       $(".sellerBtn").empty();
-
+      $(".sellerBtnSubmit").empty();
 
     }
     //if others
@@ -45,11 +46,33 @@ $(document).ready(function() {
     );
 
           //intialize
-  $('select').material_select();
+          $('select').material_select();
         }
-          $('.swapBtn').on('click', function(data){
+          $('.swapBtn').on('click', function(event){
+          event.preventDefault();
           var x = $("#selectDropdown").val();
           console.log(x);
+          var pathArray = window.location.pathname.split( '/' );
+          console.log(pathArray);
+          $.post("/api/makeOffer/" + pathArray[2] + "/" + sellerID + "/" + x, {
+
+            profileID: window.localStorage.getItem("profileID")
+
+          }).then(function(data){
+
+
+            $('.sellerBtn').empty();
+            $('.sellerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
+            $('.sellerBtnSubmit').empty();
+            $('.seeBidBtn').html("See your bid");
+
+
+            $('.seeBidBtn').on("click", function(event){
+              event.preventDefault();
+              window.location.href = "/profile/?offers";
+
+            });
+          });
         });
       });
 

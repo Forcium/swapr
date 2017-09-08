@@ -75,16 +75,18 @@ module.exports = function(app) {
   });
 
 
-  app.post("/api/makeOffer/:sellerItemId/:buyerItemId", function(req, res){
+  app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, res){
 
       var seller = req.params.sellerItemId;
+      var sellerID = req.params.sellerID;
       var buyer = req.params.buyerItemId;
       console.log(seller);
       console.log(buyer);
     db.Transaction.create({
       sellerItemId: seller,
       ItemId: buyer,
-      SellerProfileId: req.body.profileID
+      SellerProfileId: sellerID,
+      ProfileId: req.body.profileID
     }).then(function(dbPost){
       res.json(dbPost);
     });
@@ -155,6 +157,18 @@ module.exports = function(app) {
   app.get("/results", function(req, res) {
     db.Item.findAll({})
       .then(function(dbPost) {
+        res.json(dbPost);
+      });
+  });
+
+  app.get("/api/stuffUwant", function(req, res) {
+
+    db.Transaction.findAll({
+      where: {
+        ProfileId: req.query.ProfileId
+      },
+    }).then(function(dbPost) {
+
         res.json(dbPost);
       });
   });
