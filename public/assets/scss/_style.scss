@@ -1,3 +1,5 @@
+//will import _style.scss
+
 body {
     display: flex;
     min-height: 100vh;
@@ -10,6 +12,9 @@ body {
   h2, h3, p, h4, h5, h6{
     font-family: 'Raleway', sans-serif;
     color: #727475;
+    h4 {
+      font-size: 18px;
+    }
   }
 
 header {
@@ -25,13 +30,7 @@ header, #navi {
 }
 
 #card {
-
   float: left;
-
-}
-
-#userLogin {
-  width: 80;
 }
 
 #head {
@@ -91,14 +90,11 @@ background-color: #b3d01d;
 
 #navi{
   background-color: #b3d01d;
+  padding-right: 10px;
 }
 
 #searchNav{
   width:80%;
-}
-
-#navi{
-  padding-right: 10px;
 }
 
 #userPhoto{
@@ -114,14 +110,6 @@ background-color: #b3d01d;
   padding-top: 10px;
   z-index: 2;
   background-color: #f1f8e9;
-}
-
-/*.card-image{
-  height:150px;
-}*/
- 
-h4 {
-  font-size: 18px;
 }
 
 #profDivs{
@@ -244,6 +232,8 @@ margin: 30px 0;
 }
 
 @media only screen and (max-width : 993px) {
+  $bottPad: 30px;
+  $convWidth: 205%;
   header, .main, footer {
     padding-left: 0;
   }
@@ -251,22 +241,13 @@ margin: 30px 0;
     width: 50%
   }
   #ConvosWrite{
-    width:205%;
+    width:$convWidth;
     margin-top: 6px;
   }
-  #Convos {
-    width:205%;
+  #Convos, #ConvosWrite {
+    width:$convWidth;
   }
-  #profDivs{
-    padding-bottom: 30px;
-  }
-  #comDiv{
-    padding-bottom: 30px;
-  }
-  #caroDiv{
-    padding-bottom: 30px;
-  }
-  #search-stuff{
-    padding-bottom: 30px;
+  #profDivs, #comDiv, #caroDiv, #search-stuff {
+    padding-bottom: $bottPad;
   }
 }
