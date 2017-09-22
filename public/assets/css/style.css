@@ -27,6 +27,8 @@ header, #navi {
 #card {
 
   float: left;
+  clear: both;
+  
 
 }
 
@@ -119,7 +121,7 @@ background-color: #b3d01d;
 /*.card-image{
   height:150px;
 }*/
- 
+
 h4 {
   font-size: 18px;
 }

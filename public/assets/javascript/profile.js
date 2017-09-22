@@ -132,7 +132,7 @@ $(document).ready(function() {
     $.get("/api/stuffUwant", {
         ProfileId: window.localStorage.getItem("profileID")
     }).then(function(data3){
-
+      console.log(data3);
       $('#offerMadeCards').empty();
 
     for (var i = 0; i < data3.length; i++) {

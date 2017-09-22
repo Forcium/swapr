@@ -32,17 +32,9 @@ module.exports = function(sequelize, DataTypes) {
     // A Post can't be created without an Author due to the foreign key constraint
     Item.belongsToMany(models.Profile, {
       as: 'TransactionsSellerItem',
-      through: 'Transaction',
-      foreignKey: 'sellerItemId',
+      through: {model:'Transaction',unique: false},
+      foreignKey: 'SellerItemId',
       otherKey: 'SellerProfileId'
-    });
-    Item.hasMany(models.Transaction, {
-      onDelete: "cascade"
-    });
-    Item.belongsTo(models.Profile, {
-      foreignKey: {
-        allowNull: false
-      }
     });
   };
 
