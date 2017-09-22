@@ -123,12 +123,12 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var cards;
 
     cards = '<div class="col s12 m3">' +
-    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-4" id="card">' +
+    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
     '<div class="card-image">' +
     '<img src="'+ data[i].item_img1 +'">'  +
     '</div>' +
     '<div class="card-content">' +
-    '<span id="title"class="card-title"><h4>'+ data[i].item_name +'</h4></span>' +
+    '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
     '</div></a>' +
     '</div>' +
     '</div>';
