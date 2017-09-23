@@ -53,6 +53,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: "/assets/images/userStock.png"
     },
+    rating: {
+      type: DataTypes.INTEGER
+    },
     token: {
       type: DataTypes.STRING,
       allowNull: false
@@ -64,18 +67,20 @@ module.exports = function(sequelize, DataTypes) {
     // When an Author is deleted, also delete any associated Posts
     Profile.belongsToMany(models.Item, {
       as: 'TransactionsSeller',
-      through: 'Transaction',
+      through: {model:'Transaction',unique: false},
       foreignKey: 'SellerProfileId',
-      otherKey: 'sellerItemId'
+      otherKey: 'SellerItemId'
+    });
+    Profile.belongsToMany(models.Item, {
+      as: 'TransactionsBuyer',
+      through: {model:'Transaction',unique: false},
+      foreignKey: 'BuyerProfileId',
+      otherKey: 'BuyerItemId'
     });
     Profile.hasMany(models.Item, {
       foreignKey: {
         allowNull: false
       },
-      onDelete: "cascade"
-    });
-
-    Profile.hasMany(models.Transaction, {
       onDelete: "cascade"
     });
   };

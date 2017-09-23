@@ -44,15 +44,13 @@ module.exports = function(app) {
   }).array("itemUpdate", 3); //Field name and max count
 
 
-  app.post("/api/addItem", function(req, res) {
+app.post("/api/addItem", function(req, res) {
 
 //item 1 ~~~~~~~~~~~~~~~~~~
     item1(req, res, function(err) {
       if (err) {
         return res.redirect("/profile");
       }
-
-      console.log(req.body);
       if (req.files[0]) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
@@ -71,12 +69,29 @@ module.exports = function(app) {
       item_img2: req.body.itemImage2,
       item_img3: req.body.itemImage3,
       ProfileId: req.body.hdnId
-    }).then(function(data) {
-
-        res.redirect("/listing/" + data.id);
-      });
-    });
+    },
+    {
+      include: [{
+        model: db.Profile,
+        as: "TransactionsSellerItem"
+      }]
+    }).then(function(data){
+            db.Transaction.create(
+              {
+                SellerItemId: data.id,
+                SellerProfileId: data.ProfileId
+              }).then(function(data2) {
+                  res.redirect("/listing/" + data2.SellerItemId);
+                });
+        });
   });
+});
+
+app.post("/addTransaction/:itemID", function(req, res) {
+
+
+
+});
 
 
   app.post("/api/editItem", function(req, res) {
@@ -84,12 +99,9 @@ module.exports = function(app) {
 //item 1 ~~~~~~~~~~~~~~~~~~
     itemUpdater(req, res, function(err) {
 
-
       if (err) {
         return res.redirect("/profile");
       }
-
-      console.log(req.body);
       if (req.files[0]) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
@@ -113,28 +125,39 @@ module.exports = function(app) {
           id: req.body.hdnId
         }
     }).then(function(data) {
-      console.log(data);
         res.redirect("/listing/" + data[0]);
       });
     });
   });
 
 
-  app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, res){
+app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, res){
 
 
       var seller = req.params.sellerItemId;
       var sellerID = req.params.sellerID;
       var buyer = req.params.buyerItemId;
-      console.log(seller);
-      console.log(buyer);
+
     db.Transaction.create({
-      sellerItemId: seller,
-      ItemId: buyer,
+      SellerItemId: seller,
+      BuyerItemId: buyer,
       SellerProfileId: sellerID,
-      ProfileId: req.body.profileID
+      BuyerProfileId: req.body.profileID,
+      offerAccepted: 0
+    },{
+      include: [
+        {model: db.Profile,
+           as: "TransactionsSeller"
+        },
+        { model: db.Item,
+           as: "TransactionsSellerItem"
+        }]
     }).then(function(dbPost){
       res.json(dbPost);
+    })
+    .catch(function(err) {
+    // print the error details
+    console.log(err);
     });
   });
 
@@ -153,9 +176,17 @@ module.exports = function(app) {
     db.Item.findAll({
       where: {
         ProfileID: req.body.profileID
+      },
+      include: [{
+        model: db.Profile,
+        as: "TransactionsSellerItem"
+      }],
+      through: {
+        model: db.Transaction,
+        as: 'Transaction',
+        where: {SellerProfileId: req.body.profileID}
       }
     }).then(function(dbPost) {
-      console.log(dbPost);
       res.json(dbPost);
     });
   });
@@ -208,15 +239,20 @@ module.exports = function(app) {
   });
 
   app.get("/api/stuffUwant", function(req, res) {
-
-    db.Transaction.findAll({
-      where: {
-        ProfileId: req.query.ProfileId
-      },
-    }).then(function(dbPost) {
-
+    db.Item.findAll({
+      include: [{
+        model: db.Profile,
+        as: 'TransactionsSellerItem',
+        include: [{model: db.Item}],
+        through: {
+          model: db.Transaction,
+          as: 'Transaction',
+          where: {BuyerProfileId: req.query.ProfileId}
+        }
+      }]
+    }).then(function(dbPost){
         res.json(dbPost);
-      });
+    });
   });
 
 
@@ -270,7 +306,6 @@ module.exports = function(app) {
 
         req.body.avatar = req.body.avatarHdn;
       }
-      console.log(req.body);
       db.Profile.update({
         username: req.body.username,
         pw: req.body.password,
