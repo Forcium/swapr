@@ -1,6 +1,5 @@
 //will import _style.scss
-$cardsGreen: #d4e157;
-
+$cardsGreen: rgb(245,255,223);
 body {
     display: flex;
     min-height: 100vh;
@@ -80,9 +79,9 @@ header, #navi {
 .git-hub{
   margin-top: 26px;
 }
-#search-stuff{
-    padding-bottom: 200px;
-  }
+// #search-stuff{
+//     padding-bottom: 200px;
+//   }
 /*profile css ------------------*/
 
 .headMarg{
@@ -121,7 +120,9 @@ background-color: #b3d01d;
 }
 #userWelcome{
  padding-left: 50px;
+ text-shadow: 6px 3px 18px rgba(150, 150, 150, 1);
  margin:0;
+ color: #84878a;
 
 }
 #listOfItems, #stuffUwant {
@@ -140,6 +141,8 @@ background-color: #b3d01d;
 
 #pendStuff{
   background-color: $cardsGreen;
+  opacity: 0.75;
+
 }
 
 #addListing{
@@ -183,7 +186,7 @@ background-color: #b3d01d;
   height:auto;
   width: 45%;
   opacity: .9;
-  background-color: $cardsGreen;
+  background-color: #bfe824;
 }
 
 .darkText{
@@ -254,5 +257,18 @@ margin: 30px 0;
   }
   #profDivs, #comDiv, #caroDiv, #search-stuff {
     padding-bottom: $bottPad;
+  }
+  #homePageFirstName{
+    font-size: 20px
+  }
+}
+@media only screen and (max-width : 745px) {
+  #userWelcome{
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width : 560px) {
+  #userWelcome{
+    font-size: 22px;
   }
 }
