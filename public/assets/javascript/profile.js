@@ -11,7 +11,16 @@ $(document).ready(function() {
   $.get("/api/stuffUwant", {
       ProfileId: window.localStorage.getItem("profileID")
   }).then(function(data3){
-    $("#recentOffers").html("Offers Made: " + data3.length);
+    var counter = 0;
+    try {
+      for (var i = 0; i < data3.length; i++) {
+        if (typeof data3[i].TransactionsSellerItem[0].Item !== undefined){
+          counter++;
+        }
+      }
+    }
+    catch (err) {};
+    $("#recentOffers").html("Offers Made: " + counter);
   });
 
   //main profile
@@ -113,9 +122,52 @@ $(document).ready(function() {
       profileID: window.localStorage.getItem("profileID")
     }).then(function(data){
         $('#listingCards').empty();
-      for (var i = 0; i < data.length; i++) {
-        $('#listingCards').append('<a href="/listing/'+data[i].id+'" class="indItemCard" value="'+data[i].id+'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='+data[i].item_img1+'><a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'+data[i].item_name+'</h6></div></div></a>');
-      }
+        try {
+          for (var i = 0; i < data.length; i++) {
+            if (typeof data[i].TransactionsSellerItem[0].Transaction !== undefined && data[i].TransactionsSellerItem[0].Transaction.BuyerProfileId !== null && data[i].TransactionsSellerItem[0].Transaction.offerAccepted === false) {
+            $('#listingCards').append('<a href="/listing/'
+            +data[i].id
+            +'" class="indItemCard" value="'
+            +data[i].id
+            +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
+            +data[i].item_img1
+            +'><a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            +data[i].item_name
+            +'</h6></div></div></a>');
+            }
+            else if (typeof data[i].TransactionsSellerItem[0].Transaction !== undefined && data[i].TransactionsSellerItem[0].Transaction.BuyerProfileId !== null && data[i].TransactionsSellerItem[0].Transaction.offerAccepted === true){
+              $('#listingCards').append('<a href="/listing/'
+              +data[i].id
+              +'" class="indItemCard" value="'
+              +data[i].id
+              +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
+              +data[i].item_img1
+              +'><a class="btn-floating halfway-fab waves-effect waves-light red darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+              +data[i].item_name
+              +'</h6></div></div></a>');
+            }
+            else {
+              $('#listingCards').append('<a href="/listing/'
+              +data[i].id
+              +'" class="indItemCard" value="'
+              +data[i].id
+              +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
+              +data[i].item_img1
+              +'></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+              +data[i].item_name
+              +'</h6></div></div></a>');
+            }
+          }
+        }
+        catch (err) {
+        };
+
+
+      //
+      //
+      // for (var i = 0; i < data.length; i++) {
+      //   $('#listingCards').append('<a href="/listing/'+data[i].id+'" class="indItemCard" value="'+data[i].id+'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='+data[i].item_img1+'><a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'+data[i].item_name+'</h6></div></div></a>');
+      // }
 
 
     $('#listOfItems').show();
@@ -132,13 +184,30 @@ $(document).ready(function() {
     $.get("/api/stuffUwant", {
         ProfileId: window.localStorage.getItem("profileID")
     }).then(function(data3){
-      console.log(data3);
+
       $('#offerMadeCards').empty();
-
-    for (var i = 0; i < data3.length; i++) {
-      $('#offerMadeCards').append('<a href="/listing/'+data3[i].sellerItemId+'" class="indItemCard" value="'+data3[i].sellerItemId+'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src=""></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem"></h6></div></div></a>');
-    }
-
+      try {
+        for (var i = 0; i < data3.length; i++) {
+          if (typeof data3[i].TransactionsSellerItem[0].Item !== undefined) {
+          $('#offerMadeCards').append('<a href="/listing/'
+          +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
+          +'" class="indItemCard" value="'
+          +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
+          +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src="'
+          +data3[i].TransactionsSellerItem[0].Items[0].item_img1
+          +'"></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+          +data3[i].TransactionsSellerItem[0].Items[0].item_name
+          +'</h6><h6>Owned by:</h6><div>'
+          + '<img id="avatarImg" class="circle" width="20" height="20" src="'
+          + data3[i].TransactionsSellerItem[0].avatar
+          + '" />&nbsp;'
+          + data3[i].TransactionsSellerItem[0].username
+          + '</div></div></div></a>');
+          }
+        }
+      }
+      catch (err) {
+      };
     });
 
     $('#stuffUwant').show();

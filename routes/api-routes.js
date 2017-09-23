@@ -51,8 +51,8 @@ module.exports = function(app) {
       if (err) {
         return res.redirect("/profile");
       }
-
-      console.log(req.body);
+      //
+      // console.log(req.body);
       if (req.files[0]) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
@@ -80,7 +80,7 @@ module.exports = function(app) {
     }]
     }).then(function(data){
 
-      console.log("this one" + data);
+
       db.Transaction.create(
         {
           SellerItemId: data.id,
@@ -116,7 +116,7 @@ app.post("/addTransaction/:itemID", function(req, res) {
         return res.redirect("/profile");
       }
 
-      console.log(req.body);
+      // console.log(req.body);
       if (req.files[0]) {
         req.body.itemImage1 = "/assets/userUpload/" + req.files[0].filename;
       }
@@ -140,7 +140,7 @@ app.post("/addTransaction/:itemID", function(req, res) {
           id: req.body.hdnId
         }
     }).then(function(data) {
-      console.log(data);
+      // console.log(data);
         res.redirect("/listing/" + data[0]);
       });
     });
@@ -192,9 +192,17 @@ app.post("/addTransaction/:itemID", function(req, res) {
     db.Item.findAll({
       where: {
         ProfileID: req.body.profileID
+      },
+      include: [{
+        model: db.Profile,
+        as: "TransactionsSellerItem"
+      }],
+      through: {
+        model: db.Transaction,
+        as: 'Transaction',
+        where: {SellerProfileId: req.body.profileID}
       }
     }).then(function(dbPost) {
-      console.log(dbPost);
       res.json(dbPost);
     });
   });
@@ -247,14 +255,59 @@ app.post("/addTransaction/:itemID", function(req, res) {
   });
 
   app.get("/api/stuffUwant", function(req, res) {
-
-    db.Transaction.findAll({
-      where: {
-        BuyerProfileId: req.query.ProfileId
-      },
-    }).then(function(dbPost) {
+    db.Item.findAll({
+      include: [{
+        model: db.Profile,
+        as: 'TransactionsSellerItem',
+        include: [{model: db.Item}],
+        through: {
+          model: db.Transaction,
+          as: 'Transaction',
+          where: {BuyerProfileId: req.query.ProfileId}
+        }
+      }]
+    }).then(function(dbPost){
         res.json(dbPost);
-      });
+    });
+//     var paige;
+//
+//     db.Profile.findOne({
+//       where: {
+//         id: req.query.ProfileId
+//       },
+//       include: [{
+//         model: db.Item
+//         }]
+//     }).then(function(dbPost) {
+//         db.Transaction.findAll({
+//           where: {
+//             BuyerProfileId: dbPost.id
+//           }
+//         }).then(function(lvl1dbPost){
+//
+//                 var paigeVar = paigeFunk(lvl1dbPost, res);
+//                 console.log("lvl1" + JSON.stringify(lvl1dbPost));
+//               });
+//               console.log("dbPost outside" + JSON.stringify(dbPost));
+//       });
+//
+//     });
+//
+// function paigeFunk (paige, res) {
+//   console.log("paige" + JSON.stringify(paige));
+//     var paigeArr = [];
+//     for (var i = 0; i < paige.length; i++) {
+//
+//         db.Item.findAll({
+//           where: {
+//             id: paige[i].SellerItemId
+//           }
+//         }).then(function(lvl2dbPost){
+//           console.log("lvl2" + JSON.stringify(lvl2dbPost));
+//           paigeArr.push(lvl2dbPost);
+//           console.log(JSON.stringify(paigeArr));
+//         });
+//     }
   });
 
 
@@ -308,7 +361,7 @@ app.post("/addTransaction/:itemID", function(req, res) {
 
         req.body.avatar = req.body.avatarHdn;
       }
-      console.log(req.body);
+      // console.log(req.body);
       db.Profile.update({
         username: req.body.username,
         pw: req.body.password,
