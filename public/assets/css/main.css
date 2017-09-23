@@ -72,6 +72,9 @@ header, #navi {
   background-color: #d4e157;
   opacity: .67; }
 
+.yo {
+  margin-bottom: 0; }
+
 #search-stuff {
   padding-top: 50px;
   padding-bottom: 30px; }
