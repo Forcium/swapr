@@ -69,7 +69,7 @@ header, #navi {
   color: white; }
 
 .infoStuff {
-  background-color: #d4e157;
+  background-color: #f5ffdf;
   opacity: .67; }
 
 .yo {
@@ -89,9 +89,6 @@ header, #navi {
 
 .git-hub {
   margin-top: 26px; }
-
-#search-stuff {
-  padding-bottom: 200px; }
 
 /*profile css ------------------*/
 .headMarg {
@@ -117,14 +114,16 @@ header, #navi {
   margin-bottom: 10px;
   padding-top: 10px;
   z-index: 2;
-  background-color: #d4e157; }
+  background-color: #f5ffdf; }
 
 #profDivs {
   padding-bottom: 200px; }
 
 #userWelcome {
   padding-left: 50px;
-  margin: 0; }
+  text-shadow: 6px 3px 18px #969696;
+  margin: 0;
+  color: #84878a; }
 
 #listOfItems, #stuffUwant {
   background-color: #fafafa;
@@ -139,7 +138,8 @@ header, #navi {
   z-index: 1; }
 
 #pendStuff {
-  background-color: #d4e157; }
+  background-color: #f5ffdf;
+  opacity: 0.75; }
 
 #addListing {
   margin-top: 0; }
@@ -174,7 +174,7 @@ header, #navi {
   height: auto;
   width: 45%;
   opacity: .9;
-  background-color: #d4e157; }
+  background-color: #bfe824; }
 
 .darkText {
   color: #3d673c; }
@@ -227,7 +227,17 @@ header, #navi {
   #Convos, #ConvosWrite {
     width: 205%; }
   #profDivs, #comDiv, #caroDiv, #search-stuff {
-    padding-bottom: 30px; } }
+    padding-bottom: 30px; }
+  #homePageFirstName {
+    font-size: 20px; } }
+
+@media only screen and (max-width: 745px) {
+  #userWelcome {
+    font-size: 30px; } }
+
+@media only screen and (max-width: 560px) {
+  #userWelcome {
+    font-size: 22px; } }
 
 body {
   font-family: sans-serif; }
