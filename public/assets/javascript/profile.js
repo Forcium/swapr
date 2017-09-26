@@ -23,6 +23,13 @@ $(document).ready(function() {
     $("#recentOffers").html("Offers Made: " + counter);
   });
 
+  //Get number of Pending swaps
+  $.get('/pendingSwaps/',
+    {ProfileId: window.localStorage.getItem("profileID")}
+  ).then(function(response){
+    $('#pendingSwapsHomePage').html("Pending Swaps: " + response.length);
+  });
+
   //main profile
   //Looking for the query string "offers" from url
   var pathArray = window.location.href.split('/');
@@ -131,7 +138,7 @@ $(document).ready(function() {
             +data[i].id
             +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
             +data[i].item_img1
-            +'><a class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            +'><a id="littleGreenBtn" class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
             +data[i].item_name
             +'</h6></div></div></a>');
             }
@@ -142,7 +149,7 @@ $(document).ready(function() {
               +data[i].id
               +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
               +data[i].item_img1
-              +'><a class="btn-floating halfway-fab waves-effect waves-light red darken-1 modal-trigger" data-target="modalBids"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+              +'><a class="btn-floating halfway-fab waves-effect waves-light red darken-1 modal-trigger" data-target="modalBids" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
               +data[i].item_name
               +'</h6></div></div></a>');
             }
@@ -161,7 +168,31 @@ $(document).ready(function() {
         }
         catch (err) {
         };
+    $(document).on("click", '#littleGreenBtn', function(data){
+      var transID = $('#littleGreenBtn').attr("value");
+      $.get("/transaction/" + transID, {
+      }).then(function(response){
+        $('.offersPopulate').empty();
+        var responseArr = [];
+        for (var i = 0; i < response.length; i++) {
 
+          $('.offersPopulate').append('<div class="card-panel green lighten-5 z-depth-1">'
+            +'<div class="row valign-wrapper bidCol">'
+            +'<div class="col s8 m8">'
+            +'<span class="black-text" id="bidText">'
+            +'<h5>You have an offer!</h5>'
+            +'</span>'
+            +'</div>'
+            +'<div class="col s2 m2">'
+            +'<a class="waves-effect waves-light light-green btn pulse" href="/listing/'
+            + response[i].BuyerItemId
+            +'">View Item</a>'
+            +'</div>'
+            +'</div>'
+            +'</div>');
+          }
+      });
+    });
 
 
 
@@ -213,12 +244,47 @@ $(document).ready(function() {
   });
   //pending swaps
   $('#pend').on("click", function() {
+      var uid = window.localStorage.getItem("profileID");
+    $.get('/pendingSwaps/',
+      {ProfileId: uid}
+    ).then(function(response){
+      $("#pendingSwapsHomePage").empty();
+
+      for (var i = 0; i < response.length; i++) {
+        var chatPage = response[i].id
+      if (parseInt(uid) === response[i].BuyerProfileId) {
+
+      var Clark = function (chatPage) {
+          $.get("/api/listing/" + response[i].BuyerItemId + "/" + response[i].SellerItemId).then(function(data){
+        $("#pendingSwapsContent").append('<div class="card-panel hoverable z-depth-3" id="pendStuff"><div class="row valign-wrapper"><div class="col s4 m2"><img src="'+ data[0].item_img1 +'" id="pendingThemImg" class="responsive-img valign"></div><div class="col s4 m8"><center><a class="waves-effect waves-green btn-flat" href="/communicate/' + chatPage +'">Check the status of your Swap</a></center></div><div class="col s4 m2"><img src="'+ data[1].item_img1 +'" id="pendingYouImg" class="responsive-img valign"></div></div></div>');
+        })
+      };
+      Clark(chatPage);
+      }
+      else if (parseInt(uid) === response[i].SellerProfileId) {
+        var Clark = function (chatPage) {
+          $.get("/api/listing/" + response[i].SellerItemId + "/" + response[i].BuyerItemId).then(function(data){
+        $("#pendingSwapsContent").append('<div class="card-panel hoverable z-depth-3" id="pendStuff"><div class="row valign-wrapper"><div class="col s4 m2"><img src="'+ data[0].item_img1 +'" id="pendingThemImg" class="responsive-img valign"></div><div class="col s4 m8"><center><a class="waves-effect waves-green btn-flat" href="/communicate/' + chatPage +'">Check the status of your Swap</a></center></div><div class="col s4 m2"><img src="'+ data[1].item_img1 +'" id="pendingYouImg" class="responsive-img valign"></div></div></div>');
+        })
+      };
+      Clark(chatPage);
+      }
+    }
+
+
+
+    })
+
+
     $('#listOfItems').hide();
     $('#changeProfile').hide();
     $('#stuffUwant').hide();
     $('#profileHome').hide();
     $('#pendingSwaps').show();
     $('.button-collapse').sideNav('hide');
+
+
+
   });
   //update profile
   $('.update').on("click", function() {

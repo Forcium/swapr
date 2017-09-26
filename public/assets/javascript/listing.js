@@ -43,15 +43,15 @@ $(document).ready(function() {
       if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))) {
 
         console.log("matched");
-        $(".sellerBtn").empty();
-        $(".sellerBtnSubmit").empty();
+        $(".sellerBtn").remove();
+        $(".sellerBtnSubmit").remove();
 
       }
       //if others
       else {
 
         console.log("not matched");
-        $(".ownerBtn").empty();
+        $(".ownerBtn").remove();
         $('select').material_select('destroy');
 
 
