@@ -87,6 +87,7 @@ app.post("/api/addItem", function(req, res) {
   });
 });
 
+
 app.get("/transaction/:sellerItemID", function(req, res) {
   db.Transaction.findAll({
     where: {
@@ -106,6 +107,45 @@ app.get("/findProfile/:profileID", function(req, res) {
     res.json(data);
   })
 });
+
+
+
+// app.post("/addTransaction/:itemID", function(req, res) {
+//
+// });
+
+
+
+
+//route for flagging an item in DB
+app.post("/api/flagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.increment("flagged")
+  });
+});
+
+
+//route for flagging an item in DB
+app.post("/api/unFlagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.decrement("flagged")
+  });
+});
+
+
+
 
 
 
