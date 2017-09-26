@@ -26,6 +26,7 @@
     "mysql2": "^1.4.2",
     "rand-token": "^0.3.0",
     "sequelize": "^4.8.0",
+    "sweetalert": "^2.0.3",
     "zipcodes": "^4.1.0"
   },
   "devDependencies": {
