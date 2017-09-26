@@ -24,7 +24,12 @@ module.exports = function(sequelize, DataTypes) {
     item_img3: {
       type: DataTypes.STRING,
       defaultValue: "/assets/images/placeholder.png"
+    },
+    flagged: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     }
+
   });
 
   Item.associate = function(models) {

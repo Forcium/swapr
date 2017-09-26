@@ -12,6 +12,46 @@ $(document).ready(function() {
     $('#carousel2').attr('src', data.item_img2);
     $('#carousel3').attr('src', data.item_img3);
 
+
+
+    //flag the other user's item
+    $(document).on("click", ".flagBtn", function(event) {
+      event.preventDefault();
+
+
+      var pathArray = window.location.href.split('/');
+      console.log(pathArray);
+      var qstring = pathArray[4];
+
+      $.post("/api/flagItem/" + qstring, {
+        // flagged: 3,
+      }).then(function(data){
+        event.preventDefault();
+      });
+      alert("Your report has been submitted.  Thank you!");
+
+    });
+
+    //unflag the other user's item
+    $(document).on("click", ".unFlagBtn", function(event) {
+      event.preventDefault();
+
+
+      var pathArray = window.location.href.split('/');
+      console.log(pathArray);
+      var qstring = pathArray[4];
+
+      $.post("/api/unFlagItem/" + qstring, {
+        // flagged: 3,
+      }).then(function(data){
+        event.preventDefault();
+      });
+      alert("You have unflagged this item.");
+
+    });
+
+
+
     //edit item
     $(document).on("click", "#editListing", function(event) {
 
