@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
