@@ -87,9 +87,14 @@
                 <label for="city"></label>
                 </input>
               </div>
-              <div class="col s6">
+              <div class="col s2">
                 <input placeholder="State" id="state" type="text" class="validate">
                 <label for="state"></label>
+                </input>
+              </div>
+              <div class="col s4">
+                <input placeholder="Zipcode" id="zipcode" type="text" class="validate">
+                <label for="zipcode"></label>
                 </input>
               </div>
             </div>
@@ -145,7 +150,7 @@
           </div>
           <!-- category -->
           <div class="input-field col l3 m6 s12">
-            <select>
+            <select name="itemCategory" id="stuffCat">
               <option value="" disabled selected>Category</option>
               <option value="Elect">Electronics</option>
               <option value="Fash">Fashion</option>
@@ -159,13 +164,13 @@
           <!--location -->
           <div class="col l3 m8 s9">
             <div class="input-field clearfix" id="userSearch">
-              <input placeholder="Location" id="searchText" type="text" class="validate">
-              <label for="searchText"></label>
+              <input placeholder="Zipcode" name="searchZip" id="searchZip" type="text" class="validate">
+              <label for="searchZip"></label>
               </input>
             </div>
           </div>
           <div class="input-field col l1 m4 s3">
-            <select>
+            <select class = mileSearch>
               <option value="" disabled selected>Miles</option>
               <option value="5">5 mi</option>
               <option value="15">15 mi</option>
