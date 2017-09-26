@@ -157,22 +157,8 @@
     <div class="modal-content">
       <h4>Swapr Offers</h4>
       <!-- offers populated -->
-
-      <div class="card-panel green lighten-5 z-depth-1">
-        <div class="row valign-wrapper bidCol">
-          <div class="col s4 m2">
-            <img src="/assets/images/userStock.png" id="bidImage" class="circle responsive-img valign">
-          </div>
-          <div class="col s8 m8">
-            <span class="black-text" id="bidText">
-              <h5>Made You An Offer</h5>
-            </span>
-          </div>
-          <div class="col s2 m2">
-            <a class="waves-effect waves-light light-green btn pulse" href="/listing">View Item</a>
-          </div>
+      <div class="offersPopulate">
         </div>
-      </div>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -223,7 +209,7 @@
         </div>
         <div class="col s12 m5">
           <div class="card-panel infoStuff z-depth-4">
-            <h5>Pending Swaps: 1</h5>
+            <h5 id="pendingSwapsHomePage"></h5>
           </div>
         </div>
       </div>
@@ -255,22 +241,8 @@
     <!-- Pending swaps -->
 
     <div class="row card-panel z-depth-1" id="pendingSwaps">
-      <h4 class="darkText">Pending Swaps</h4>
+      <h4 class="darkText" id="pendingSwapsContent">Pending Swaps</h4>
       <!-- pendings populated -->
-      <div class="card-panel hoverable z-depth-3" id="pendStuff">
-        <div class="row valign-wrapper">
-          <div class="col s4 m2">
-            <img src="/assets/images/placeholder.png" id="pendingThemImg" class="responsive-img valign">
-          </div>
-          <div class="col s4 m8">
-
-            <center><a class="waves-effect waves-green btn-flat" href="/communicate">Check the status of your Swap</a></center>
-          </div>
-          <div class="col s4 m2">
-            <img src="/assets/images/placeholder.png" id="pendingYouImg" class="responsive-img valign">
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- main -->

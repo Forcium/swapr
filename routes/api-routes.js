@@ -87,11 +87,66 @@ app.post("/api/addItem", function(req, res) {
   });
 });
 
-app.post("/addTransaction/:itemID", function(req, res) {
 
-
-
+app.get("/transaction/:sellerItemID", function(req, res) {
+  db.Transaction.findAll({
+    where: {
+      SellerItemId: req.params.sellerItemID
+    }
+  }).then(function(data){
+    res.json(data);
+  })
 });
+
+app.get("/findProfile/:profileID", function(req, res) {
+  db.Profile.findOne({
+    where:{
+      id: req.params.profileID
+    }
+  }).then(function(data){
+    res.json(data);
+  })
+});
+
+
+
+// app.post("/addTransaction/:itemID", function(req, res) {
+//
+// });
+
+
+
+
+//route for flagging an item in DB
+app.post("/api/flagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.increment("flagged")
+  });
+});
+
+
+//route for flagging an item in DB
+app.post("/api/unFlagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.decrement("flagged")
+  });
+});
+
+
+
+
 
 
   app.post("/api/editItem", function(req, res) {
@@ -196,6 +251,17 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       where: {
         id: req.params.listingID
       }
+    }).then(function(dbPost) {
+      res.json(dbPost);
+    });
+  });
+
+  app.get("/api/listing/:listingID1/:listingID2", function(req, res) {
+    db.Item.findAll({
+      where: {
+        $or: [{id: req.params.listingID1},
+          {id:req.params.listingID2}]
+        }
     }).then(function(dbPost) {
       res.json(dbPost);
     });
@@ -378,6 +444,22 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       res.json(dbPost);
     });
   });
+
+  app.get('/pendingSwaps/', function(req, res) {
+    console.log(req.query);
+    db.Transaction.findAll({
+      where : {
+        $or: {
+        BuyerProfileId: req.query.ProfileId,
+        SellerProfileId: req.query.ProfileId},
+        offerAccepted: 1
+      }
+    }).then(function(dbPost){
+      res.json(dbPost);
+    })
+
+
+  })
 
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
