@@ -52,9 +52,9 @@ module.exports = function(sequelize, DataTypes) {
     avatar: {
       type: DataTypes.STRING,
       defaultValue: "/assets/images/userStock.png"
-    },
-    rating: {
-      type: DataTypes.INTEGER
+    // },
+    // rating: {
+    //   type: DataTypes.INTEGER
     },
     token: {
       type: DataTypes.STRING,
