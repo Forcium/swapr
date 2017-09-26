@@ -105,7 +105,7 @@ header, #navi {
 
 #userPhoto {
   width: 100%;
-  height: auto; }
+  height: 210px; }
 
 #imageCard {
   width: 24%;
@@ -121,9 +121,8 @@ header, #navi {
 
 #userWelcome {
   padding-left: 50px;
-  text-shadow: 6px 3px 18px #969696;
-  margin: 0;
-  color: #84878a; }
+  text-shadow: 2px 2px 2px #aaa;
+  margin: 0; }
 
 #listOfItems, #stuffUwant {
   background-color: #fafafa;
@@ -174,14 +173,15 @@ header, #navi {
   height: auto;
   width: 45%;
   opacity: .9;
-  background-color: #bfe824; }
+  background-color: #159957; }
 
 .darkText {
   color: #3d673c; }
 
 /*communication css ------------------*/
 .swap {
-  margin: 0; }
+  margin: 0;
+  text-shadow: 2px 2px 2px #aaa; }
 
 .swapDiv {
   margin: 0; }
@@ -200,7 +200,7 @@ header, #navi {
   width: 65%;
   opacity: .9; }
 
-#comDiv {
+#comDiv #profDivs {
   padding-bottom: 200px; }
 
 .imageCardYou, .imageCardThem {
@@ -401,6 +401,39 @@ td {
   margin-right: 0.5em; }
 
 .grad1 {
+  background: #8ab259;
+  /* fallback for old browsers */
+  background: linear-gradient(266deg, #155799, #8ab259);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 17s ease infinite;
+  -moz-animation: AnimationName 17s ease infinite;
+  animation: AnimationName 17s ease infinite; }
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 100% 0%; }
+  50% {
+    background-position: 0% 100%; }
+  100% {
+    background-position: 100% 0%; } }
+
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 100% 0%; }
+  50% {
+    background-position: 0% 100%; }
+  100% {
+    background-position: 100% 0%; } }
+
+@keyframes AnimationName {
+  0% {
+    background-position: 100% 0%; }
+  50% {
+    background-position: 0% 100%; }
+  100% {
+    background-position: 100% 0%; } }
+
+.grad2 {
   background: #88c808;
   /* fallback for old browsers */
   background: linear-gradient(136deg, #88c808, #f3bb0b, #bbf700);

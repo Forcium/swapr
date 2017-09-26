@@ -96,6 +96,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
       phone: phoneInput.val().trim(),
       city: cityInput.val().trim(),
       state: stateInput.val().trim(),
+      zipcode: zipInput.val().trim(),
       username: userNameInput.val().trim(),
       pw: passwordInput.val().trim()
     });
@@ -111,12 +112,18 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     });
   }
 
-
+  // Item search functionality
   $(document).on("click", "#submit-search", function(event){
     event.preventDefault();
+    $('select').material_select();
+    var cat= ($('#stuffCat :selected').val());
+    var rad=($('.mileSearch :selected').val());
+    var zip = $('#searchZip').val();
+    console.log(cat, zip, rad);
 
     $('.body_content').empty();
-    $.get("/results", function(data){
+
+    $.get("/results/" + cat + "/" + rad + "/" + zip , function(data){
 
     for (var i = 0; i < data.length; i++) {
 
@@ -126,6 +133,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
     '<div class="card-image">' +
     '<img src="'+ data[i].item_img1 +'">'  +
+    // '<span class="card-title">' + data[i].zipcode + '</span>' +
     '</div>' +
     '<div class="card-content">' +
     '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +

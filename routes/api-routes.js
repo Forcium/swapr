@@ -10,7 +10,7 @@ var db = require("../models");
 var randtoken = require('rand-token');
 var fs = require("fs");
 var multer = require("multer");
-
+var zipcodes = require('zipcodes');
 
 
 // Routes
@@ -87,6 +87,7 @@ app.post("/api/addItem", function(req, res) {
   });
 });
 
+
 app.get("/transaction/:sellerItemID", function(req, res) {
   db.Transaction.findAll({
     where: {
@@ -106,6 +107,45 @@ app.get("/findProfile/:profileID", function(req, res) {
     res.json(data);
   })
 });
+
+
+
+// app.post("/addTransaction/:itemID", function(req, res) {
+//
+// });
+
+
+
+
+//route for flagging an item in DB
+app.post("/api/flagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.increment("flagged")
+  });
+});
+
+
+//route for flagging an item in DB
+app.post("/api/unFlagItem/:itemID", function(req, res) {
+
+  db.Item.find({
+    where: {
+      id: req.params.itemID
+    }
+
+  }).then(function(dbPost) {
+    dbPost.decrement("flagged")
+  });
+});
+
+
+
 
 
 
@@ -256,10 +296,28 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
 
   });
 
+//zipcode item find findall where blah = blah
+  app.get("/results/:category/:radius/:zip", function(req, res) {
+    console.log("this zip:" + req.params.zip);
+    console.log("this radius:" + req.params.radius);
 
-  app.get("/results", function(req, res) {
-    db.Item.findAll({})
-      .then(function(dbPost) {
+    var x = req.params.zip;
+    var y = req.params.radius;
+    var rad = zipcodes.radius(x, y);
+    console.log('LOOK HERE:' + rad);
+    console.log(typeof rad);
+    db.Item.findAll({
+      where: {category: req.params.category
+      },
+      include: [{
+        model: db.Profile,
+        as: 'TransactionsSellerItem',
+        where: {
+          $in:{zipcode: rad}
+        }
+      }]
+    }).then(function(dbPost) {
+      console.log(dbPost);
         res.json(dbPost);
       });
   });
@@ -300,7 +358,7 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
         phone: req.body.phone,
         city: req.body.city,
         state: req.body.state,
-        zip: req.body.zip,
+        zipcode: req.body.zipcode,
         username: req.body.username,
         pw: req.body.pw,
         token: token

@@ -38,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [2]
       }
     },
+    zipcode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -52,10 +56,11 @@ module.exports = function(sequelize, DataTypes) {
     avatar: {
       type: DataTypes.STRING,
       defaultValue: "/assets/images/userStock.png"
+
     },
-    rating: {
-      type: DataTypes.INTEGER
-    },
+    // rating: {
+    //   type: DataTypes.INTEGER
+    // },
     token: {
       type: DataTypes.STRING,
       allowNull: false
