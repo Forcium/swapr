@@ -298,27 +298,22 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
 
 //zipcode item find findall where blah = blah
   app.get("/results/:category/:radius/:zip", function(req, res) {
-    console.log("this zip:" + req.params.zip);
-    console.log("this radius:" + req.params.radius);
-
     var x = req.params.zip;
     var y = req.params.radius;
     var rad = zipcodes.radius(x, y);
-    console.log('LOOK HERE:' + rad);
-    console.log(typeof rad);
     db.Item.findAll({
       where: {category: req.params.category
       },
       include: [{
         model: db.Profile,
         as: 'TransactionsSellerItem',
-        where: {
-          $in:{zipcode: rad}
-        }
-      }]
-    }).then(function(dbPost) {
-      console.log(dbPost);
-        res.json(dbPost);
+          where: {
+            zipcode: {
+              $in: rad}
+            }
+        }]
+    }).then(function(dbPost2) {
+        res.json(dbPost2);
       });
   });
 
@@ -456,10 +451,8 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       }
     }).then(function(dbPost){
       res.json(dbPost);
-    })
-
-
-  })
+    });
+  });
 
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {

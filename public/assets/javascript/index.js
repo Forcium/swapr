@@ -124,7 +124,6 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     $('.body_content').empty();
 
     $.get("/results/" + cat + "/" + rad + "/" + zip , function(data){
-
     for (var i = 0; i < data.length; i++) {
 
     var cards;
