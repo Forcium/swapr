@@ -116,6 +116,23 @@ app.get("/findProfile/:profileID", function(req, res) {
 
 
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~find existing username and email
+app.post("/findDuplicate/", function(req, res) {
+  db.Profile.findAll({
+    where:{
+      $or: {
+        username: req.body.username,
+        email: req.body.email
+      }
+    }
+  })
+  .then(function(data){
+    res.json(data);
+
+  })
+});
+
+
 
 //route for flagging an item in DB
 app.post("/api/flagItem/:itemID", function(req, res) {

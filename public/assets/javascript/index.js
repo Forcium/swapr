@@ -89,6 +89,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var zipInput = $("#zipcode");
     var userNameInput = $("#username");
     var passwordInput = $("#password");
+
     upsertUser({
       firstName: fNameInput.val().trim(),
       lastName: lNameInput.val().trim(),
@@ -104,13 +105,27 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
 
   function upsertUser(UserData) {
+    $.post("/findDuplicate/", {
+      username: UserData.username,
+      email: UserData.email
+      }).then(function(data){
+        console.log(data);
+
+    if (!data[0]) {
     $.post("/api/isloggedin", UserData).done(function(res)
-    {
-      window.localStorage.setItem("token", res.token);
-      window.localStorage.setItem("profileID", res.id);
-      window.location = "/profile/";
+      {
+        window.localStorage.setItem("token", res.token);
+        window.localStorage.setItem("profileID", res.id);
+        window.location = "/profile/";
+      });
+    }
+    else {
+
+      alert("Username and/or Email already exists");
+    }
     });
-  }
+  };
+
 
   // Item search functionality
   $(document).on("click", "#submit-search", function(event){
