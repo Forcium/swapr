@@ -136,27 +136,25 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var zip = $('#searchZip').val();
     console.log(cat, zip, rad);
 
-    $('.body_content').empty();
+    $('#body_content').empty();
 
     $.get("/results/" + cat + "/" + rad + "/" + zip , function(data){
     for (var i = 0; i < data.length; i++) {
 
     var cards;
 
-    cards = '<div class="col s12 m3">' +
-    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+    cards = '<div class="col s12 m6 l3">' +
+    '<a href="/listing/'+ data[i].id + '" class="indItemCard"><div class="col s3 card hoverable" id="imageCard">' +
     '<div class="card-image">' +
-    '<img src="'+ data[i].item_img1 +'">'  +
+    '<img id="userPhoto" class="responsive-img" src="'+ data[i].item_img1 +'">'  +
     // '<span class="card-title">' + data[i].zipcode + '</span>' +
     '</div>' +
-    '<div class="card-content">' +
-    '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
-    '</div></a>' +
-    '</div>' +
-    '</div>';
+    '<div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+    + data[i].item_name
+    +'</h6></div</div></a></div>';
 
     console.log(cards);
-    $('.body_content').append(cards);
+    $('#body_content').append(cards);
 
   }
 
