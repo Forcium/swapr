@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Flag = sequelize.define("Flag", {
     // Giving the Author model a name of type STRING
 
-    
+
   });
 
 
