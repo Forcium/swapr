@@ -28,8 +28,21 @@ $(document).ready(function() {
       }).then(function(data){
         event.preventDefault();
       });
-      alert("Your report has been submitted.  Thank you!");
-
+      // swal alert
+      swal({
+        title: "Are you sure?",
+        text: "Only flag listings that are innappropriate or offensive.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Thank You!", "Your report has been submitted.", {
+            icon: "success",
+          });
+        }
+      });
     });
 
     //unflag the other user's item

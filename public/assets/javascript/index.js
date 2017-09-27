@@ -70,7 +70,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
         });
       }
       else {
-        alert("account not found");
+        swal("Error!", "Account Not Found", "error");
       }
     });
 
