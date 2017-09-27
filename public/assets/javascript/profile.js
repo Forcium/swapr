@@ -28,6 +28,22 @@ $(document).ready(function() {
     {ProfileId: window.localStorage.getItem("profileID")}
   ).then(function(response){
     $('#pendingSwapsHomePage').html("Pending Swaps: " + response.length);
+    var counter = 0;
+    console.log(response);
+    for (var i = 0; i < response.length; i++) {
+      if (parseInt(window.localStorage.getItem("profileID")) === response[i].BuyerProfileId && response[i].BuyerViewed === false) {
+        counter++;
+      }
+      else if (parseInt(window.localStorage.getItem("profileID")) === response[i].SellerProfileId && response[i].SellerViewed === false){
+        counter++;
+      }
+    }
+    if (counter !== 0) {
+    $('#newSwapsTag').html('<span class="new badge lime lighten-1">'+ counter +'</span>');
+    }
+    else {
+    $('#newSwapsTag').empty();
+    }
   });
 
   //main profile
@@ -38,20 +54,15 @@ $(document).ready(function() {
   //If query string "?offers" exists, remove the "?"
   if (pathArray[4]) {
   qstring = qstring.substr(1);
-
     if (qstring === "offers") {
-
       $('#stuffUwant').attr("style", "display: static");
       $('#listOfItems').hide();
       $('#changeProfile').hide();
       $('#pendingSwaps').hide();
       $('#profileHome').hide();
       $('.button-collapse').sideNav('hide');
-
     }
-
   }
-
 
     $('#pendingSwaps').hide();
     $('#listOfItems').hide();
@@ -74,15 +85,11 @@ $(document).ready(function() {
 
 
   $.post("/", {token: window.localStorage.getItem("token")}).then(function(data){
-
     if (!data){
-
       window.localStorage.clear();
       window.location.href = "/";
-
     }
     else {
-
       //main page welcome header content
       $('#userWelcome').html("Welcome, " + data.username);
       $('#avatarImg').attr("src", data.avatar);
@@ -194,8 +201,6 @@ $(document).ready(function() {
       });
     });
 
-
-
     $('#listOfItems').show();
     $('#changeProfile').hide();
     $('#pendingSwaps').hide();
@@ -243,12 +248,13 @@ $(document).ready(function() {
     $('.button-collapse').sideNav('hide');
   });
   //pending swaps
+
   $('#pend').on("click", function() {
       var uid = window.localStorage.getItem("profileID");
     $.get('/pendingSwaps/',
       {ProfileId: uid}
     ).then(function(response){
-      $("#pendingSwapsHomePage").empty();
+      $("#pendingSwapsContent").empty();
 
       for (var i = 0; i < response.length; i++) {
         var chatPage = response[i].id
@@ -270,10 +276,10 @@ $(document).ready(function() {
       Clark(chatPage);
       }
     }
-
-
-
     })
+    $.post('/updateViewed/',
+      {ProfileId: uid}
+    );
 
 
     $('#listOfItems').hide();
