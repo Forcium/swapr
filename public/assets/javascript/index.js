@@ -143,13 +143,16 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
     var cards;
 
-    cards = '<div class="col s12 m6 l3">' +
-    '<a href="/listing/'+ data[i].id + '" class="indItemCard"><div class="col s3 card hoverable" id="imageCard">' +
-    '<div class="card-image">' +
-    '<img id="userPhoto" class="responsive-img" src="'+ data[i].item_img1 +'">'  +
-    // '<span class="card-title">' + data[i].zipcode + '</span>' +
-    '</div>' +
-    '<div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+    cards = '<div class="col s12 m6 l3">'
+    +'<a href="/listing/'
+    + data[i].id
+    + '" class="indItemCard"><div class="col s3 card hoverable" id="imageCard">'
+    + '<div class="card-image">'
+    + '<img id="userPhoto" class="responsive-img" src="'
+    + data[i].item_img1
+    +'" />'
+    + '</div>'
+    + '<div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
     + data[i].item_name
     +'</h6></div</div></a></div>';
 
