@@ -248,7 +248,7 @@ $(document).ready(function() {
     $('.button-collapse').sideNav('hide');
   });
   //pending swaps
-  
+
   $('#pend').on("click", function() {
       var uid = window.localStorage.getItem("profileID");
     $.get('/pendingSwaps/',
@@ -279,9 +279,7 @@ $(document).ready(function() {
     })
     $.post('/updateViewed/',
       {ProfileId: uid}
-    ).then(function(resp){
-
-    });
+    );
 
 
     $('#listOfItems').hide();

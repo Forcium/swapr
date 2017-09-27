@@ -467,7 +467,7 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
         offerAccepted: 1
         }
       }).then(function(dbPost2){
-        res.json(dbPost2)
+        res.end();
       });
   });
 
