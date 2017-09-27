@@ -121,7 +121,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     }
     else {
 
-      alert("Username and/or Email already exists");
+      swal("Sorry", "Username and/or Email already exists.", "info");
     }
     });
   };

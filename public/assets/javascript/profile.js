@@ -337,12 +337,28 @@ $(document).ready(function() {
     //delete account button
     $(document).on("click", "#deleteAcct", function(event){
       event.preventDefault();
-      $.post("/api/deleteAcct", {
-        profileID: window.localStorage.getItem("profileID"),
-        token: window.localStorage.getItem("token")
-      }).then(function(data){
-        window.localStorage.clear();
-        window.location.href = "/";
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover your account information!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          $.post("/api/deleteAcct", {
+            profileID: window.localStorage.getItem("profileID"),
+            token: window.localStorage.getItem("token")
+          }).then(function(data){
+            window.localStorage.clear();
+            window.location.href = "/";
+          });
+          swal("Poof! Your account has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your account is safe!");
+        }
       });
     });
 

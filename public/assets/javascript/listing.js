@@ -78,17 +78,30 @@ $(document).ready(function() {
     //delete item
     $(document).on("click", "#deleteItem", function(event){
       event.preventDefault();
-      if (confirm("Are you sure you want to delete this item?") === true){
-        var pathArray = window.location.href.split('/');
-        console.log(pathArray);
-        var qstring = pathArray[4];
-        $.post("/api/deleteItem/" + qstring, {
-          profileID: window.localStorage.getItem("profileID"),
-        }).then(function(data){
-          window.location.href = "/profile";
-        });
-      }
-
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this listing!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          var pathArray = window.location.href.split('/');
+          console.log(pathArray);
+          var qstring = pathArray[4];
+          $.post("/api/deleteItem/" + qstring, {
+            profileID: window.localStorage.getItem("profileID"),
+          }).then(function(data){
+            window.location.href = "/profile";
+          });
+          swal("success! Your listing has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your listing is safe!");
+        }
+      });
     });
 
 
