@@ -28,7 +28,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
-  app.get("/communicate", function(req, res) {
+  app.get("/communicate/:transID", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/communicate.html"));
   });
 
@@ -36,10 +36,6 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/listing.html"));
   });
 
-
- app.get("/chat", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/chat.html"));
-  });
 
 
 

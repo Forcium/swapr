@@ -424,14 +424,6 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
     });
   });
 
-
-  app.get("/api/users", function(req, res) {
-    db.Profile.findAll({})
-      .then(function(dbPost) {
-        res.json(dbPost);
-      });
-  });
-
   // DELETE route for deleting acct
   app.post("/api/deleteAcct", function(req, res) {
     db.Profile.destroy({
@@ -470,17 +462,56 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
     });
   });
 
-  app.post('/updateViewed/', function(req, res){
+  app.post('/communicate/:transID', function(req, res) {
+    console.log(req.body);
+    console.log(req.params);
+    db.Transaction.findOne({
+      where : {
+        id: req.params.transID
+      }
+    }).then(function(dbPost){
+      res.json(dbPost);
+    });
+  });
+
+  app.get('/communicate/yourItem/:UID/', function(req, res) {
+
+    db.Item.findOne({
+      where : {
+          id: req.params.UID
+      },
+      include: [{
+        model: db.Profile,
+        as: "TransactionsSellerItem"
+      }]
+    }).then(function(dbPost){
+      res.json(dbPost);
+    });
+  });
+
+  app.get('/communicate/otherItem/:UID/', function(req, res) {
+
+    db.Item.findOne({
+      where : {
+          id: req.params.UID
+      },
+      include: [{
+        model: db.Profile,
+        as: "TransactionsSellerItem"
+      }]
+    }).then(function(dbPost){
+      res.json(dbPost);
+    });
+  });
+
+
+  app.post('/updateViewed/buyer', function(req, res){
     db.Transaction.update(
       {
-        BuyerViewed: true,
-        SellerViewed: true
+        BuyerViewed: true
       },
-      {
-      where : {
-        $or: {
+      {where : {
         BuyerProfileId: req.body.ProfileId,
-        SellerProfileId: req.body.ProfileId},
         offerAccepted: 1
         }
       }).then(function(dbPost2){
@@ -488,52 +519,17 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       });
   });
 
-
-  // Get route for returning posts of a specific category
-  // app.post("/results?searchFor=*", function(req, res) {
-  //   console.log(req.body);
-  // }).then(function(data){
-  //   res.end();
-  //
-  // });
-  // db.Post.findAll({
-  //   where: {
-  //     category: req.params.category
-  //   }
-  // })
-  // .then(function(dbPost) {
-  //   res.json(dbPost);
-  // });
-  // });
-
-  // Get rotue for retrieving a single post
-
-  //
-  // // POST route for saving a new post
-  // app.post("/api/posts", function(req, res) {
-  //   console.log(req.body);
-  //   db.Post.create({
-  //     title: req.body.title,
-  //     body: req.body.body,
-  //     category: req.body.category
-  //   })
-  //   .then(function(dbPost) {
-  //     res.json(dbPost);
-  //   });
-  // });
-  //
-
-  //
-  // // PUT route for updating posts
-  // app.put("/api/posts", function(req, res) {
-  //   db.Post.update(req.body,
-  //     {
-  //       where: {
-  //         id: req.body.id
-  //       }
-  //     })
-  //   .then(function(dbPost) {
-  //     res.json(dbPost);
-  //   });
-  // });
+  app.post('/updateViewed/seller', function(req, res){
+    db.Transaction.update(
+      {
+        SellerViewed: true
+      },
+      {where : {
+        SellerProfileId: req.body.ProfileId,
+        offerAccepted: 1
+        }
+      }).then(function(dbPost2){
+        res.end();
+      });
+  });
 };
