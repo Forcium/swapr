@@ -441,7 +441,6 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
   });
 
   app.get('/pendingSwaps/', function(req, res) {
-    console.log(req.query);
     db.Transaction.findAll({
       where : {
         $or: {
@@ -453,6 +452,25 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       res.json(dbPost);
     });
   });
+
+  app.post('/updateViewed/', function(req, res){
+    db.Transaction.update(
+      {
+        BuyerViewed: true,
+        SellerViewed: true
+      },
+      {
+      where : {
+        $or: {
+        BuyerProfileId: req.body.ProfileId,
+        SellerProfileId: req.body.ProfileId},
+        offerAccepted: 1
+        }
+      }).then(function(dbPost2){
+        res.json(dbPost2)
+      });
+  });
+
 
   // Get route for returning posts of a specific category
   // app.post("/results?searchFor=*", function(req, res) {
