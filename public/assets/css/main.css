@@ -206,6 +206,9 @@ header, #navi {
 .imageCardYou, .imageCardThem {
   width: 50%; }
 
+.it {
+  height: 200px; }
+
 #deleteItem {
   color: red;
   float: left;
@@ -214,13 +217,17 @@ header, #navi {
 /*media queries ------------------*/
 @media only screen and (max-width: 1200px) {
   #imageCardYou, #imageCardThem {
-    width: 50%; } }
+    width: 50%; }
+  .it {
+    height: 100px; } }
 
 @media only screen and (max-width: 993px) {
   header, .main, footer {
     padding-left: 0; }
   #imageCardYou, #imageCardThem {
     width: 50%; }
+  .it {
+    height: 200px; }
   #ConvosWrite {
     width: 205%;
     margin-top: 6px; }
@@ -237,7 +244,9 @@ header, #navi {
 
 @media only screen and (max-width: 560px) {
   #userWelcome {
-    font-size: 22px; } }
+    font-size: 22px; }
+  .it {
+    height: 100px; } }
 
 body {
   font-family: sans-serif; }
