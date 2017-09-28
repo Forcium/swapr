@@ -159,7 +159,7 @@ $(document).ready(function() {
               +data[i].id
               +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
               +data[i].item_img1
-              +'><a class="btn-floating halfway-fab waves-effect waves-light red darken-1 modal-trigger" data-target="modalBids" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+              +'><a id="littleRedBtn" class="btn-floating halfway-fab waves-effect waves-light red darken-1" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
               +data[i].item_name
               +'</h6></div></div></a></div>');
             }
@@ -181,6 +181,7 @@ $(document).ready(function() {
         };
     $(document).on("click", '#littleGreenBtn', function(data){
       var transID = $('#littleGreenBtn').attr("value");
+      console.log(transID);
       $.get("/transaction/" + transID, {
       }).then(function(response){
         $('.offersPopulate').empty();
@@ -203,6 +204,11 @@ $(document).ready(function() {
             +'</div>');
           }
       });
+    });
+
+    $(document).on("click", '#littleRedBtn', function(data){
+      var transID = $('#littleRedBtn').attr("value");
+      window.location.href = "/communicate/" + transID;
     });
 
     $('#listOfItems').show();
