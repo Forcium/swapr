@@ -189,6 +189,7 @@ background-color: #b3d01d;
   background-color: #159957;
 }
 
+
 .darkText{
   color: #3d673c;
 }
@@ -223,7 +224,10 @@ margin: 30px 0;
 }
 
 .imageCardYou, .imageCardThem{
-  width: 50%
+  width: 50%;
+}
+.it {
+  height: 200px;
 }
 
 #deleteItem {
@@ -238,6 +242,9 @@ margin: 30px 0;
   #imageCardYou, #imageCardThem{
     width: 50%
   }
+  .it {
+    height: 100px;
+  }
 }
 
 @media only screen and (max-width : 993px) {
@@ -248,6 +255,9 @@ margin: 30px 0;
   }
   #imageCardYou, #imageCardThem{
     width: 50%
+  }
+  .it {
+    height: 200px;
   }
   #ConvosWrite{
     width:$convWidth;
@@ -271,5 +281,8 @@ margin: 30px 0;
 @media only screen and (max-width : 560px) {
   #userWelcome{
     font-size: 22px;
+  }
+  .it {
+    height: 100px;
   }
 }
