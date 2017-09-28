@@ -190,7 +190,7 @@ $('#modalSignup').on("keydown", function(event){
     + '</div>'
     + '<div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
     + data[i].item_name
-    +'</h6></div</div></a></div>';
+    +'</h6></div></div></a></div>';
 
     console.log(cards);
     $('#body_content').append(cards);

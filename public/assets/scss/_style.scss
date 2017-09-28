@@ -107,7 +107,7 @@ background-color: #b3d01d;
 
 #imageCard{
   width: 100%;
-  height: auto;
+  height: 300px;
   margin-right: 1%;
   margin-bottom: 10px;
   padding-top: 10px;
@@ -220,15 +220,19 @@ margin: 30px 0;
   width: 65%;
   opacity: .9;
 }
-#comDiv #profDivs{
+#comDiv, #profDivs{
   padding-bottom: 200px;
 }
 
 .imageCardYou, .imageCardThem{
   width: 50%;
+  height: 200px;
 }
 .it {
-  height: 200px;
+  height: 240px;
+}
+#otherItemC, #yourItemC{
+  height:240px;
 }
 
 #deleteItem {
@@ -236,15 +240,28 @@ margin: 30px 0;
   float: left;
   margin-left: 35px;
 }
-
+#nameOfCard {
+  overflow-x: hidden;
+}
 /*media queries ------------------*/
 
 @media only screen and (max-width : 1200px) {
   #imageCardYou, #imageCardThem{
     width: 50%
   }
+  /* swap image card*/
   .it {
-    height: 100px;
+    height: 150px;
+  }
+  #otherItemC, #yourItemC{
+    height:150px;
+  }
+  /* listing card*/
+  #imageCard{
+    height:240px;
+  }
+  #userPhoto{
+    height: 140px;
   }
 }
 
@@ -255,10 +272,20 @@ margin: 30px 0;
     padding-left: 0;
   }
   #imageCardYou, #imageCardThem{
-    width: 50%
+    width: 50%;
+  }
+  #otherItemC, #yourItemC{
+    height:240px;
   }
   .it {
-    height: 200px;
+    height: 240px;
+  }
+  /* listing card*/
+  #imageCard{
+    height:320px;
+  }
+  #userPhoto{
+    height: 235px;
   }
   #ConvosWrite{
     width:$convWidth;
@@ -268,7 +295,7 @@ margin: 30px 0;
     width:$convWidth;
   }
   #profDivs, #comDiv, #caroDiv, #search-stuff {
-    padding-bottom: $bottPad;
+
   }
   #homePageFirstName{
     font-size: 20px
@@ -279,11 +306,35 @@ margin: 30px 0;
     font-size: 30px;
   }
 }
+@media only screen and (max-width : 600px) {
+  /* listing card*/
+  #imageCard{
+    width: 75%;
+    height: auto;
+    margin-left: 12%;
+  }
+  #userPhoto{
+    width: 100%;
+  }
+  #imageCardYou, #imageCardThem{
+    width: 50%;
+  }
+  #otherItemC, #yourItemC{
+    height:240px;
+  }
+  .it {
+    height: 240px;
+  }
+}
 @media only screen and (max-width : 560px) {
   #userWelcome{
     font-size: 22px;
   }
-  .it {
-    height: 100px;
+}
+@media only screen and (max-width : 440px) {
+  #imageCard{
+    width: 100%;
+    height: auto;
+    margin-left:auto;
   }
 }
