@@ -60,8 +60,6 @@ $.post("/", {
 
     firebase.initializeApp(config);
 
-
-
     var userData = firebase.database();
 
         $("#add-msg-btn").on("click", function() {
@@ -70,11 +68,15 @@ $.post("/", {
           var messages = $("#message-input").val().trim();
 
           var newTrain = {
-            name: user,
-            message: messages,
+            "transId" : {
+                      name: user,
+                      message: messages
+                }
           };
 
-          userData.ref().push(newTrain);
+          var newPostRef = userData.child("transId").push(newTrain);
+          var postId = newPostRef.key;
+          console.log(newPostRef);
 
           $("#message-input").val("");
           return false;
