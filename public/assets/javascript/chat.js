@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+var roomID;
 
 $.post("/", {
   token: window.localStorage.getItem("token")
@@ -16,8 +17,9 @@ $.post("/", {
     $.post("/communicate/" + pathArray[4], {
       userID: uid
     }).then(function(dbReponse){
-      console.log(dbReponse);
-      $("#transNumber").html("Transaction #110352224925" + dbReponse.id)
+      var transId = "Transaction #110352224925" + dbReponse.id;
+      roomID = "110352224925" + dbReponse.id;
+      $("#transNumber").html(transId);
 
       var yourID;
       var yourItem;
@@ -60,59 +62,39 @@ $.post("/", {
     firebase.initializeApp(config);
 
     var userData = firebase.database();
-
+    var postId;
         $("#add-msg-btn").on("click", function() {
-
           var user = data.avatar;
           var messages = $("#message-input").val().trim();
 
-          var newTrain = {
-            "transId" : {
-                      name: user,
-                      message: messages
-                }
+          var newMsg = {
+                name: user,
+                message: messages
           };
 
-          var newPostRef = userData.ref().push(newTrain);
-          var postId = newPostRef.key;
-          console.log(newPostRef);
+          var newPostRef = userData.ref().child(roomID).push(newMsg);
+          postId = newPostRef.key;
 
           $("#message-input").val("");
           return false;
 
         });
 
-      userData.ref().on("child_added", function(childSnapshot, prevChildKey) {
-
-        var userName = childSnapshot.val().name;
-        var userMessage = childSnapshot.val().message;
-
-        $("#msg-table > tbody").append("<tr><td><img id='avatarImg' class='circle' src='" + userName + "'></td><td><div class='chatMessage'>" + userMessage + "</div></td></tr>");
+      userData.ref(roomID).on("child_added", function(childSnapshot, prevChildKey) {
+        var route2 = childSnapshot.val();
+        $("#msg-table > tbody").append("<tr><td><img id='avatarImg' class='circle' src='" +
+        route2.name + "'></td><td><div class='chatMessage'>" + route2.message + "</div></td></tr>");
         updateScroll();
 
       });
-
     });
   }
 });
 
-//~~~~~~~~~~~~~~~~~~navbar search function
-
-$(".topInputBar").on("keydown", function(event){
-
-  if (event.which == 13){
-    var text = $("#search").val();
-    event.preventDefault();
-    window.location.href="/search/"+text;
-  }
-});
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   function updateScroll(){
       var element = document.getElementById("Convos");
       element.scrollTop = element.scrollHeight;
   }
 
-})
+});
