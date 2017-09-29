@@ -176,4 +176,21 @@ $(document).ready(function() {
 
   $('.carousel').carousel();
 
+
+
+
+  $(".topInputBar").on("keydown", function(event){
+
+    if (event.which == 13){
+      var text = $("#search").val();
+      event.preventDefault();
+      window.location.href="/search/"+text;
+    }
+  });
+
+
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 });

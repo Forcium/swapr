@@ -379,4 +379,24 @@ $(document).ready(function() {
       window.localStorage.clear();
       window.location.href = "/";
     });
+
+
+
+
+    //~~~~~~~~~~~~~~~~~~navbar search function
+
+    $(".topInputBar").on("keydown", function(event){
+
+      if (event.which == 13){
+        var text = $("#search").val();
+        event.preventDefault();
+        window.location.href="/search/"+text;
+      }
+    });
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 }); //doc ready

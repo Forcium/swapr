@@ -30,6 +30,67 @@ $(document).ready(function() {
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
     });
 
+var pathArray = window.location.href.split('/');
+console.log(pathArray);
+if (pathArray[4]) {
+  var text = pathArray[4];
+  $.get("/results/text1/" + text, function(data){
+      console.log(data);
+
+      if (!data[0]){
+        $.get("/results/all", function(data){
+          for (var i = 0; i < data.length; i++) {
+
+          var cards;
+
+          cards = '<div class="col s12 m3">' +
+          '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+          '<div class="card-image">' +
+          '<img src="'+ data[i].item_img1 +'">'  +
+          // '<span class="card-title">' + data[i].zipcode + '</span>' +
+          '</div>' +
+          '<div class="card-content">' +
+          '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+          '</div></a>' +
+          '</div>' +
+          '</div>';
+
+          console.log(cards);
+          $('.body_content').append(cards);
+
+        }
+
+        })
+        swal(text + " Does Not Exist.  But Check Out These Other Items!");
+      }
+      else{
+
+
+        for (var i = 0; i < data.length; i++) {
+
+        var cards;
+
+        cards = '<div class="col s12 m3">' +
+        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+        '<div class="card-image">' +
+        '<img src="'+ data[i].item_img1 +'">'  +
+        // '<span class="card-title">' + data[i].zipcode + '</span>' +
+        '</div>' +
+        '<div class="card-content">' +
+        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+        '</div></a>' +
+        '</div>' +
+        '</div>';
+
+        console.log(cards);
+        $('.body_content').append(cards);
+
+      }
+    }
+  });
+
+
+}
 // Scroll to items function ------------
 var card = $("#carditem");
 var submit = $("#submit-search");
@@ -127,40 +188,274 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
   };
 
 
-  // Item search functionality
+  //~~~~~~~~~~~~~~~~~~~~~~~~~Item search NAV SEARCH BAR FUNCTION
+  // $(document).on("click", "#search", function(event){
+  //
+  //
+  // });
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Item search functionality
   $(document).on("click", "#submit-search", function(event){
+
     event.preventDefault();
     $('select').material_select();
     var cat= ($('#stuffCat :selected').val());
     var rad=($('.mileSearch :selected').val());
     var zip = $('#searchZip').val();
-    console.log(cat, zip, rad);
+    var text = $('#searchText').val();
+    console.log(text, cat, zip, rad);
 
     $('.body_content').empty();
 
-    $.get("/results/" + cat + "/" + rad + "/" + zip , function(data){
-    for (var i = 0; i < data.length; i++) {
 
-    var cards;
 
-    cards = '<div class="col s12 m3">' +
-    '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
-    '<div class="card-image">' +
-    '<img src="'+ data[i].item_img1 +'">'  +
-    // '<span class="card-title">' + data[i].zipcode + '</span>' +
-    '</div>' +
-    '<div class="card-content">' +
-    '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
-    '</div></a>' +
-    '</div>' +
-    '</div>';
 
-    console.log(cards);
-    $('.body_content').append(cards);
+    //~~~~~~~~~~~~~~~~~ALERT: zip code and radius BOTH Must be entered at least
+    if (cat === "" && text === "" && rad === "" && zip != "") {
+      swal("Error", "If searching by zipcode, enter a search distance as well.","error")
+    }
 
+    else if (cat === "" && text === "" && zip ==="" && rad != "") {
+      swal("Error", "Can't search a distance without a zipcode!?", "error")
+    }
+
+    else if (text === "" && rad ==="" && zip != "" && cat != "") {
+      swal("Error", "If searching by zipcode, enter a search distance as well.", "error")
+    }
+
+    else if (cat === "" && rad ==="" && text != "" && zip != "") {
+      swal("Error", "If searching by zipcode, enter a search distance as well.", "error")
+    }
+
+    else if (text === "" && zip ==="" && rad != "" && cat != "") {
+      swal("Error", "Can't search distance without a zipcode!?", "error")
+    }
+
+    else if (cat === "" && zip ==="" && text != "" && rad != "") {
+      swal("Error", "Can't search distance without a zipcode!?", "error")
+    }
+
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~CATEGORY search
+    else if (rad === "" && text === "" && zip === "" && cat != "") {
+      $.get("/results/" + cat, function(data){
+        if (!data[0]) {
+            swal("Error", "There are no items in this category.  Please choose another category.", "error")
+        }
+        else {
+        for (var i = 0; i < data.length; i++) {
+
+        var cards;
+
+        cards = '<div class="col s12 m3">' +
+        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+        '<div class="card-image">' +
+        '<img src="'+ data[i].item_img1 +'">'  +
+        // '<span class="card-title">' + data[i].zipcode + '</span>' +
+        '</div>' +
+        '<div class="card-content">' +
+        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+        '</div></a>' +
+        '</div>' +
+        '</div>';
+
+        console.log(cards);
+        $('.body_content').append(cards);
+
+          }
+        }
+      });
+    }
+
+
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~ZIP and RADIUS search only
+    else if (cat === "" && text === "" && zip != "" && rad != "") {
+      $.get("/results/" + rad + "/" + zip, function(data){
+        if (!data[0]) {
+            swal("Error", "No items within searched distance.  Please choose another zipcode.", "error")
+        }
+        else {
+        for (var i = 0; i < data.length; i++) {
+
+        var cards;
+
+        cards = '<div class="col s12 m3">' +
+        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+        '<div class="card-image">' +
+        '<img src="'+ data[i].item_img1 +'">'  +
+        // '<span class="card-title">' + data[i].zipcode + '</span>' +
+        '</div>' +
+        '<div class="card-content">' +
+        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+        '</div></a>' +
+        '</div>' +
+        '</div>';
+
+        console.log(cards);
+        $('.body_content').append(cards);
+
+        }
+      }
+      });
+    }
+
+    //~~~~~~~~~~~~~~~~~~~~~~~~~ZIP and RADIUS and CATEGORY search only
+    else if (text === "" && zip != "" && rad != "" && cat != "") {
+      $.get("/results/" + cat + "/" + rad + "/" + zip, function(data){
+        console.log(data);
+        if (!data[0]) {
+            swal("Error", "No items within searched distance.  Please choose another zipcode.", "error")
+        }
+        else {
+        for (var i = 0; i < data.length; i++) {
+
+        var cards;
+
+        cards = '<div class="col s12 m3">' +
+        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+        '<div class="card-image">' +
+        '<img src="'+ data[i].item_img1 +'">'  +
+        // '<span class="card-title">' + data[i].zipcode + '</span>' +
+        '</div>' +
+        '<div class="card-content">' +
+        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+        '</div></a>' +
+        '</div>' +
+        '</div>';
+
+        console.log(cards);
+        $('.body_content').append(cards);
+
+        }
+      }
+      });
+    }
+
+
+
+  //~~~!!!!!!!!!!!!!~~~~~~~~~~~~~searching by search text field input only
+
+  else if (cat === "" && zip === "" && rad === "" && text != "") {
+    $.get("/results/text1/" + text, function(data){
+        console.log(data);
+
+        if (!data[0]){
+          $.get("/results/all", function(data){
+            for (var i = 0; i < data.length; i++) {
+
+            var cards;
+
+            cards = '<div class="col s12 m3">' +
+            '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+            '<div class="card-image">' +
+            '<img src="'+ data[i].item_img1 +'">'  +
+            // '<span class="card-title">' + data[i].zipcode + '</span>' +
+            '</div>' +
+            '<div class="card-content">' +
+            '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+            '</div></a>' +
+            '</div>' +
+            '</div>';
+
+            console.log(cards);
+            $('.body_content').append(cards);
+
+          }
+
+          })
+          swal(text + " Does Not Exist.  But Check Out These Other Items!");
+        }
+        else{
+
+
+          for (var i = 0; i < data.length; i++) {
+
+          var cards;
+
+          cards = '<div class="col s12 m3">' +
+          '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+          '<div class="card-image">' +
+          '<img src="'+ data[i].item_img1 +'">'  +
+          // '<span class="card-title">' + data[i].zipcode + '</span>' +
+          '</div>' +
+          '<div class="card-content">' +
+          '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+          '</div></a>' +
+          '</div>' +
+          '</div>';
+
+          console.log(cards);
+          $('.body_content').append(cards);
+
+        }
+      }
+    });
   }
 
 
+
+
+  //~~~~~~~~~~~search when category and RADIUS and ZIP and TEXT input
+  else if (cat != "" && text != "" && zip != "" && rad != ""){
+    $.get("/results/" + cat + "/" + rad + "/" + zip + "/" + text, function(data){
+      console.log(data);
+
+      if (!data[0]){
+        $.get("/results/" + cat + "/" + rad + "/" + zip, function(data){
+          for (var i = 0; i < data.length; i++) {
+
+          var cards;
+
+          cards = '<div class="col s12 m3">' +
+          '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+          '<div class="card-image">' +
+          '<img src="'+ data[i].item_img1 +'">'  +
+          // '<span class="card-title">' + data[i].zipcode + '</span>' +
+          '</div>' +
+          '<div class="card-content">' +
+          '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+          '</div></a>' +
+          '</div>' +
+          '</div>';
+
+          console.log(cards);
+          $('.body_content').append(cards);
+
+        }
+
+        })
+        swal(text + " Does Not Exist.  But Check Out These Other Items!");
+      }
+      else{
+
+
+        for (var i = 0; i < data.length; i++) {
+
+        var cards;
+
+        cards = '<div class="col s12 m3">' +
+        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
+        '<div class="card-image">' +
+        '<img src="'+ data[i].item_img1 +'">'  +
+        // '<span class="card-title">' + data[i].zipcode + '</span>' +
+        '</div>' +
+        '<div class="card-content">' +
+        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
+        '</div></a>' +
+        '</div>' +
+        '</div>';
+
+        console.log(cards);
+        $('.body_content').append(cards);
+
+      }
+    }
   });
+}
+
+
 
 });

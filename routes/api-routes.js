@@ -312,14 +312,107 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
     });
 
   });
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // finding by search field input only
+  // will return exact spelling or all items if not exact spelling
+  app.get("/results/text1/:text", function(req, res) {
+
+    db.Item.findAll({
+      where: {
+        item_name: req.params.text
+
+      }
+    }).then(function(dbPost2) {
+        res.json(dbPost2);
+      });
+  });
+
+  //search all and return all based on failed attempt from search input only
+  app.get("/results/all", function(req, res) {
+
+    db.Item.findAll({
+      item_name : req.body.item_name
+
+    }).then(function(dbPost2) {
+        res.json(dbPost2);
+      });
+  });
+
+
+  //finding items based on category only
+  app.get("/results/:category", function(req, res) {
+
+
+    db.Item.findAll({
+      where: {category: req.params.category}
+
+    }).then(function(dbPost2) {
+        res.json(dbPost2);
+      });
+  });
+
+
+
+//finding items based on zipcode radius
+app.get("/results/:radius/:zip", function(req, res) {
+  var x = req.params.zip;
+  var y = req.params.radius;
+  var rad = zipcodes.radius(x, y);
+
+  db.Item.findAll({
+
+    include: [{
+      model: db.Profile,
+      as: 'TransactionsSellerItem',
+        where: {
+          zipcode: {
+            $in: rad}
+          }
+      }]
+  }).then(function(dbPost2) {
+      res.json(dbPost2);
+    });
+});
+
+
+
+//finding items based on category & zipcode radius
+app.get("/results/:category/:radius/:zip", function(req, res) {
+  var x = req.params.zip;
+  var y = req.params.radius;
+  var rad = zipcodes.radius(x, y);
+
+  db.Item.findAll({
+    where: {category: req.params.category
+    },
+    include: [{
+      model: db.Profile,
+      as: 'TransactionsSellerItem',
+        where: {
+          zipcode: {
+            $in: rad}
+          }
+      }]
+  }).then(function(dbPost2) {
+      res.json(dbPost2);
+    });
+});
+
+//
+
 
 //zipcode item find findall where blah = blah
-  app.get("/results/:category/:radius/:zip", function(req, res) {
+  app.get("/results/:category/:radius/:zip/:text", function(req, res) {
     var x = req.params.zip;
     var y = req.params.radius;
     var rad = zipcodes.radius(x, y);
+    var findText = req.params.text;
+    console.log(findText);
     db.Item.findAll({
-      where: {category: req.params.category
+      where: {category: req.params.category,
+        item_name: {
+          $like: findText
+        }
       },
       include: [{
         model: db.Profile,
@@ -333,6 +426,11 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
         res.json(dbPost2);
       });
   });
+
+
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~``
 
   app.get("/api/stuffUwant", function(req, res) {
     db.Item.findAll({

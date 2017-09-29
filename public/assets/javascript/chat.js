@@ -44,7 +44,6 @@ $.post("/", {
         $('#yourItem').html(response.item_description);
       });
       $.get("/communicate/otherItem/" + otherItem, function(response2){
-        console.log(response2);
         $('#otherItemC').attr("src",response2.item_img1);
         $('#otherItem').html(response2.item_description);
       });
@@ -106,6 +105,19 @@ $.post("/", {
   }
 });
 
+//~~~~~~~~~~~~~~~~~~navbar search function
+
+$(".topInputBar").on("keydown", function(event){
+
+  if (event.which == 13){
+    var text = $("#search").val();
+    event.preventDefault();
+    window.location.href="/search/"+text;
+  }
+});
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   function updateScroll(){
       var element = document.getElementById("Convos");
