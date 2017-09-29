@@ -14,15 +14,17 @@ var pathArray = window.location.pathname.split('/');
     $('#carousel3').attr('src', data.item_img3);
 
     //populate your items that have been targeted by window item
+
     if(pathArray[3]){
       $(".buyerBtn").remove();
       $(".buyerBtnSubmit").remove();
-    $.get("/transaction/" + pathArray[3]).then(function(response){
-        if (response[0].offerAccepted === false) {
-          $.get("/api/listing/" + response[0].SellerItemId).then(function(response2){
+    $.get("/transaction/ID/" + pathArray[3]).then(function(response){
+      console.log(response);
+        if (response.offerAccepted === false) {
+          $.get("/api/listing/" + response.SellerItemId).then(function(response2){
             $('#transDecision').html('<div class="card-panel lighten-5 z-depth-1 grey lighten-5">'
             + '<div class="col l10 center">'
-            + '<h5>Transaction #110352224925' + response[0].id
+            + '<h5>Transaction #110352224925' + response.id
             + '</h5><br /><div class="col s12 m6 l3">'
             + '<img class="responsive-img" src="'
             +  response2.item_img1
@@ -33,17 +35,17 @@ var pathArray = window.location.pathname.split('/');
           })
         }
         else {
-          $.get("/api/listing/" + response[0].SellerItemId).then(function(response2){
+          $.get("/api/listing/" + response.SellerItemId).then(function(response2){
             $('#transDecision').html('<div class="card-panel lighten-5 z-depth-1 grey lighten-5">'
             + '<div class="col l10 center">'
-            + '<h5>Transaction #110352224925' + response[0].id
+            + '<h5>Transaction #110352224925' + response.id
             + '</h5><br /><div class="col s12 m6 l3">'
             + '<div class="col s12 m6 l3">'
             + '<img class="responsive-img" src="'
             +  response2.item_img1
             + '"><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
             + '</h6></div></div>'
-            + '<a class="btn waves-effect waves-light orange" id="pendingSwap" type="submit" name="action" href="/communicate/'+response[0].id+'">Pending Swap!</a></div></div>')
+            + '<a class="btn waves-effect waves-light orange" id="pendingSwap" type="submit" name="action" href="/communicate/'+response.id+'">Pending Swap!</a></div></div>')
           })
 
         }
@@ -51,9 +53,9 @@ var pathArray = window.location.pathname.split('/');
         //accept offers
         $(document).on("click", "#accept", function(event) {
           $.post("/offerAccept", {
-            transID: response[0].id
+            transID: response.id
           }).then(function(response2){
-            window.location.href = "/communicate/" + response[0].id;
+            window.location.href = "/communicate/" + response.id;
           })
 
         })
@@ -61,7 +63,7 @@ var pathArray = window.location.pathname.split('/');
         //decline offers
         $(document).on("click", "#decline", function(event) {
           $.post("/offerDecline", {
-            transID: response[0].id
+            transID: response.id
           }).then(function(response2){
             window.location.href = "/profile";
           })
@@ -158,10 +160,6 @@ var pathArray = window.location.pathname.split('/');
         $(".buyerBtnSubmit").remove();
       }
 
-
-      else if (data.ProfileId !== parseInt(window.localStorage.getItem("profileID"))) {
-
-      }
       //if others
       else {
 
@@ -172,7 +170,6 @@ var pathArray = window.location.pathname.split('/');
           profileID: window.localStorage.getItem("profileID")
         }).then(function(data) {
           for (var i = 0; i < data.length; i++) {
-            // var value = "some value";
             $("#selectDropdown").append(
               $("<option></option>")
               .prop("value", data[i].id)
@@ -191,12 +188,11 @@ var pathArray = window.location.pathname.split('/');
               profileID: window.localStorage.getItem("profileID")
             }).then(function(data) {
               $('.buyerBtn').empty();
-              $('.buyerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
-              $('.buyerBtnSubmit').empty();
-              $('.seeBidBtn').html("See your bid");
+              $('.buyerBtnSubmit').html('<a class="waves-effect waves-light btn pulse orange seeBidBtn center">See your bid</a>');
+
               $('.seeBidBtn').on("click", function(event) {
                 event.preventDefault();
-                window.location.href = "/profile/?offers";
+                window.location.href = "/profile/offers";
 
               });
             });
@@ -222,9 +218,5 @@ var pathArray = window.location.pathname.split('/');
     }
   });
 
-
-
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 });
