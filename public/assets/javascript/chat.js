@@ -17,7 +17,6 @@ $.post("/", {
     $.post("/communicate/" + pathArray[4], {
       userID: uid
     }).then(function(dbReponse){
-      console.log(dbReponse);
       var transId = "Transaction #110352224925" + dbReponse.id;
       roomID = "110352224925" + dbReponse.id;
       $("#transNumber").html(transId);
@@ -47,6 +46,8 @@ $.post("/", {
         $('#yourItem').html(response.item_description);
       });
       $.get("/communicate/otherItem/" + otherItem, function(response2){
+        $('#otherItemC').attr("src",response2.item_img1);
+        $('#otherItem').html(response2.item_description);
       });
 
     var config = {
@@ -63,7 +64,6 @@ $.post("/", {
     var userData = firebase.database();
     var postId;
         $("#add-msg-btn").on("click", function() {
-          console.log(roomID);
           var user = data.avatar;
           var messages = $("#message-input").val().trim();
 
@@ -81,8 +81,6 @@ $.post("/", {
         });
 
       userData.ref(roomID).on("child_added", function(childSnapshot, prevChildKey) {
-        console.log(roomID);
-        console.log("------------------------");
         var route2 = childSnapshot.val();
         $("#msg-table > tbody").append("<tr><td><img id='avatarImg' class='circle' src='" +
         route2.name + "'></td><td><div class='chatMessage'>" + route2.message + "</div></td></tr>");
