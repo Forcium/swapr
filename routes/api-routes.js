@@ -553,14 +553,13 @@ app.get("/results/:category/:radius/:zip", function(req, res) {
     });
   });
 
-  app.get('/transaction/:transID', function(req, res) {
+  app.get('/transaction/ID/:transID', function(req, res) {
     console.log(req.params.transID);
     db.Transaction.findOne({
       where : {
         id: req.params.transID
       }
     }).then(function(dbPost){
-      console.log("lolololo");
       res.json(dbPost);
     });
   });
