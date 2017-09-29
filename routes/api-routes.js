@@ -400,7 +400,6 @@ app.get("/results/:category/:radius/:zip", function(req, res) {
     var y = req.params.radius;
     var rad = zipcodes.radius(x, y);
     var findText = req.params.text;
-    console.log(findText);
     db.Item.findAll({
       where: {category: req.params.category,
         item_name: {
@@ -552,6 +551,7 @@ app.get("/results/:category/:radius/:zip", function(req, res) {
       res.json(dbPost);
     });
   });
+
 
   app.get('/transaction/ID/:transID', function(req, res) {
     console.log(req.params.transID);

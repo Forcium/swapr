@@ -31,12 +31,9 @@ $(document).ready(function() {
     });
 
 var pathArray = window.location.href.split('/');
-console.log(pathArray);
 if (pathArray[4]) {
   var text = pathArray[4];
   $.get("/results/text1/" + text, function(data){
-      console.log(data);
-
       if (!data[0]){
         $.get("/results/all", function(data){
           for (var i = 0; i < data.length; i++) {
@@ -56,7 +53,6 @@ if (pathArray[4]) {
            + data[i].item_name
            +'</h6></div></div></a></div>';
 
-           console.log(cards);
            $('#body_content').append(cards);
 
         }
@@ -84,7 +80,7 @@ if (pathArray[4]) {
          + data[i].item_name
          +'</h6></div></div></a></div>';
 
-         console.log(cards);
+
          $('#body_content').append(cards);
 
       }
@@ -204,7 +200,6 @@ $('#modalSignup').on("keydown", function(event){
           username: UserData.username,
           email: UserData.email
           }).then(function(data){
-            console.log(data);
 
         if (!data[0]) {
         $.post("/api/isloggedin", UserData).done(function(res)
@@ -240,7 +235,6 @@ $('#modalSignup').on("keydown", function(event){
     var rad=($('.mileSearch :selected').val());
     var zip = $('#searchZip').val();
     var text = $('#searchText').val();
-    console.log(text, cat, zip, rad);
 
     $('#body_content').empty();
 
@@ -299,7 +293,7 @@ $('#modalSignup').on("keydown", function(event){
            + data[i].item_name
            +'</h6></div></div></a></div>';
 
-           console.log(cards);
+
           $('#body_content').append(cards);
 
           }
@@ -333,7 +327,7 @@ $('#modalSignup').on("keydown", function(event){
            + data[i].item_name
            +'</h6></div></div></a></div>';
 
-           console.log(cards);
+
           $('#body_content').append(cards);
 
         }
@@ -344,7 +338,7 @@ $('#modalSignup').on("keydown", function(event){
     //~~~~~~~~~~~~~~~~~~~~~~~~~ZIP and RADIUS and CATEGORY search only
     else if (text === "" && zip != "" && rad != "" && cat != "") {
       $.get("/results/" + cat + "/" + rad + "/" + zip, function(data){
-        console.log(data);
+
         if (!data[0]) {
             swal("Error", "No items within searched distance.  Please choose another zipcode.", "error")
         }
@@ -366,7 +360,6 @@ $('#modalSignup').on("keydown", function(event){
            + data[i].item_name
            +'</h6></div></div></a></div>';
 
-           console.log(cards);
            $('#body_content').append(cards);
 
         }
@@ -380,7 +373,6 @@ $('#modalSignup').on("keydown", function(event){
 
   else if (cat === "" && zip === "" && rad === "" && text != "") {
     $.get("/results/text1/" + text, function(data){
-        console.log(data);
 
         if (!data[0]){
           $.get("/results/all", function(data){
@@ -401,7 +393,6 @@ $('#modalSignup').on("keydown", function(event){
                + data[i].item_name
                +'</h6></div></div></a></div>';
 
-               console.log(cards);
                $('#body_content').append(cards);
 
           }
@@ -429,7 +420,6 @@ $('#modalSignup').on("keydown", function(event){
              + data[i].item_name
              +'</h6></div></div></a></div>';
 
-             console.log(cards);
              $('#body_content').append(cards);
 
         }
@@ -443,7 +433,7 @@ $('#modalSignup').on("keydown", function(event){
   //~~~~~~~~~~~search when category and RADIUS and ZIP and TEXT input
   else if (cat != "" && text != "" && zip != "" && rad != ""){
     $.get("/results/" + cat + "/" + rad + "/" + zip + "/" + text, function(data){
-      console.log(data);
+
 
       if (!data[0]){
         $.get("/results/" + cat + "/" + rad + "/" + zip, function(data){
@@ -464,7 +454,7 @@ $('#modalSignup').on("keydown", function(event){
              + data[i].item_name
              +'</h6></div></div></a></div>';
 
-             console.log(cards);
+
              $('#body_content').append(cards);
 
         }
@@ -492,7 +482,6 @@ $('#modalSignup').on("keydown", function(event){
            + data[i].item_name
            +'</h6></div></div></a></div>';
 
-           console.log(cards);
            $('#body_content').append(cards);
 
       }
