@@ -53,8 +53,6 @@ $('#modalSignup').on("keydown", function(event){
   };
 })
 
-
-
   function handleUserLogin(event){
     event.preventDefault();
 

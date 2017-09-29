@@ -185,7 +185,7 @@ $(document).ready(function() {
       $.get("/transaction/" + transID, {
       }).then(function(response){
         $('.offersPopulate').empty();
-        var responseArr = [];
+        var res2;
         for (var i = 0; i < response.length; i++) {
 
           $('.offersPopulate').append('<div class="card-panel green lighten-5 z-depth-1">'
@@ -198,10 +198,13 @@ $(document).ready(function() {
             +'<div class="col s2 m2">'
             +'<a class="waves-effect waves-light light-green btn pulse" href="/listing/'
             + response[i].BuyerItemId
+            + '/'
+            + response[i].id
             +'">View Item</a>'
             +'</div>'
             +'</div>'
             +'</div>');
+
           }
       });
     });
@@ -229,21 +232,21 @@ $(document).ready(function() {
       try {
         for (var i = 0; i < data3.length; i++) {
           if (typeof data3[i].TransactionsSellerItem[0].Item !== undefined) {
-            $('#offerMadeCards').append('<div class="col s12 m6 l3">'
+            $('#offerMadeCards').append('<div class="col s12 m6 l3 center">'
             + '<a href="/listing/'
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
             +'" class="indItemCard" value="'
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
             +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src="'
             +data3[i].TransactionsSellerItem[0].Items[0].item_img1
-            +'"></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            +'"></div><div class="card-action" id="nameOfCard"><h5 id="nameOfItem">'
             +data3[i].TransactionsSellerItem[0].Items[0].item_name
-            +'</h6><h6>Owned by:</h6><div>'
+            +'</h5><h6>Owned by:</h6><div>'
             + '<img id="avatarImg" class="circle" width="20" height="20" src="'
             + data3[i].TransactionsSellerItem[0].avatar
-            + '" />&nbsp;'
+            + '" />&nbsp;<h5>'
             + data3[i].TransactionsSellerItem[0].username
-            + '</div></div></div></a></div>');
+            + '</h5></div></div></div></a></div>');
           }
         }
       }

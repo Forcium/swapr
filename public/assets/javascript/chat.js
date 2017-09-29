@@ -74,7 +74,7 @@ $.post("/", {
                 }
           };
 
-          var newPostRef = userData.child("transId").push(newTrain);
+          var newPostRef = userData.ref().push(newTrain);
           var postId = newPostRef.key;
           console.log(newPostRef);
 
