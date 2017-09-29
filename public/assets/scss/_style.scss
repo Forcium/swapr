@@ -142,7 +142,12 @@ background-color: #b3d01d;
 #pendStuff{
   background-color: $cardsGreen;
   opacity: 0.75;
-
+}
+#pendingYouImg, #pendingThemImg{
+  height:100px;
+}
+#pendingYouImg{
+  float: right;
 }
 
 #addListing{
@@ -240,7 +245,7 @@ margin: 30px 0;
   float: left;
   margin-left: 35px;
 }
-#nameOfCard {
+#nameOfCard, #nameofItem{
   overflow-x: hidden;
 }
 /*media queries ------------------*/

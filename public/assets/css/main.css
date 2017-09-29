@@ -140,6 +140,12 @@ header, #navi {
   background-color: #f5ffdf;
   opacity: 0.75; }
 
+#pendingYouImg, #pendingThemImg {
+  height: 100px; }
+
+#pendingYouImg {
+  float: right; }
+
 #addListing {
   margin-top: 0; }
 
@@ -219,7 +225,7 @@ header, #navi {
   float: left;
   margin-left: 35px; }
 
-#nameOfCard {
+#nameOfCard, #nameofItem {
   overflow-x: hidden; }
 
 /*media queries ------------------*/
