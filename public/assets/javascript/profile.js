@@ -237,16 +237,16 @@ $(document).ready(function() {
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
             +'" class="indItemCard" value="'
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
-            +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src="'
+            +'"><div class="col s3 card" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src="'
             +data3[i].TransactionsSellerItem[0].Items[0].item_img1
-            +'"></div><div class="card-action" id="nameOfCard"><h5 id="nameOfItem">'
+            +'"></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
             +data3[i].TransactionsSellerItem[0].Items[0].item_name
-            +'</h5><h6>Owned by:</h6><div>'
-            + '<img id="avatarImg" class="circle" width="20" height="20" src="'
-            + data3[i].TransactionsSellerItem[0].avatar
-            + '" />&nbsp;<h5>'
+            +'</h6></div><div class = "overlay"><h5 class = "white-text">Owned by:</h5><h4 class ="white-text">'
             + data3[i].TransactionsSellerItem[0].username
-            + '</h5></div></div></div></a></div>');
+            + '</h4><div>'
+            + '<img id="avatarImg" class="text circle" width="50" height="50" src="'
+            + data3[i].TransactionsSellerItem[0].avatar
+            + '" />&nbsp;</div></div></div></a></div>');
           }
         }
       }
