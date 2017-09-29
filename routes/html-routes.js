@@ -33,6 +33,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/profile.html"));
   });
 
+  app.get("/profile/offers", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/profile.html"));
+  });
+
   app.get("/communicate/:transID", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/communicate.html"));
   });

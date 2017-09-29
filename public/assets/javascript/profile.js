@@ -184,9 +184,11 @@ $(document).ready(function() {
       console.log(transID);
       $.get("/transaction/" + transID, {
       }).then(function(response){
+        console.log(response);
         $('.offersPopulate').empty();
         var res2;
         for (var i = 0; i < response.length; i++) {
+          if (response[i].BuyerProfileId) {
 
           $('.offersPopulate').append('<div class="card-panel green lighten-5 z-depth-1">'
             +'<div class="row valign-wrapper bidCol">'
@@ -204,6 +206,7 @@ $(document).ready(function() {
             +'</div>'
             +'</div>'
             +'</div>');
+          }
 
           }
       });
