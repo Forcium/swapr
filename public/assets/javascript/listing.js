@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
+var pathArray = window.location.pathname.split('/');
 
-  $.get("/api" + window.location.pathname, {
+  $.get("/api/" + pathArray[1] + "/" + pathArray[2], {
     profileID: window.localStorage.getItem("profileID")
   }).then(function(data) {
 
@@ -12,15 +13,69 @@ $(document).ready(function() {
     $('#carousel2').attr('src', data.item_img2);
     $('#carousel3').attr('src', data.item_img3);
 
+    //populate your items that have been targeted by window item
+    if(pathArray[3]){
+      $(".buyerBtn").remove();
+      $(".buyerBtnSubmit").remove();
+    $.get("/transaction/" + pathArray[3]).then(function(response){
+        if (response[0].offerAccepted === false) {
+          $.get("/api/listing/" + response[0].SellerItemId).then(function(response2){
+            $('#transDecision').html('<div class="card-panel lighten-5 z-depth-1 grey lighten-5">'
+            + '<div class="col l10 center">'
+            + '<h5>Transaction #110352224925' + response[0].id
+            + '</h5><br /><div class="col s12 m6 l3">'
+            + '<img class="responsive-img" src="'
+            +  response2.item_img1
+            + '"><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            + '</h6></div></div>'
+            + '<a class="btn waves-effect waves-light light-green" id="accept" type="submit" name="action">Accept</a>&nbsp;'
+            + '<a class="btn waves-effect waves-light orange" id="decline" type="submit"  name="action">Decline</a></div></div>')
+          })
+        }
+        else {
+          $.get("/api/listing/" + response[0].SellerItemId).then(function(response2){
+            $('#transDecision').html('<div class="card-panel lighten-5 z-depth-1 grey lighten-5">'
+            + '<div class="col l10 center">'
+            + '<h5>Transaction #110352224925' + response[0].id
+            + '</h5><br /><div class="col s12 m6 l3">'
+            + '<div class="col s12 m6 l3">'
+            + '<img class="responsive-img" src="'
+            +  response2.item_img1
+            + '"><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            + '</h6></div></div>'
+            + '<a class="btn waves-effect waves-light orange" id="pendingSwap" type="submit" name="action" href="/communicate/'+response[0].id+'">Pending Swap!</a></div></div>')
+          })
+
+        }
+
+        //accept offers
+        $(document).on("click", "#accept", function(event) {
+          $.post("/offerAccept", {
+            transID: response[0].id
+          }).then(function(response2){
+            window.location.href = "/communicate/" + response[0].id;
+          })
+
+        })
+
+        //decline offers
+        $(document).on("click", "#decline", function(event) {
+          $.post("/offerDecline", {
+            transID: response[0].id
+          }).then(function(response2){
+            window.location.href = "/profile";
+          })
+
+        })
+    })
+    };
+
 
 
     //flag the other user's item
     $(document).on("click", ".flagBtn", function(event) {
       event.preventDefault();
-
-
       var pathArray = window.location.href.split('/');
-      console.log(pathArray);
       var qstring = pathArray[4];
 
       $.post("/api/flagItem/" + qstring, {
@@ -48,10 +103,7 @@ $(document).ready(function() {
     //unflag the other user's item
     $(document).on("click", ".unFlagBtn", function(event) {
       event.preventDefault();
-
-
       var pathArray = window.location.href.split('/');
-      console.log(pathArray);
       var qstring = pathArray[4];
 
       $.post("/api/unFlagItem/" + qstring, {
@@ -63,13 +115,9 @@ $(document).ready(function() {
 
     });
 
-
-
     //edit item
     $(document).on("click", "#editListing", function(event) {
-
       var pathArray = window.location.href.split('/');
-      console.log(pathArray);
       var qstring = pathArray[4];
       $("#hdnId").attr("value", qstring);
 
@@ -87,8 +135,7 @@ $(document).ready(function() {
       })
       .then((willDelete) => {
         if (willDelete) {
-          var pathArray = window.location.href.split('/');
-          console.log(pathArray);
+
           var qstring = pathArray[4];
           $.post("/api/deleteItem/" + qstring, {
             profileID: window.localStorage.getItem("profileID"),
@@ -107,59 +154,46 @@ $(document).ready(function() {
 
       //if yours of item  is you
       if (data.ProfileId === parseInt(window.localStorage.getItem("profileID"))) {
+        $(".buyerBtn").remove();
+        $(".buyerBtnSubmit").remove();
+      }
 
-        console.log("matched");
-        $(".sellerBtn").remove();
-        $(".sellerBtnSubmit").remove();
+
+      else if (data.ProfileId !== parseInt(window.localStorage.getItem("profileID"))) {
 
       }
       //if others
       else {
 
-        console.log("not matched");
-        $(".ownerBtn").remove();
+        $(".sellerBtn").remove();
         $('select').material_select('destroy');
-
-
 
         $.post("/api/allListings", {
           profileID: window.localStorage.getItem("profileID")
         }).then(function(data) {
-          console.log(data);
           for (var i = 0; i < data.length; i++) {
             // var value = "some value";
-            console.log(data[i].id);
             $("#selectDropdown").append(
               $("<option></option>")
               .prop("value", data[i].id)
               .text(data[i].item_name)
               .attr("data-icon", data[i].item_img1)
               .attr('class', 'circle left')
-
             );
-
             //intialize
             $('select').material_select();
           }
           $('.swapBtn').on('click', function(event) {
             event.preventDefault();
             var x = $("#selectDropdown").val();
-            console.log(x);
             var pathArray = window.location.pathname.split('/');
-            console.log(pathArray);
             $.post("/api/makeOffer/" + pathArray[2] + "/" + sellerID + "/" + x, {
-
               profileID: window.localStorage.getItem("profileID")
-
             }).then(function(data) {
-
-
-              $('.sellerBtn').empty();
-              $('.sellerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
-              $('.sellerBtnSubmit').empty();
+              $('.buyerBtn').empty();
+              $('.buyerBtnSubmit').attr("class", "waves-effect waves-light btn pulse orange seeBidBtn");
+              $('.buyerBtnSubmit').empty();
               $('.seeBidBtn').html("See your bid");
-
-
               $('.seeBidBtn').on("click", function(event) {
                 event.preventDefault();
                 window.location.href = "/profile/?offers";

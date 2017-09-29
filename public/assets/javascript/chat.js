@@ -17,7 +17,7 @@ $.post("/", {
       userID: uid
     }).then(function(dbReponse){
       console.log(dbReponse);
-      $("#transNumber").html("Transaction #" + dbReponse.id)
+      $("#transNumber").html("Transaction #110352224925" + dbReponse.id)
 
       var yourID;
       var yourItem;
@@ -48,10 +48,6 @@ $.post("/", {
         $('#otherItem').html(response2.item_description);
       });
 
-
-
-
-
     var config = {
       apiKey: "AIzaSyAvfQNHxo8df0lNiPlMWFgu95tBl8rd8Eg",
       authDomain: "class-test-829c1.firebaseapp.com",
@@ -63,25 +59,23 @@ $.post("/", {
 
     firebase.initializeApp(config);
 
-
     var userData = firebase.database();
 
-
         $("#add-msg-btn").on("click", function() {
-
-
 
           var user = data.avatar;
           var messages = $("#message-input").val().trim();
 
           var newTrain = {
-
-            name: user,
-            message: messages,
+            "transId" : {
+                      name: user,
+                      message: messages
+                }
           };
 
-          userData.ref().push(newTrain);
-
+          var newPostRef = userData.ref().push(newTrain);
+          var postId = newPostRef.key;
+          console.log(newPostRef);
 
           $("#message-input").val("");
           return false;
@@ -90,11 +84,8 @@ $.post("/", {
 
       userData.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-        // console.log(childSnapshot.val());
-
         var userName = childSnapshot.val().name;
         var userMessage = childSnapshot.val().message;
-
 
         $("#msg-table > tbody").append("<tr><td><img id='avatarImg' class='circle' src='" + userName + "'></td><td><div class='chatMessage'>" + userMessage + "</div></td></tr>");
         updateScroll();

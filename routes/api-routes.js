@@ -216,14 +216,7 @@ app.post("/api/makeOffer/:sellerItemId/:sellerID/:buyerItemId", function(req, re
       SellerProfileId: sellerID,
       BuyerProfileId: req.body.profileID,
       offerAccepted: 0
-    },{
-      include: [
-        {model: db.Profile,
-           as: "TransactionsSeller"
-        },
-        { model: db.Item,
-           as: "TransactionsSellerItem"
-        }]
+
     }).then(function(dbPost){
       res.json(dbPost);
     })
@@ -560,9 +553,19 @@ app.get("/results/:category/:radius/:zip", function(req, res) {
     });
   });
 
+  app.get('/transaction/:transID', function(req, res) {
+    console.log(req.params.transID);
+    db.Transaction.findOne({
+      where : {
+        id: req.params.transID
+      }
+    }).then(function(dbPost){
+      console.log("lolololo");
+      res.json(dbPost);
+    });
+  });
+
   app.post('/communicate/:transID', function(req, res) {
-    console.log(req.body);
-    console.log(req.params);
     db.Transaction.findOne({
       where : {
         id: req.params.transID
@@ -630,4 +633,33 @@ app.get("/results/:category/:radius/:zip", function(req, res) {
         res.end();
       });
   });
+
+  app.post('/offerAccept', function(req, res){
+    db.Transaction.update(
+      {
+        offerAccepted: true
+      },
+      {
+        where: {
+          id: req.body.transID
+        }
+      }).then(function(dbPost){
+        res.end();
+      })
+  })
+
+  app.post('/offerDecline', function(req, res){
+    db.Transaction.update(
+      {
+        BuyerProfileId: null,
+        BuyerItemId: null
+      },
+      {
+        where: {
+          id: req.body.transID
+        }
+      }).then(function(dbPost){
+        res.end();
+      })
+  })
 };

@@ -30,21 +30,14 @@ $(document).ready(function() {
     $('#pendingSwapsHomePage').html("Pending Swaps: " + response.length);
     var BuyerCounter = 0;
     var SellerCounter = 0;
-    console.log(response);
     for (var i = 0; i < response.length; i++) {
       if (parseInt(window.localStorage.getItem("profileID")) === response[i].BuyerProfileId && response[i].BuyerViewed === false) {
-        console.log("buyer");
         BuyerCounter++;
-        console.log("buyer counter" + BuyerCounter);
       }
       else if (parseInt(window.localStorage.getItem("profileID")) === response[i].SellerProfileId && response[i].SellerViewed === false){
-        console.log("seller");
         SellerCounter++;
-        console.log("seller counter" + SellerCounter);
       }
     }
-    console.log("buycounter end" + BuyerCounter);
-    console.log("sellcounter end" + SellerCounter);
     if (BuyerCounter !== 0 || SellerCounter !== 0) {
       var totalCounter = BuyerCounter + SellerCounter;
     $('#newSwapsTag').html('<span class="new badge lime lighten-1">'+ totalCounter +'</span>');
@@ -147,7 +140,8 @@ $(document).ready(function() {
         try {
           for (var i = 0; i < data.length; i++) {
             if (typeof data[i].TransactionsSellerItem[0].Transaction !== undefined && data[i].TransactionsSellerItem[0].Transaction.BuyerProfileId !== null && data[i].TransactionsSellerItem[0].Transaction.offerAccepted === false) {
-            $('#listingCards').append('<a href="/listing/'
+            $('#listingCards').append('<div class="col s12 m6 l3">'
+            + '<a href="/listing/'
             +data[i].id
             +'" class="indItemCard" value="'
             +data[i].id
@@ -155,21 +149,23 @@ $(document).ready(function() {
             +data[i].item_img1
             +'><a id="littleGreenBtn" class="btn-floating halfway-fab waves-effect waves-light light-green darken-1 modal-trigger" data-target="modalBids" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">error</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
             +data[i].item_name
-            +'</h6></div></div></a>');
+            +'</h6></div></div></a></div>');
             }
             else if (typeof data[i].TransactionsSellerItem[0].Transaction !== undefined && data[i].TransactionsSellerItem[0].Transaction.BuyerProfileId !== null && data[i].TransactionsSellerItem[0].Transaction.offerAccepted === true){
-              $('#listingCards').append('<a href="/listing/'
+              $('#listingCards').append('<div class="col s12 m6 l3">'
+              + '<a href="/listing/'
               +data[i].id
               +'" class="indItemCard" value="'
               +data[i].id
               +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src='
               +data[i].item_img1
-              +'><a class="btn-floating halfway-fab waves-effect waves-light red darken-1 modal-trigger" data-target="modalBids" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+              +'><a id="littleRedBtn" class="btn-floating halfway-fab waves-effect waves-light red darken-1" value="'+ data[i].TransactionsSellerItem[0].Transaction.SellerItemId +'"><i class="material-icons">check</i></a></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
               +data[i].item_name
-              +'</h6></div></div></a>');
+              +'</h6></div></div></a></div>');
             }
             else {
-              $('#listingCards').append('<a href="/listing/'
+              $('#listingCards').append('<div class="col s12 m6 l3">'
+              + '<a href="/listing/'
               +data[i].id
               +'" class="indItemCard" value="'
               +data[i].id
@@ -177,7 +173,7 @@ $(document).ready(function() {
               +data[i].item_img1
               +'></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
               +data[i].item_name
-              +'</h6></div></div></a>');
+              +'</h6></div></div></a></div>');
             }
           }
         }
@@ -185,10 +181,11 @@ $(document).ready(function() {
         };
     $(document).on("click", '#littleGreenBtn', function(data){
       var transID = $('#littleGreenBtn').attr("value");
+      console.log(transID);
       $.get("/transaction/" + transID, {
       }).then(function(response){
         $('.offersPopulate').empty();
-        var responseArr = [];
+        var res2;
         for (var i = 0; i < response.length; i++) {
 
           $('.offersPopulate').append('<div class="card-panel green lighten-5 z-depth-1">'
@@ -201,12 +198,20 @@ $(document).ready(function() {
             +'<div class="col s2 m2">'
             +'<a class="waves-effect waves-light light-green btn pulse" href="/listing/'
             + response[i].BuyerItemId
+            + '/'
+            + response[i].id
             +'">View Item</a>'
             +'</div>'
             +'</div>'
             +'</div>');
+
           }
       });
+    });
+
+    $(document).on("click", '#littleRedBtn', function(data){
+      var transID = $('#littleRedBtn').attr("value");
+      window.location.href = "/communicate/" + transID;
     });
 
     $('#listOfItems').show();
@@ -227,20 +232,21 @@ $(document).ready(function() {
       try {
         for (var i = 0; i < data3.length; i++) {
           if (typeof data3[i].TransactionsSellerItem[0].Item !== undefined) {
-            $('#offerMadeCards').append('<a href="/listing/'
+            $('#offerMadeCards').append('<div class="col s12 m6 l3 center">'
+            + '<a href="/listing/'
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
             +'" class="indItemCard" value="'
             +data3[i].TransactionsSellerItem[0].Transaction.SellerItemId
             +'"><div class="col s3 card hoverable" id="imageCard"><div class="card-image"><img id="userPhoto" class="responsive-img" src="'
             +data3[i].TransactionsSellerItem[0].Items[0].item_img1
-            +'"></div><div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+            +'"></div><div class="card-action" id="nameOfCard"><h5 id="nameOfItem">'
             +data3[i].TransactionsSellerItem[0].Items[0].item_name
-            +'</h6><h6>Owned by:</h6><div>'
+            +'</h5><h6>Owned by:</h6><div>'
             + '<img id="avatarImg" class="circle" width="20" height="20" src="'
             + data3[i].TransactionsSellerItem[0].avatar
-            + '" />&nbsp;'
+            + '" />&nbsp;<h5>'
             + data3[i].TransactionsSellerItem[0].username
-            + '</div></div></div></a>');
+            + '</h5></div></div></div></a></div>');
           }
         }
       }
@@ -262,8 +268,8 @@ $(document).ready(function() {
     $.get('/pendingSwaps/',
       {ProfileId: uid}
     ).then(function(response){
-      $("#pendingSwapsContent").empty();
 
+      $("#pendingSwapsContent").empty();
       for (var i = 0; i < response.length; i++) {
         var chatPage = response[i].id
       if (parseInt(uid) === response[i].BuyerProfileId) {
@@ -291,8 +297,6 @@ $(document).ready(function() {
       }
     }
     })
-
-
 
     $('#listOfItems').hide();
     $('#changeProfile').hide();

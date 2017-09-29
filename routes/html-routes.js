@@ -41,6 +41,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/listing.html"));
   });
 
+  app.get("/listing/:id/:trans", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/listing.html"));
+  });
+
 
 
 

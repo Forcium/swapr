@@ -103,6 +103,16 @@ var submit = $("#submit-search");
 
 $(document).on("click", "#loginBtn", handleUserLogin);
 $(document).on("click", "#signupBtn", handleUserFormSubmit);
+$('#modalLogin').on("keydown", function(event){
+  if (event.which === 13){
+    handleUserLogin(event);
+  };
+})
+$('#modalSignup').on("keydown", function(event){
+  if (event.which === 13){
+    handleUserFormSubmit(event);
+  };
+})
 
   function handleUserLogin(event){
     event.preventDefault();
@@ -134,7 +144,6 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
         swal("Error!", "Account Not Found", "error");
       }
     });
-
   }
 
 
@@ -150,6 +159,7 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var zipInput = $("#zipcode");
     var userNameInput = $("#username");
     var passwordInput = $("#password");
+    var password2Input = $("#password2");
 
     upsertUser({
       firstName: fNameInput.val().trim(),
@@ -160,31 +170,55 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
       state: stateInput.val().trim(),
       zipcode: zipInput.val().trim(),
       username: userNameInput.val().trim(),
-      pw: passwordInput.val().trim()
+      pw: passwordInput.val().trim(),
+      pw2: password2Input.val().trim()
     });
   }
 
 
   function upsertUser(UserData) {
-    $.post("/findDuplicate/", {
-      username: UserData.username,
-      email: UserData.email
-      }).then(function(data){
-        console.log(data);
-
-    if (!data[0]) {
-    $.post("/api/isloggedin", UserData).done(function(res)
-      {
-        window.localStorage.setItem("token", res.token);
-        window.localStorage.setItem("profileID", res.id);
-        window.location = "/profile/";
-      });
+    if (UserData.pw !== UserData.pw2) {
+      swal("Error!", "Passwords Do Not Match", "error");
+      $("#password").empty();
+      $("#password2").empty();
     }
     else {
 
-      swal("Sorry", "Username and/or Email already exists.", "info");
+
+        if (UserData.firstName === "" ||
+        UserData.lastName === "" ||
+        UserData.city === "" ||
+        UserData.email === "" ||
+        UserData.phone === "" ||
+        UserData.pw === "" ||
+        UserData.state === "" ||
+        UserData.username === "" ||
+        UserData.zipcode === "") {
+          swal("Error!", "Please Complete All Fields", "error");
+        }
+        else {
+
+        $.post("/findDuplicate/", {
+          username: UserData.username,
+          email: UserData.email
+          }).then(function(data){
+            console.log(data);
+
+        if (!data[0]) {
+        $.post("/api/isloggedin", UserData).done(function(res)
+          {
+            window.localStorage.setItem("token", res.token);
+            window.localStorage.setItem("profileID", res.id);
+            window.location = "/profile/";
+          });
+        }
+        else {
+
+          swal("Sorry", "Username and/or Email already exists.", "info");
+        }
+        });
+      }
     }
-    });
   };
 
 
@@ -206,7 +240,8 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
     var text = $('#searchText').val();
     console.log(text, cat, zip, rad);
 
-    $('.body_content').empty();
+    $('#body_content').empty();
+
 
 
 
@@ -282,20 +317,21 @@ $(document).on("click", "#signupBtn", handleUserFormSubmit);
 
         var cards;
 
-        cards = '<div class="col s12 m3">' +
-        '<a href="/listing/'+ data[i].id + '"><div class="card card hoverable z-depth-2" id="card">' +
-        '<div class="card-image">' +
-        '<img src="'+ data[i].item_img1 +'">'  +
-        // '<span class="card-title">' + data[i].zipcode + '</span>' +
-        '</div>' +
-        '<div class="card-content">' +
-        '<span id="title"class="card-title"><h5>'+ data[i].item_name +'</h5></span>' +
-        '</div></a>' +
-        '</div>' +
-        '</div>';
+    cards = '<div class="col s12 m6 l3">'
+    +'<a href="/listing/'
+    + data[i].id
+    + '" class="indItemCard"><div class="col s3 card hoverable" id="imageCard">'
+    + '<div class="card-image">'
+    + '<img id="userPhoto" class="responsive-img" src="'
+    + data[i].item_img1
+    +'" />'
+    + '</div>'
+    + '<div class="card-action" id="nameOfCard"><h6 id="nameOfItem">'
+    + data[i].item_name
+    +'</h6></div></div></a></div>';
 
-        console.log(cards);
-        $('.body_content').append(cards);
+    console.log(cards);
+    $('#body_content').append(cards);
 
         }
       }
