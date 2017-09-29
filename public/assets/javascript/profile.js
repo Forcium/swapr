@@ -181,7 +181,6 @@ $(document).ready(function() {
         };
     $(document).on("click", '#littleGreenBtn', function(data){
       var transID = $('#littleGreenBtn').attr("value");
-      console.log(transID);
       $.get("/transaction/" + transID, {
       }).then(function(response){
         $('.offersPopulate').empty();
